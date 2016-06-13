@@ -8,6 +8,7 @@ var httpServer = 'http://www.tdong.cn/';
 var httpApiList = {
   'login': {url:'api/login', obtainToken:true},
   'deviceList': {url:'api/admin/device/list', withToken:true},
+  'updatePhoto': {url:'api/admin/user/updatePhoto', withToken:true},
   'versionGet': 'api/version/get',
 };
 
@@ -25,6 +26,7 @@ var httpActions = mapValues(httpApiList, (actionConfig, actionName) => {
       let body = new FormData();
       forEach(params, (o, k)=>{ body.append(k,o || '')});
       let headers = {};
+      if(actionConfig.headers) headers = {...actionConfig.headers};
       if(actionConfig.withToken) headers['X-Auth-Token'] = token;
       return fetch(`${httpServer}${url}`, {body, method:'POST', headers}).then(response=>response.json())
         .then(json=>{
