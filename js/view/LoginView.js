@@ -74,7 +74,7 @@ class V extends Component {
             backgroundColor:'#00f',
             alignItems:'center', justifyContent:'center'
           }} onPress={this.onPressLogin.bind(this)} >
-          <Text style={{ color:'#fff'}}>登陆</Text>
+          <Text style={{ color:'#fff'}}>登陆6</Text>
         </TouchableOpacity>
       </View>
     );

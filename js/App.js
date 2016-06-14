@@ -10,11 +10,13 @@ import {
   View
 } from 'react-native';
 
+import CodePush from 'react-native-code-push';
+
 
 import { Provider } from 'react-redux';
 
 import configStore from './store/configStore';
-import { LoginView } from './view';
+import { AboutView } from './view';
 
 class App extends Component {
 
@@ -27,13 +29,17 @@ class App extends Component {
     }
   }
 
+  componentDidMount(){
+    CodePush.sync({installMode: CodePush.InstallMode.ON_NEXT_RESUME});
+  }
+
   render() {
     if(this.state.isLoading){
       return null;
     }
     return (
       <Provider store={this.state.store}>
-        <LoginView />
+        <AboutView />
       </Provider>
 
     );

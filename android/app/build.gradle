@@ -98,10 +98,30 @@ android {
             include "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+        release {
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+        }
+    }
+    productFlavors{
+        staging {
+            applicationId "com.reactnativeapp.staging"
+            resValue "string", "app_name", STAGING_APP_NAME
+            buildConfigField "String", "codePushDeploymentKey", '"'+STAGING_CODE_PUSH_DEPLOYMENT_KEY+'"'
+        }
+        production {
+            resValue "string", "app_name", PRODUCTION_APP_NAME
+            buildConfigField "String", "codePushDeploymentKey", '"'+PRODUCTION_CODE_PUSH_DEPLOYMENT_KEY+'"'
         }
     }
     // applicationVariants are e.g. debug, release
@@ -120,6 +140,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-code-push')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
