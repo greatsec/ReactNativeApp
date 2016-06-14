@@ -17,7 +17,9 @@ class V extends Component {
     codePush.checkForUpdate().then(e=>this.setState({text:JSON.stringify(e)}));
   }
   render(){
-    return (<View><Text style={{marginTop:100}}>{this.state.text}</Text></View>);
+    return (<View style={{marginTop:100}}>
+      <TextInput style={{height:40}}/>
+      <Text >{this.state.text}</Text></View>);
   }
 }
 
