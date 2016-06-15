@@ -6,10 +6,8 @@ import {
   View
 } from 'react-native';
 
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 import action from '../action';
 
 class V extends Component {
