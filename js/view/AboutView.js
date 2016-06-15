@@ -10,8 +10,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import action from '../action';
 
-import codePush from 'react-native-code-push';
-
 class V extends Component {
   constructor(props){
     super(props);
@@ -23,9 +21,12 @@ class V extends Component {
     return (
       <View style={{marginTop:100}}>
 
+        <View>
+          <Text >1</Text>
+        </View>
 
         <TextInput style={{height:40}}/>
-        <Text >1111</Text>
+        <Text >11</Text>
 
 
       </View>);

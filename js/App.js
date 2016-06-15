@@ -11,10 +11,14 @@ import {
 
 import codePush from 'react-native-code-push';
 
+import { connect } from 'react-redux';
+import { Scene, Router } from 'react-native-router-flux';
 import { Provider } from 'react-redux';
 import configStore from './store/configStore';
 
-import { AboutView } from './view';
+import { LoginView, AboutView } from './view';
+
+const RouterWithRedux = connect()(Router);
 
 class App extends Component {
 
@@ -56,7 +60,10 @@ class App extends Component {
     }
     return (
       <Provider store={this.state.store}>
-        <AboutView />
+        <RouterWithRedux>
+          <Scene key="login" component={ LoginView } title="Login"/>
+          <Scene key="about" component={ AboutView } title="Login"/>
+        </RouterWithRedux>
       </Provider>
 
     );

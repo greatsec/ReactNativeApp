@@ -8,6 +8,7 @@ import {
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
 class V extends Component {
@@ -23,8 +24,10 @@ class V extends Component {
     let { username, password } = this.state;
     this.props.action.login({username, password})
       .then(action=>{
-        if(!action.error)
-          this.props.action.deviceList();
+        if(!action.error){
+          Actions.about();
+        }
+          //this.props.action.deviceList();
       });
   }
   render() {
@@ -39,6 +42,7 @@ class V extends Component {
           <TextInput style={{
               flex:1,
               marginHorizontal:5,
+              backgroundColor:'transparent',
             }} onChangeText={(username)=>this.setState({username})} value={this.state.username} />
         </View>
 
@@ -51,6 +55,7 @@ class V extends Component {
           <TextInput style={{
               flex:1,
               marginHorizontal:5,
+              backgroundColor:'transparent',
             }} onChangeText={(password)=>this.setState({password})} value={this.state.password} />
         </View>
 
@@ -72,7 +77,7 @@ class V extends Component {
             backgroundColor:'#00f',
             alignItems:'center', justifyContent:'center'
           }} onPress={this.onPressLogin.bind(this)} >
-          <Text style={{ color:'#fff'}}>登陆6</Text>
+          <Text style={{ color:'#fff'}}>登陆</Text>
         </TouchableOpacity>
       </View>
     );
