@@ -81,7 +81,6 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.reactnativeapp"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
@@ -89,6 +88,8 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+
+        applicationId APPLICATION_ID
     }
     splits {
         abi {
@@ -107,21 +108,17 @@ android {
         }
     }
     buildTypes {
+        debug {
+            resValue "string", "app_name", DEBUG_APP_NAME
+            buildConfigField "String", "codePushDeploymentKey", '""'
+        }
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release
-        }
-    }
-    productFlavors{
-        staging {
-            applicationId "com.reactnativeapp.staging"
-            resValue "string", "app_name", STAGING_APP_NAME
-            buildConfigField "String", "codePushDeploymentKey", '"'+STAGING_CODE_PUSH_DEPLOYMENT_KEY+'"'
-        }
-        production {
-            resValue "string", "app_name", PRODUCTION_APP_NAME
-            buildConfigField "String", "codePushDeploymentKey", '"'+PRODUCTION_CODE_PUSH_DEPLOYMENT_KEY+'"'
+
+            resValue "string", "app_name", RELEASE_APP_NAME
+            buildConfigField "String", "codePushDeploymentKey", '"'+RELEASE_CODE_PUSH_DEPLOYMENT_KEY+'"'
         }
     }
     // applicationVariants are e.g. debug, release

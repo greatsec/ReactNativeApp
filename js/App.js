@@ -6,16 +6,14 @@
 
 import React, { Component } from 'react';
 import {
-  Text,
-  View
+  AppState,
 } from 'react-native';
 
-import CodePush from 'react-native-code-push';
-
+import codePush from 'react-native-code-push';
 
 import { Provider } from 'react-redux';
-
 import configStore from './store/configStore';
+
 import { AboutView } from './view';
 
 class App extends Component {
@@ -27,10 +25,29 @@ class App extends Component {
       isLoading:true,
       store: configStore(()=>this.setState({isLoading:false}))
     }
+
+    this._handleAppStateChange = this.handleAppStateChange.bind(this);
   }
 
   componentDidMount(){
-    CodePush.sync({installMode: CodePush.InstallMode.ON_NEXT_RESUME});
+    AppState.addEventListener('change', this._handleAppStateChange);
+
+    if(!__DEV__){
+      codePush.sync({installMode: codePush.InstallMode.ON_NEXT_RESUME});
+    }
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this._handleAppStateChange);
+  }
+
+  handleAppStateChange(appState){
+    if (appState === 'active') {
+      if(!__DEV__){
+        codePush.sync({installMode: CodePush.InstallMode.ON_NEXT_RESUME});
+      }
+
+    }
   }
 
   render() {
