@@ -11,6 +11,9 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
+import { LineChart } from 'react-native-chart';
+import { getSSID } from 'react-native-nufront-wifi';
+
 class V extends Component {
   constructor(props){
     super(props);
@@ -20,6 +23,7 @@ class V extends Component {
   }
 
   onPressLogin(){
+    getSSID((ssid)=>console.log(ssid));
     this.props.action.deviceRealtimeData('000ec602fad0');
     let { username, password } = this.state;
     this.props.action.login({username, password})
@@ -77,8 +81,9 @@ class V extends Component {
             backgroundColor:'#00f',
             alignItems:'center', justifyContent:'center'
           }} onPress={this.onPressLogin.bind(this)} >
-          <Text style={{ color:'#fff'}}>登陆</Text>
+          <Text style={{ color:'#fff'}}>登陆1</Text>
         </TouchableOpacity>
+
       </View>
     );
   }

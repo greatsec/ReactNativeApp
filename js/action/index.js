@@ -1,8 +1,9 @@
 export * from './login';
-export * from './device';
+import * as device from './device';
 
 import api from './api';
 
 export default {
   ...api,
+  ...device,
 }

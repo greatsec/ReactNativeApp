@@ -24,6 +24,7 @@ var httpActions = mapValues(httpApiList, (actionConfig, actionName) => {
     params => {
       let url = actionConfig.url;
       let body = new FormData();
+      params = {...params, developer:'lumin824@163.com'};
       forEach(params, (o, k)=>{ body.append(k,o || '')});
       let headers = {};
       if(actionConfig.headers) headers = {...actionConfig.headers};
@@ -62,7 +63,13 @@ var wsActions = mapValues(wsApiList, (actionConfig, actionName) => {
   );
 });
 
+var useToken = createAction('useToken', t=>{
+  token = t;
+  return t;
+});
+
 export default {
   ...httpActions,
-  ...wsActions
+  ...wsActions,
+  useToken
 }
