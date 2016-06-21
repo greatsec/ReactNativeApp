@@ -8,13 +8,14 @@ import React, { Component } from 'react';
 import {
   Text,
   AppState,
+  TouchableOpacity,
 } from 'react-native';
 
 import codePush from 'react-native-code-push';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Scene, Router } from 'react-native-router-flux';
+import { Scene, Router, Actions } from 'react-native-router-flux';
 import { Provider } from 'react-redux';
 import configStore from './store/configStore';
 
@@ -31,6 +32,24 @@ class TabIcon extends Component {
     }
 }
 
+class NavBar extends Component {
+  render(){
+    return (
+      <Text>Nav</Text>
+    );
+  }
+}
+
+class BackButton extends Component {
+  render(){
+    return (
+      <TouchableOpacity style={[this.props.style,{borderWidth:1}]} onPress={Actions.pop}>
+        <Text>BackButton</Text>
+      </TouchableOpacity>
+    );
+  }
+}
+
 class App extends Component {
   componentDidMount(){
     this.props.action.useToken(this.props.token);
@@ -40,13 +59,18 @@ class App extends Component {
     console.log(view);
     return (
       <RouterWithRedux>
-        <Scene key="login" component={ view.LoginView } title="登陆" initial={this.props.initialLogin}/>
-        <Scene key="about" component={ view.AboutView } title="关于" type="replace"/>
-        <Scene key="deviceList" component={ view.DeviceListView } title="关于" type="replace" initial={!this.props.initialLogin}/>
-        <Scene key="device" tabs={true}>
-          <Scene key='deviceData' component={view.DeviceDataView} title="检测" icon={TabIcon} />
+        <Scene key="login" component={ view.LoginView } title="登陆" initial={this.props.initialLogin} hideNavBar={true} type='reset'/>
+        <Scene key='main' tabs={true} initial={!this.props.initialLogin} type='replace'>
+          <Scene key="deviceList" component={ view.DeviceListView } title="设备" icon={TabIcon}/>
+          <Scene key="discover" component={ view.DiscoveryView } title="发现" icon={TabIcon}/>
+          <Scene key="message" component={ view.MessageView } title="消息" icon={TabIcon}/>
+          <Scene key="setting" component={ view.SettingView } title="我的" icon={TabIcon}/>
+        </Scene>
+        <Scene key="device" tabs={true} type='push' >
+          <Scene key='deviceData' component={view.DeviceDataView} title="检测" icon={TabIcon} backButton={BackButton}/>
           <Scene key='deviceChart' component={view.DeviceChartView} title="趋势" icon={TabIcon} />
         </Scene>
+        <Scene key='userinfo' component={view.UserInfoView} title='个人信息'/>
     </RouterWithRedux>
     );
   }
@@ -54,7 +78,7 @@ class App extends Component {
 
 const AppWithRedux = connect(state=>({
   token: state.loginUser && state.loginUser.token,
-  initialLogin: true,//!state.loginUser || !state.loginUser.token
+  initialLogin: !state.loginUser || !state.loginUser.token
 }), dispatch=>({
   action: bindActionCreators({
     useToken: action.useToken

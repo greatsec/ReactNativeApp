@@ -1,4 +1,4 @@
-export * from './login';
+import * as login from './login';
 import * as device from './device';
 
 import api from './api';
@@ -6,4 +6,5 @@ import api from './api';
 export default {
   ...api,
   ...device,
+  ...login
 }

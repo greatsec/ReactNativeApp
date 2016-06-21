@@ -41,9 +41,11 @@ class V extends Component {
         refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh.bind(this)}/>}
         style={{marginTop:100}}>
         {this.props.deviceList.list.map((o)=>{
-          return <TouchableOpacity key={o.id} onPress={()=>{this.props.action.selectDevice(o.id);Actions.device({id:o.id})}}>
+          return (
+          <TouchableOpacity key={o.id} onPress={()=>{this.props.action.selectDevice(o.id);Actions.device({id:o.id})}}>
             <Text>{o.name}</Text>
-          </TouchableOpacity>
+            <Text>在线：{o.online}</Text>
+          </TouchableOpacity>);
         })}
       </ScrollView>
     );

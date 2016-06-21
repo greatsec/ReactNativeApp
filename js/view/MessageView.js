@@ -1,22 +1,33 @@
 import React, { Component } from 'react';
 import {
-  RefreshControl,
-  ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
 class V extends Component {
+  constructor(props){
+    super(props);
+    this.state = {};
+  }
+  componentDidMount(){
+  }
   render(){
-    return <Text style={{marginTop:100}}>222</Text>
+    return (
+      <View style={{marginTop:100}}>
+
+        <View>
+          <Text >MessageView</Text>
+        </View>
+
+
+      </View>);
   }
 }
 
-export default connect()(V);
+export default connect(state=>state)(V);

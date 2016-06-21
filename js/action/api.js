@@ -48,17 +48,18 @@ var ws;
 var wsActions = mapValues(wsApiList, (actionConfig, actionName) => {
   return createAction(actionName,
     (...params) => Promise.race([new Promise((resolve, reject) => {
+      let paramsstring = params.join(',');
       if(ws){
-        ws.onmessage = evt => resolve(evt.data.replace(/\n/g,''));
-        ws.send(actionConfig + ',' + params.join(','));
+        ws.onmessage = evt => resolve({send:paramsstring,recv:evt.data.replace(/\n/g,'')});
+        ws.send(actionConfig + ',' + paramsstring);
       }else{
         ws = new WebSocket(wsServer);
         ws.onopen = () => ws.send(actionConfig + ',' + params.join(','));
-        ws.onmessage = evt => resolve(evt.data.replace(/\n/g,''));
+        ws.onmessage = evt => resolve({send:paramsstring,recv:evt.data.replace(/\n/g,'')});
       }
 
     }),new Promise((resolve, reject) => {
-      setTimeout(()=>reject({code:-1,msg:'超时'}), 5000);
+      setTimeout(()=>reject({code:-1,msg:'超时'}), 100000);
     })])
   );
 });

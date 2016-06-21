@@ -24,12 +24,12 @@ class V extends Component {
 
   onPressLogin(){
     getSSID((ssid)=>console.log(ssid));
-    this.props.action.deviceRealtimeData('000ec602fad0');
+
     let { username, password } = this.state;
     this.props.action.login({username, password})
       .then(action=>{
         if(!action.error){
-          Actions.about();
+          Actions.main();
         }
           //this.props.action.deviceList();
       });
