@@ -14,5 +14,6 @@ export var loginForm = handleActions({
 
 export var loginUser = handleActions({
   loginResult: (state, action) => (action.error? state: action.payload),
-  LOGOUT_RESULT: (state, action) => ({})
+  LOGOUT_RESULT: (state, action) => ({}),
+  userUpdateResult: (state, action) => (action.error? state: {...state, user:action.payload})
 },{});

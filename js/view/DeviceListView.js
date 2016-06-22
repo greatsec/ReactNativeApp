@@ -23,16 +23,18 @@ class V extends Component {
 
   componentDidMount(){
     this.setState({refreshing:true});
-    this.props.action.deviceList().then(action=>{
-      this.setState({refreshing:false});
-    });
+    Promise.all([
+      this.props.action.deviceList(),
+      this.props.action.deviceShareForMeList(),
+    ]).then(()=>{this.setState({refreshing:false})});
   }
 
   onRefresh(){
     this.setState({refreshing:true});
-    this.props.action.deviceList().then(action=>{
-      this.setState({refreshing:false});
-    });
+    Promise.all([
+      this.props.action.deviceList(),
+      this.props.action.deviceShareForMeList(),
+    ]).then(()=>{this.setState({refreshing:false})});
   }
 
   render(){
@@ -40,21 +42,28 @@ class V extends Component {
       <ScrollView
         refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh.bind(this)}/>}
         style={{marginTop:100}}>
-        {this.props.deviceList.list.map((o)=>{
+        {this.props.deviceList.map((o)=>{
           return (
-          <TouchableOpacity key={o.id} onPress={()=>{this.props.action.selectDevice(o.id);Actions.device({id:o.id})}}>
+          <TouchableOpacity key={'device_' + o.id} onPress={()=>{this.props.action.selectDevice(o.id);Actions.device()}}>
             <Text>{o.name}</Text>
             <Text>在线：{o.online}</Text>
           </TouchableOpacity>);
         })}
+
+        <TouchableOpacity onPress={Actions.deviceAdd}>
+          <Text>添加</Text>
+        </TouchableOpacity>
       </ScrollView>
     );
   }
 }
 
-export default connect(state=>state,dispatch=>({
+export default connect(state=>({
+  deviceList: [...state.deviceList.list, ...state.deviceList.slist]
+}),dispatch=>({
   action: bindActionCreators({
     deviceList: action.deviceList,
     selectDevice: action.selectDevice,
+    deviceShareForMeList: action.deviceShareForMeList
   }, dispatch)
 }))(V);

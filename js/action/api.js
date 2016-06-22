@@ -5,11 +5,29 @@ import forEach from 'lodash/forEach';
 var token = '';
 
 var httpServer = 'http://www.tdong.cn/';
+//var httpServer = 'http://192.168.3.59:8080/';
 var httpApiList = {
   'login': {url:'api/login', obtainToken:true},
   'deviceList': {url:'api/admin/device/list', withToken:true},
+  'deviceShareForMeList': {url:'api/admin/device/share', withToken:true},
+  'deviceShareList': {url:'api/admin/deviceshare/list', withToken:true},
+  'deviceUpdateName':{url:'api/admin/device/updateDeviceName', withToken:true},
+
+  'deviceShare': {url:'api/admin/deviceshare/share', withToken:true},
+  'deviceUnshare': {url:'api/admin/deviceshare/unshare', withToken:true},
+  'deviceBind': {url:'api/admin/device/bind', withToken:true},
+  'deviceUnbind': {url:'api/admin/device/unbind', withToken:true},
+
+
   'updatePhoto': {url:'api/admin/user/updatePhoto', withToken:true},
   'versionGet': 'api/version/get',
+  'adviceSave': {url:'api/admin/advice/save', withToken:true},
+  'userUpdate': {url:'api/admin/user/update', withToken:true},
+  'userUpdatePassword': {url:'api/admin/user/updatePassword', withToken:true},
+  'bbsPage': {url:'api/admin/anjuba/page', withToken:true},
+  'bbsAdd': {url:'api/admin/anjuba/save', withToken:true},
+  'bbsAddReply': {url:'api/admin/anjuba/saveReply', withToken:true},
+
 };
 
 var wsServer = 'ws://www.tdong.cn:60002/websocket';
@@ -31,11 +49,12 @@ var httpActions = mapValues(httpApiList, (actionConfig, actionName) => {
       if(actionConfig.withToken) headers['X-Auth-Token'] = token;
       return fetch(`${httpServer}${url}`, {body, method:'POST', headers}).then(response=>response.json())
         .then(json=>{
+          console.log(json);
           if(!json.success) return Promise.reject({code:json.status, msg:json.message});
           if(actionConfig.obtainToken) token = json.info.token;
           return json.info;
         });
-    }
+    }, params=>params
   );
 
   return params => dispatch => {

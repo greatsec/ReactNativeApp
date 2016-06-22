@@ -18,21 +18,33 @@ class V extends Component {
   }
   componentDidMount(){
   }
+  onPressSubmit(){
+    let {content} = this.state;
+
+    this.props.action.bbsAdd({content}).then(action=>{
+      if(!action.error) Actions.pop();
+    })
+  }
   render(){
     return (
       <View style={{marginTop:100}}>
 
         <View>
-          <Text >微信公众号：安居侠</Text>
+          <Text >BBS</Text>
         </View>
 
-        <View>
-          <Text >客服电话：400 880 6306</Text>
-        </View>
+        <TextInput onChangeText={content=>this.setState({content})} style={{height:40}}/>
 
+        <TouchableOpacity onPress={this.onPressSubmit.bind(this)}>
+          <Text>提交</Text>
+        </TouchableOpacity>
 
       </View>);
   }
 }
 
-export default connect(state=>state)(V);
+export default connect(state=>state,dispatch=>({
+  action: bindActionCreators({
+    bbsAdd: action.bbsAdd
+  }, dispatch)
+}))(V);

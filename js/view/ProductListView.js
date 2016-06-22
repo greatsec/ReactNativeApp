@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Linking,
   Text,
   TextInput,
   TouchableOpacity,
@@ -22,13 +23,13 @@ class V extends Component {
     return (
       <View style={{marginTop:100}}>
 
-        <View>
-          <Text >微信公众号：安居侠</Text>
-        </View>
+        <TouchableOpacity style={{height:48}} onPress={()=>Linking.openURL('https://item.taobao.com/item.htm?id=526010546355')}>
+          <Text>安居侠气体检测仪</Text>
+        </TouchableOpacity>
 
-        <View>
-          <Text >客服电话：400 880 6306</Text>
-        </View>
+        <TouchableOpacity style={{height:48}} onPress={()=>Linking.openURL('https://item.taobao.com/item.htm?id=526010546355')}>
+          <Text>安居侠颗粒检测仪</Text>
+        </TouchableOpacity>
 
 
       </View>);

@@ -15,7 +15,7 @@ import codePush from 'react-native-code-push';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Scene, Router, Actions } from 'react-native-router-flux';
+import { Scene, Router, Actions,Reducer } from 'react-native-router-flux';
 import { Provider } from 'react-redux';
 import configStore from './store/configStore';
 
@@ -50,27 +50,60 @@ class BackButton extends Component {
   }
 }
 
+const customRouterReducer = params => {
+
+  const defaultReducer = Reducer(params);
+  return (state, action)=>{
+      if(action.type == 'BODGE') {
+        console.log(state);
+        if(state.children.length > 1) {
+          state = Object.assign({}, state, {index: 0, children : state.children.slice(0,1)});
+         }
+      } else {
+        state = defaultReducer(state, action);
+      }
+      return state;
+  };
+}
+
 class App extends Component {
   componentDidMount(){
     this.props.action.useToken(this.props.token);
   }
   render(){
-
-    console.log(view);
     return (
-      <RouterWithRedux>
-        <Scene key="login" component={ view.LoginView } title="登陆" initial={this.props.initialLogin} hideNavBar={true} type='reset'/>
+      <RouterWithRedux createReducer={customRouterReducer}>
+        <Scene key='login' component={view.LoginView} title='登陆' initial={this.props.initialLogin} hideNavBar={true} type='reset'/>
+        <Scene key='resetPassword' component={view.ResetPasswordView} title='忘记密码' hideNavBar={false} />
+        <Scene key='register' component={view.RegisterView} title='注册' hideNavBar={false} />
+        <Scene key='provision' component={view.ProvisionView} title='条款' hideNavBar={false} />
+
         <Scene key='main' tabs={true} initial={!this.props.initialLogin} type='replace'>
-          <Scene key="deviceList" component={ view.DeviceListView } title="设备" icon={TabIcon}/>
-          <Scene key="discover" component={ view.DiscoveryView } title="发现" icon={TabIcon}/>
-          <Scene key="message" component={ view.MessageView } title="消息" icon={TabIcon}/>
-          <Scene key="setting" component={ view.SettingView } title="我的" icon={TabIcon}/>
+          <Scene key='deviceList' component={ view.DeviceListView } title='设备' icon={TabIcon}/>
+          <Scene key='discovery' component={ view.DiscoveryView } title='发现' icon={TabIcon}/>
+          <Scene key='message' component={ view.MessageView } title='消息' icon={TabIcon}/>
+          <Scene key='setting' component={ view.SettingView } title='我的' icon={TabIcon}/>
         </Scene>
-        <Scene key="device" tabs={true} type='push' >
-          <Scene key='deviceData' component={view.DeviceDataView} title="检测" icon={TabIcon} backButton={BackButton}/>
-          <Scene key='deviceChart' component={view.DeviceChartView} title="趋势" icon={TabIcon} />
+        <Scene key='device' tabs={true} type='push' >
+          <Scene key='deviceData' component={view.DeviceDataView} title='检测' icon={TabIcon} backButton={BackButton} onRight={()=>Actions.deviceSetting()} rightTitle='更多'/>
+          <Scene key='deviceChart' component={view.DeviceChartView} title='趋势' icon={TabIcon} />
         </Scene>
+        <Scene key='deviceSetting' component={view.DeviceSettingView} title='设置' />
+        <Scene key='deviceModifyName' component={view.DeviceModifyNameView} title='修改设备名称' />
+        <Scene key='deviceInfo' component={view.DeviceInfoView} title='设备信息' />
+        <Scene key='deviceShare' component={view.DeviceShareView} title='设备分享' />
+        <Scene key='deviceAdd' component={view.DeviceAdd1View} title='设备添加1' />
+        <Scene key='deviceAdd2' component={view.DeviceAdd2View} title='设备添加2' />
+        <Scene key='deviceAdd3' component={view.DeviceAdd3View} title='设备添加3' />
+        <Scene key='bbs' component={view.BBSView} title='安居吧' />
+        <Scene key='productList' component={view.ProductListView} title='产品列表' />
+        <Scene key='bbsAdd' component={view.BBSAddView} title='添加帖子' />
         <Scene key='userinfo' component={view.UserInfoView} title='个人信息'/>
+        <Scene key='modifyName' component={view.ModifyNameView} title='修改姓名' />
+        <Scene key='modifyPassword' component={view.ModifyPasswordView} title='修改密码' />
+        <Scene key='feedback' component={view.FeedbackView} title='意见反馈'/>
+        <Scene key='about' component={view.AboutView} title='关于'/>
+        <Scene key='building' component={view.BuildingView} title='建设中' />
     </RouterWithRedux>
     );
   }

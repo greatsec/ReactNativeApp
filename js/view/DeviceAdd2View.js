@@ -23,12 +23,12 @@ class V extends Component {
       <View style={{marginTop:100}}>
 
         <View>
-          <Text >微信公众号：安居侠</Text>
+          <Text >2</Text>
         </View>
 
-        <View>
-          <Text >客服电话：400 880 6306</Text>
-        </View>
+        <TouchableOpacity style={{height:48}} onPress={Actions.deviceAdd3}>
+          <Text>下一步</Text>
+        </TouchableOpacity>
 
 
       </View>);

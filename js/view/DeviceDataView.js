@@ -52,8 +52,7 @@ class V extends Component {
 }
 
 export default connect(state=>({
-  ...state,
-  device: _find(state.deviceList.list, {id:state.deviceList.selected}),
+  device: (_find(state.deviceList.list, {id:state.deviceList.selected}) || _find(state.deviceList.slist, {id:state.deviceList.selected})),
   isFocus: (state.nav.focusName == 'deviceData') || (state.nav.focusName == 'device' && state.nav.jumpName == 'deviceData')
 }),dispatch=>({
   action: bindActionCreators({

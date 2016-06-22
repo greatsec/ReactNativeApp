@@ -4,8 +4,9 @@ import _map from 'lodash/map';
 import _find from 'lodash/find';
 
 export var deviceList = handleActions({
-  deviceListResult: (state, action) => (
-    {...state,
+  deviceListResult: (state, action) => {
+    if(action.error) return state;
+    return {...state,
       rawList:action.payload,
       list: _map(action.payload, (o)=>({
         id:o.id,
@@ -13,28 +14,83 @@ export var deviceList = handleActions({
         data:o.pm,
         online:o.online,
         code:o.code,
+        ip:o.ip,
+        mac:o.mac,
+        version:o.version,
+        type:o.type,
+        canModifyName: true,
+        canShare: true,
+        canOTA: true,
+        canUnbind: true,
+        canNetConfig: true,
       }))
-    }),
+    }},
+  deviceShareForMeListResult:(state, action) => {
+    if(action.error) return state;
+    return {...state,
+      slist: _map(action.payload, (o)=>({
+        id:o.id,
+        name:o.name,
+        data:o.pm,
+        online:o.online,
+        code:o.code,
+        ip:o.ip,
+        mac:o.mac,
+        version:o.version,
+        type:o.type,
+        canModifyName: false,
+        canShare: false,
+        canOTA: false,
+        canUnbind: false,
+        canNetConfig: false,
+      }))
+    }},
   SELECT_DEVICE: (state, action) => ({...state, selected:action.payload}),
   deviceRealtimeData: (state, action) => {
     if(action.error) return state;
     let { send: code, recv } = action.payload;
     let arr = recv.split(',');
-    if(arr[0] != '403') return state;
-    let newList = state.list.map((o)=>{
-      if(o.code == code){
-        o.data.pm1 = arr[1];
-        o.data.pm25 = arr[2];
-        o.data.pm10 = arr[3];
-        o.data.temperature = arr[4];
-        o.data.humidity = arr[5];
-      }
-      return o;
-    })
+    if(arr[0] != '404') return state;
 
-    return {...state, list:newList}
-  }
+    return {...state,
+      list:state.list.map((o)=>{
+        if(o.code == code){
+          o = {...o}
+          o.data.pm1 = arr[1];
+          o.data.pm25 = arr[2];
+          o.data.pm10 = arr[3];
+          o.data.temperature = arr[4];
+          o.data.humidity = arr[5];
+
+        }
+        return o;
+      }),
+      slist:state.slist.map((o)=>{
+        if(o.code == code){
+          o = {...o}
+          o.data.pm1 = arr[1];
+          o.data.pm25 = arr[2];
+          o.data.pm10 = arr[3];
+          o.data.temperature = arr[4];
+          o.data.humidity = arr[5];
+        }
+        return o;
+      })};
+  },
+  deviceUpdateNameResult: (state, action) => {
+    if(action.err) return state;
+    let {device, name} = action.meta;
+    return {...state,
+      list:state.list.map((o)=>{
+        if(o.code == device){
+          o = {...o}
+          o.name = name;
+        }
+        return o;
+      })};
+  },
 },{
   rawList:[],
   list:[],
+  slist:[]
 });

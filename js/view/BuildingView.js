@@ -23,12 +23,9 @@ class V extends Component {
       <View style={{marginTop:100}}>
 
         <View>
-          <Text >微信公众号：安居侠</Text>
+          <Text >建设中</Text>
         </View>
 
-        <View>
-          <Text >客服电话：400 880 6306</Text>
-        </View>
 
 
       </View>);

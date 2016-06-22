@@ -26,8 +26,20 @@ class V extends Component {
           <Text >SettingView</Text>
         </View>
 
-        <TouchableOpacity onPress={Actions.userinfo}>
+        <TouchableOpacity style={{height:48}} onPress={Actions.userinfo}>
           <Text>个人信息</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{height:48}} onPress={Actions.userinfo}>
+          <Text>设备分享</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{height:48}} onPress={Actions.feedback}>
+          <Text>意见反馈</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{height:48}} onPress={Actions.about}>
+          <Text>关于</Text>
         </TouchableOpacity>
 
 

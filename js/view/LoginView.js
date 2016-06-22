@@ -84,6 +84,13 @@ class V extends Component {
           <Text style={{ color:'#fff'}}>登陆1</Text>
         </TouchableOpacity>
 
+        <TouchableOpacity onPress={Actions.resetPassword}>
+          <Text>忘记密码</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={Actions.register}>
+          <Text>用户注册</Text>
+        </TouchableOpacity>
       </View>
     );
   }

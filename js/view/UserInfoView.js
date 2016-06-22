@@ -23,7 +23,21 @@ class V extends Component {
       <View style={{marginTop:100}}>
 
         <View>
-          <TouchableOpacity onPress={()=>{this.props.action.logout();Actions.login()}}>
+
+          <Text style={{height:40}}>用户名: {this.props.user.loginName}</Text>
+
+          <TouchableOpacity style={{height:40}} onPress={Actions.modifyName}>
+            <Text >真实姓名 {this.props.user.name}</Text>
+          </TouchableOpacity>
+          <Text style={{height:40}}>手机号: {this.props.user.mobile}</Text>
+
+          <Text style={{height:40}}>邮箱:{this.props.user.email}</Text>
+
+          <TouchableOpacity style={{height:40}} onPress={Actions.modifyPassword}>
+            <Text >修改密码</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{height:40}} onPress={()=>{this.props.action.logout();Actions.login()}}>
             <Text >退出</Text>
           </TouchableOpacity>
         </View>
@@ -31,7 +45,9 @@ class V extends Component {
   }
 }
 
-export default connect(state=>state,dispatch=>({
+export default connect(state=>({
+  user:state.loginUser.user
+}),dispatch=>({
   action: bindActionCreators({
     logout: action.logout
   }, dispatch)
