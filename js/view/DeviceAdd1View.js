@@ -27,7 +27,7 @@ class V extends Component {
         </View>
 
         <TouchableOpacity style={{height:48}} onPress={Actions.deviceAdd2}>
-          <Text>下一步</Text>
+          <Text>空气颗粒检测仪</Text>
         </TouchableOpacity>
 
 

@@ -18,6 +18,21 @@ class V extends Component {
   }
   componentDidMount(){
   }
+
+  onPressMobile(){
+    if(this.props.user.mobile){
+      this.props.action.unbindMobile();
+    }else{
+      Actions.bindMobile();
+    }
+  }
+  onPressEmail(){
+    if(this.props.user.email){
+      this.props.action.unbindEmail();
+    }else{
+      Actions.bindEmail();
+    }
+  }
   render(){
     return (
       <View style={{marginTop:100}}>
@@ -29,9 +44,15 @@ class V extends Component {
           <TouchableOpacity style={{height:40}} onPress={Actions.modifyName}>
             <Text >真实姓名 {this.props.user.name}</Text>
           </TouchableOpacity>
-          <Text style={{height:40}}>手机号: {this.props.user.mobile}</Text>
 
-          <Text style={{height:40}}>邮箱:{this.props.user.email}</Text>
+          <TouchableOpacity style={{height:40}} onPress={this.onPressMobile.bind(this)}>
+            <Text >手机号 {this.props.user.mobile}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{height:40}} onPress={this.onPressEmail.bind(this)}>
+            <Text >邮箱 {this.props.user.email}</Text>
+          </TouchableOpacity>
+
 
           <TouchableOpacity style={{height:40}} onPress={Actions.modifyPassword}>
             <Text >修改密码</Text>
@@ -46,9 +67,11 @@ class V extends Component {
 }
 
 export default connect(state=>({
-  user:state.loginUser.user
+  user:state.loginUser
 }),dispatch=>({
   action: bindActionCreators({
-    logout: action.logout
+    logout: action.logout,
+    unbindEmail: action.unbindEmail,
+    unbindMobile: action.unbindMobile
   }, dispatch)
 }))(V);

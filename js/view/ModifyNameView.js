@@ -49,11 +49,11 @@ class V extends Component {
 }
 
 export default connect(state=>({
-  name: state.loginUser.user.name
+  name: state.loginUser.name
 }))(V);
 
 export default connect(state=>({
-  name: state.loginUser.user.name
+  name: state.loginUser.name
 }),dispatch=>({
   action: bindActionCreators({
     userUpdate: action.userUpdate,

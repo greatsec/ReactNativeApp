@@ -18,15 +18,30 @@ class V extends Component {
   }
   componentDidMount(){
   }
+
+  onPressSubmit(){
+    let {code} = this.props;
+    let {name} = this.state;
+    this.props.action.deviceBind({
+      code, name
+    }).then(action=>{
+      if(!action.error){
+        this.props.action.deviceRefresh();
+        Actions.callback({type: 'BODGE'});
+      }
+    })
+  }
   render(){
     return (
       <View style={{marginTop:100}}>
 
         <View>
-          <Text >3</Text>
+          <Text >{this.props.code}</Text>
         </View>
 
-        <TouchableOpacity style={{height:48}} onPress={()=>Actions.callback({type: 'BODGE'})}>
+        <TextInput onChangeText={name=>this.setState({name})} style={{height:40}}/>
+
+        <TouchableOpacity style={{height:48}} onPress={this.onPressSubmit.bind(this)}>
           <Text>完成</Text>
         </TouchableOpacity>
 
@@ -35,4 +50,9 @@ class V extends Component {
   }
 }
 
-export default connect(state=>state)(V);
+export default connect(state=>state,dispatch=>({
+  action: bindActionCreators({
+    deviceBind: action.deviceBind,
+    deviceRefresh: action.deviceRefresh
+  }, dispatch)
+}))(V);

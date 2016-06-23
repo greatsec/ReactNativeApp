@@ -20,6 +20,15 @@ class V extends Component {
   }
   componentDidMount(){
   }
+
+  onPressUnbind(){
+    let {code} = this.props.device;
+    this.props.action.deviceUnbind({code}).then(action=>{
+      if(!action.error){
+        Actions.callback({type: 'BODGE'});
+      }
+    });
+  }
   render(){
     return (
       <View style={{marginTop:100}}>
@@ -44,20 +53,20 @@ class V extends Component {
         ) : null}
 
         {this.props.device.canOTA ? (
-          <TouchableOpacity style={{height:40}} onPress={Actions.modifyPassword}>
+          <TouchableOpacity style={{height:40}} onPress={Actions.building}>
             <Text >设备系统升级</Text>
           </TouchableOpacity>
         ) : null}
 
 
         {this.props.device.canUnbind ? (
-          <TouchableOpacity style={{height:40}} onPress={Actions.modifyPassword}>
+          <TouchableOpacity style={{height:40}} onPress={this.onPressUnbind.bind(this)}>
             <Text >解除绑定</Text>
           </TouchableOpacity>
         ) : null}
 
         {this.props.device.canNetConfig ? (
-          <TouchableOpacity style={{height:40}} onPress={Actions.modifyPassword}>
+          <TouchableOpacity style={{height:40}} onPress={Actions.deviceNetConfig}>
             <Text >网络配置</Text>
           </TouchableOpacity>
         ) : null}
@@ -69,4 +78,9 @@ class V extends Component {
 
 export default connect(state=>({
   device: _find(state.deviceList.list, {id:state.deviceList.selected}) || _find(state.deviceList.slist, {id:state.deviceList.selected}),
+}),dispatch=>({
+  action: bindActionCreators({
+    deviceUnbind: action.deviceUnbind,
+    deviceRefresh: action.deviceRefresh
+  }, dispatch)
 }))(V);

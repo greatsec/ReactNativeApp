@@ -11,6 +11,8 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
+import _find from 'lodash/find';
+
 class V extends Component {
   constructor(props){
     super(props);
@@ -38,18 +40,16 @@ class V extends Component {
     if(this._interval){
       clearInterval(this._interval);
     }
-
     this.props.action.stopWifiConfig();
   }
 
   onPressConfig(){
-    let { ssid } = this.props;
+    let { ssid, device } = this.props;
     let { key } = this.state;
-    this.props.action.startWifiConfig({ssid, key})
+    this.props.action.startWifiConfig({ssid, key, code:device.code})
     .then(action=>{
       if(!action.error){
-        let code = action.payload;
-        Actions.deviceAdd3({code});
+        Actions.pop();
       }
     });
     this.setState({second:120});
@@ -75,7 +75,8 @@ class V extends Component {
 }
 
 export default connect(state=>({
-  ssid: state.wifi.name
+  ssid: state.wifi.name,
+  device: _find(state.deviceList.list, {id:state.deviceList.selected})
 }),dispatch=>({
   action: bindActionCreators({
     getCurrentWifiSSID: action.getCurrentWifiSSID,

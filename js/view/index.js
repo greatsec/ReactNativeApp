@@ -13,6 +13,7 @@ import DeviceSettingView from './DeviceSettingView';
 import DeviceModifyNameView from './DeviceModifyNameView';
 import DeviceInfoView from './DeviceInfoView';
 import DeviceShareView from './DeviceShareView';
+import DeviceNetConfigView from './DeviceNetConfigView';
 
 import DeviceAdd1View from './DeviceAdd1View';
 import DeviceAdd2View from './DeviceAdd2View';
@@ -29,7 +30,10 @@ import SettingView from './SettingView';
 import UserInfoView from './UserInfoView';
 import ModifyNameView from './ModifyNameView';
 import ModifyPasswordView from './ModifyPasswordView';
+import BindMobileView from './BindMobileView';
+import BindEmailView from './BindEmailView';
 
+import DeviceShareListView from './DeviceShareListView';
 
 import FeedbackView from './FeedbackView';
 import BuildingView from './BuildingView';
@@ -48,6 +52,8 @@ export {
   DeviceModifyNameView,
   DeviceInfoView,
   DeviceShareView,
+  DeviceNetConfigView,
+
   DeviceAdd1View,
   DeviceAdd2View,
   DeviceAdd3View,
@@ -62,7 +68,10 @@ export {
   UserInfoView,
   ModifyNameView,
   ModifyPasswordView,
+  BindMobileView,
+  BindEmailView,
 
+  DeviceShareListView,
   FeedbackView,
 
   BuildingView,

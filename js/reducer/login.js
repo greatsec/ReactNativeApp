@@ -13,7 +13,11 @@ export var loginForm = handleActions({
 });
 
 export var loginUser = handleActions({
-  loginResult: (state, action) => (action.error? state: action.payload),
+  loginResult: (state, action) => (action.error? state: { token: action.payload.token, ...action.payload.user}),
   LOGOUT_RESULT: (state, action) => ({}),
-  userUpdateResult: (state, action) => (action.error? state: {...state, user:action.payload})
+  userUpdateResult: (state, action) => (action.error ? state: {...state, ...action.payload}),
+  bindEmailResult: (state, action) => (action.error ? state: {...state, email:action.meta.email}),
+  unbindEmailResult: (state, action) => (action.error ? state: {...state, email:''}),
+  bindMobileResult: (state, action) => (action.error ? state: {...state, mobile:action.meta.mobile}),
+  unbindMobileResult: (state, action) => (action.error ? state: {...state, mobile:''}),
 },{});

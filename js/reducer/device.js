@@ -2,6 +2,7 @@ import { handleActions } from 'redux-actions';
 
 import _map from 'lodash/map';
 import _find from 'lodash/find';
+import _sortBy from 'lodash/sortBy';
 
 export var deviceList = handleActions({
   deviceListResult: (state, action) => {
@@ -89,8 +90,40 @@ export var deviceList = handleActions({
         return o;
       })};
   },
+  pmListResult: (state, action) => {
+    if(action.err) return state;
+    return {
+      ...state,
+      chart: _sortBy(action.payload,['time'])
+    };
+  },
+  deviceUnbindResult: (state, action) => {
+    if(action.err) return state;
+    let {code} = action.meta;
+    return {...state,
+      list:state.list.map((o)=>{
+        if(o.code == code){
+          o = {...o}
+          o.unbind = true;
+        }
+        return o;
+      })};
+  },
+  DEVICE_REFRESH_STATUS: (state, action) => ({...state, refreshing: action.payload}),
+  LOGOUT_RESULT: () => ({
+    rawList:[],
+    list:[],
+    slist:[],
+    chart:[]
+  })
 },{
   rawList:[],
   list:[],
-  slist:[]
+  slist:[],
+  chart:[],
+  refreshing: false
 });
+
+export var shareList = handleActions({
+  deviceShareListResult: (state, action) => action.payload
+},[]);

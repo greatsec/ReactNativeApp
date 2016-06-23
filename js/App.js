@@ -92,6 +92,7 @@ class App extends Component {
         <Scene key='deviceModifyName' component={view.DeviceModifyNameView} title='修改设备名称' />
         <Scene key='deviceInfo' component={view.DeviceInfoView} title='设备信息' />
         <Scene key='deviceShare' component={view.DeviceShareView} title='设备分享' />
+        <Scene key='deviceNetConfig' component={view.DeviceNetConfigView} title='网络配置' />
         <Scene key='deviceAdd' component={view.DeviceAdd1View} title='设备添加1' />
         <Scene key='deviceAdd2' component={view.DeviceAdd2View} title='设备添加2' />
         <Scene key='deviceAdd3' component={view.DeviceAdd3View} title='设备添加3' />
@@ -101,6 +102,9 @@ class App extends Component {
         <Scene key='userinfo' component={view.UserInfoView} title='个人信息'/>
         <Scene key='modifyName' component={view.ModifyNameView} title='修改姓名' />
         <Scene key='modifyPassword' component={view.ModifyPasswordView} title='修改密码' />
+        <Scene key='bindMobile' component={view.BindMobileView} title='绑定手机号' />
+        <Scene key='bindEmail' component={view.BindEmailView} title='绑定邮箱' />
+        <Scene key='deviceShareList' component={view.DeviceShareListView} title='已分享' />
         <Scene key='feedback' component={view.FeedbackView} title='意见反馈'/>
         <Scene key='about' component={view.AboutView} title='关于'/>
         <Scene key='building' component={view.BuildingView} title='建设中' />

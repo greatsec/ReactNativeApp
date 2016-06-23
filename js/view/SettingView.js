@@ -30,7 +30,7 @@ class V extends Component {
           <Text>个人信息</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{height:48}} onPress={Actions.userinfo}>
+        <TouchableOpacity style={{height:48}} onPress={Actions.deviceShareList}>
           <Text>设备分享</Text>
         </TouchableOpacity>
 

@@ -10,7 +10,7 @@ var httpApiList = {
   'login': {url:'api/login', obtainToken:true},
   'deviceList': {url:'api/admin/device/list', withToken:true},
   'deviceShareForMeList': {url:'api/admin/device/share', withToken:true},
-  'deviceShareList': {url:'api/admin/deviceshare/list', withToken:true},
+  'deviceShareList': {url:'api/admin/device/listAndShare', withToken:true},
   'deviceUpdateName':{url:'api/admin/device/updateDeviceName', withToken:true},
 
   'deviceShare': {url:'api/admin/deviceshare/share', withToken:true},
@@ -24,10 +24,20 @@ var httpApiList = {
   'adviceSave': {url:'api/admin/advice/save', withToken:true},
   'userUpdate': {url:'api/admin/user/update', withToken:true},
   'userUpdatePassword': {url:'api/admin/user/updatePassword', withToken:true},
+
+  'bindEmail': {url:'api/admin/user/bindEmail', withToken:true},
+  'bindMobile': {url:'api/admin/user/bindMobile', withToken:true},
+  'unbindEmail': {url:'api/admin/user/unBindEmail', withToken:true},
+  'unbindMobile': {url:'api/admin/user/unBindMobile', withToken:true},
+
+  'bindEmailCode': 'api/bindEmailCode',
+  'mobileCode': 'api/mobileCode',
+
   'bbsPage': {url:'api/admin/anjuba/page', withToken:true},
   'bbsAdd': {url:'api/admin/anjuba/save', withToken:true},
   'bbsAddReply': {url:'api/admin/anjuba/saveReply', withToken:true},
 
+  'pmList': {url:'api/admin/pm/list', withToken:true},
 };
 
 var wsServer = 'ws://www.tdong.cn:60002/websocket';

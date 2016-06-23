@@ -13,34 +13,28 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
+import _filter from 'lodash/filter';
+
 class V extends Component {
   constructor(props){
     super(props);
     this.state = {
-      refreshing : false
+
     };
   }
 
   componentDidMount(){
-    this.setState({refreshing:true});
-    Promise.all([
-      this.props.action.deviceList(),
-      this.props.action.deviceShareForMeList(),
-    ]).then(()=>{this.setState({refreshing:false})});
+    this.props.action.deviceRefresh();
   }
 
   onRefresh(){
-    this.setState({refreshing:true});
-    Promise.all([
-      this.props.action.deviceList(),
-      this.props.action.deviceShareForMeList(),
-    ]).then(()=>{this.setState({refreshing:false})});
+    this.props.action.deviceRefresh();
   }
 
   render(){
     return (
       <ScrollView
-        refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh.bind(this)}/>}
+        refreshControl={<RefreshControl refreshing={this.props.refreshing || false} onRefresh={this.onRefresh.bind(this)}/>}
         style={{marginTop:100}}>
         {this.props.deviceList.map((o)=>{
           return (
@@ -59,11 +53,11 @@ class V extends Component {
 }
 
 export default connect(state=>({
-  deviceList: [...state.deviceList.list, ...state.deviceList.slist]
+  refreshing: state.deviceList.refreshing,
+  deviceList: [..._filter(state.deviceList.list, o=>!o.unbind), ...state.deviceList.slist]
 }),dispatch=>({
   action: bindActionCreators({
-    deviceList: action.deviceList,
-    selectDevice: action.selectDevice,
-    deviceShareForMeList: action.deviceShareForMeList
+    deviceRefresh: action.deviceRefresh,
+    selectDevice: action.selectDevice
   }, dispatch)
 }))(V);

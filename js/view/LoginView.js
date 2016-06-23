@@ -23,7 +23,7 @@ class V extends Component {
   }
 
   onPressLogin(){
-    getSSID((ssid)=>console.log(ssid));
+    
 
     let { username, password } = this.state;
     this.props.action.login({username, password})
