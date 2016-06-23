@@ -23,7 +23,7 @@ class V extends Component {
   }
 
   onPressLogin(){
-    
+
 
     let { username, password } = this.state;
     this.props.action.login({username, password})
@@ -84,13 +84,16 @@ class V extends Component {
           <Text style={{ color:'#fff'}}>登陆1</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={Actions.resetPassword}>
-          <Text>忘记密码</Text>
-        </TouchableOpacity>
+        <View style={{flexDirection:'row', height:50, justifyContent:'space-between'}}>
+          <TouchableOpacity onPress={Actions.resetPassword}>
+            <Text>忘记密码</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity onPress={Actions.register}>
-          <Text>用户注册</Text>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={Actions.register}>
+            <Text>用户注册</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
     );
   }

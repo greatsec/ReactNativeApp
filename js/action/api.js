@@ -7,7 +7,10 @@ var token = '';
 var httpServer = 'http://www.tdong.cn/';
 //var httpServer = 'http://192.168.3.59:8080/';
 var httpApiList = {
+  'register':'api/register',
+  'registerEmail':'api/registerEmail',
   'login': {url:'api/login', obtainToken:true},
+  'forgetPassword': 'api/forgetPassword',
   'deviceList': {url:'api/admin/device/list', withToken:true},
   'deviceShareForMeList': {url:'api/admin/device/share', withToken:true},
   'deviceShareList': {url:'api/admin/device/listAndShare', withToken:true},
@@ -32,6 +35,7 @@ var httpApiList = {
 
   'bindEmailCode': 'api/bindEmailCode',
   'mobileCode': 'api/mobileCode',
+  'emailCode': 'api/emailCode',
 
   'bbsPage': {url:'api/admin/anjuba/page', withToken:true},
   'bbsAdd': {url:'api/admin/anjuba/save', withToken:true},
