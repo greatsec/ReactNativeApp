@@ -42,11 +42,13 @@ var httpApiList = {
   'bbsAddReply': {url:'api/admin/anjuba/saveReply', withToken:true},
 
   'pmList': {url:'api/admin/pm/list', withToken:true},
+  'versionGet':'api/version/get'
 };
 
 var wsServer = 'ws://www.tdong.cn:60002/websocket';
 var wsApiList = {
-  'deviceRealtimeData':'304'
+  'deviceRealtimeData':'304',
+  'deviceOTA':'307'
 };
 
 var httpActions = mapValues(httpApiList, (actionConfig, actionName) => {
