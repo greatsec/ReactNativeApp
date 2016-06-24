@@ -11,8 +11,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
-import { LineChart } from 'react-native-chart';
-import { getSSID } from 'react-native-nufront-wifi';
+
 
 class V extends Component {
   constructor(props){
@@ -23,16 +22,16 @@ class V extends Component {
   }
 
   onPressLogin(){
-
-
     let { username, password } = this.state;
     this.props.action.login({username, password})
       .then(action=>{
         if(!action.error){
           Actions.main();
         }
-          //this.props.action.deviceList();
       });
+  }
+  onPressQQ(){
+    this.props.action.qqLogin().then(action=>console.log(action))
   }
   render() {
     return (
@@ -84,6 +83,19 @@ class V extends Component {
           <Text style={{ color:'#fff'}}>登陆1</Text>
         </TouchableOpacity>
 
+        <TouchableOpacity style={{
+            height:40,
+            marginTop:100,
+            marginHorizontal:10, marginVertical:5,
+            borderRadius:3,
+            backgroundColor:'#00f',
+            alignItems:'center', justifyContent:'center'
+          }} onPress={this.onPressQQ.bind(this)} >
+          <Text style={{ color:'#fff'}}>QQ登陆</Text>
+        </TouchableOpacity>
+
+
+
         <View style={{flexDirection:'row', height:50, justifyContent:'space-between'}}>
           <TouchableOpacity onPress={Actions.resetPassword}>
             <Text>忘记密码</Text>
@@ -102,8 +114,6 @@ class V extends Component {
 export default connect(state=>state,dispatch=>({
   action: bindActionCreators({
     login: action.login,
-    deviceList: action.deviceList,
-    versionGet: action.versionGet,
-    deviceRealtimeData: action.deviceRealtimeData
+    qqLogin: action.qqLogin
   }, dispatch)
 }))(V);
