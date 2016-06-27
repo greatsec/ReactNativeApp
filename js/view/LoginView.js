@@ -31,7 +31,14 @@ class V extends Component {
       });
   }
   onPressQQ(){
-    this.props.action.qqLogin().then(action=>console.log(action))
+    this.props.action.qqLogin().then(({payload:qqcode})=>this.props.action.codeLogin({qqcode}))
+    .then(action=>console.log(action));
+  }
+
+  onPressWechat(){
+    this.props.action.wechatLogin().then(action=>console.log(action));
+    this.props.action.wechatLogin().then(({payload:weixincode})=>this.props.action.codeLogin({weixincode}))
+    .then(action=>console.log(action));
   }
   render() {
     return (
@@ -85,13 +92,35 @@ class V extends Component {
 
         <TouchableOpacity style={{
             height:40,
-            marginTop:100,
+            marginTop:10,
             marginHorizontal:10, marginVertical:5,
             borderRadius:3,
             backgroundColor:'#00f',
             alignItems:'center', justifyContent:'center'
           }} onPress={this.onPressQQ.bind(this)} >
           <Text style={{ color:'#fff'}}>QQ登陆</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{
+            height:40,
+            marginTop:10,
+            marginHorizontal:10, marginVertical:5,
+            borderRadius:3,
+            backgroundColor:'#00f',
+            alignItems:'center', justifyContent:'center'
+          }} onPress={this.onPressWechat.bind(this)} >
+          <Text style={{ color:'#fff'}}>微信登陆</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{
+            height:40,
+            marginTop:10,
+            marginHorizontal:10, marginVertical:5,
+            borderRadius:3,
+            backgroundColor:'#00f',
+            alignItems:'center', justifyContent:'center'
+          }} onPress={this.props.action.wechatShare} >
+          <Text style={{ color:'#fff'}}>微信分享</Text>
         </TouchableOpacity>
 
 
@@ -114,6 +143,9 @@ class V extends Component {
 export default connect(state=>state,dispatch=>({
   action: bindActionCreators({
     login: action.login,
-    qqLogin: action.qqLogin
+    codeLogin: action.codeLogin,
+    qqLogin: action.qqLogin,
+    wechatLogin: action.wechatLogin,
+    wechatShare: action.wechatShare
   }, dispatch)
 }))(V);

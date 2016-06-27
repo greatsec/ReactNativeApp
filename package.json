@@ -15,6 +15,7 @@
     "react-native-nufront-wifi": "git+https://github.com/lumin824/react-native-nufront-wifi.git",
     "react-native-qq": "git+https://github.com/lumin824/react-native-qq.git",
     "react-native-router-flux": "3.30.0",
+    "react-native-wechat": "git+https://github.com/lumin824/react-native-wechat.git",
     "react-redux": "4.4.5",
     "redux": "3.5.2",
     "redux-actions": "0.10.0",

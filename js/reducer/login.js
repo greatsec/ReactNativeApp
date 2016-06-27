@@ -20,4 +20,5 @@ export var loginUser = handleActions({
   unbindEmailResult: (state, action) => (action.error ? state: {...state, email:''}),
   bindMobileResult: (state, action) => (action.error ? state: {...state, mobile:action.meta.mobile}),
   unbindMobileResult: (state, action) => (action.error ? state: {...state, mobile:''}),
+  updateCodeResult: (state, action) => (action.error ? state: {...state, ...action.meta})
 },{});

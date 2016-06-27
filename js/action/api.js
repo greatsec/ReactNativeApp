@@ -10,6 +10,7 @@ var httpApiList = {
   'register':'api/register',
   'registerEmail':'api/registerEmail',
   'login': {url:'api/login', obtainToken:true},
+  'codeLogin': {url:'api/codelogin', obtainToken:true},
   'forgetPassword': 'api/forgetPassword',
   'deviceList': {url:'api/admin/device/list', withToken:true},
   'deviceShareForMeList': {url:'api/admin/device/share', withToken:true},
@@ -21,6 +22,7 @@ var httpApiList = {
   'deviceBind': {url:'api/admin/device/bind', withToken:true},
   'deviceUnbind': {url:'api/admin/device/unbind', withToken:true},
 
+  'updateCode': {url:'api/admin/user/updatecode', withToken:true},
 
   'updatePhoto': {url:'api/admin/user/updatePhoto', withToken:true},
   'versionGet': 'api/version/get',
@@ -63,7 +65,10 @@ var httpActions = mapValues(httpApiList, (actionConfig, actionName) => {
       let headers = {};
       if(actionConfig.headers) headers = {...actionConfig.headers};
       if(actionConfig.withToken) headers['X-Auth-Token'] = token;
-      return fetch(`${httpServer}${url}`, {body, method:'POST', headers}).then(response=>response.json())
+      return fetch(`${httpServer}${url}`, {body, method:'POST', headers})
+      //.then(response=>response.json())
+      .then(response=>response.text())
+      .then(text=>{console.log(text);let json = JSON.parse(text); return json;})
         .then(json=>{
           console.log(json);
           if(!json.success) return Promise.reject({code:json.status, msg:json.message});

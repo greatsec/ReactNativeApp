@@ -33,6 +33,24 @@ class V extends Component {
       Actions.bindEmail();
     }
   }
+
+  onPressQQ(){
+    if(this.props.user.qqcode){
+      this.props.action.updateCode({qqcode:''});
+    }
+    else{
+      this.props.action.qqLogin().then(({payload:qqcode})=>this.props.action.updateCode({qqcode}));
+    }
+  }
+
+  onPressWechat(){
+    if(this.props.user.weixincode){
+      this.props.action.updateCode({weixincode:''});
+    }else{
+      this.props.action.wechatLogin().then(({payload:weixincode})=>this.props.action.updateCode({weixincode}));
+    }
+  }
+
   render(){
     return (
       <View style={{marginTop:100}}>
@@ -53,6 +71,13 @@ class V extends Component {
             <Text >邮箱 {this.props.user.email}</Text>
           </TouchableOpacity>
 
+          <TouchableOpacity style={{height:40}} onPress={this.onPressQQ.bind(this)}>
+            <Text >QQ</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{height:40}} onPress={this.onPressWechat.bind(this)}>
+            <Text >微信</Text>
+          </TouchableOpacity>
 
           <TouchableOpacity style={{height:40}} onPress={Actions.modifyPassword}>
             <Text >修改密码</Text>
@@ -72,6 +97,9 @@ export default connect(state=>({
   action: bindActionCreators({
     logout: action.logout,
     unbindEmail: action.unbindEmail,
-    unbindMobile: action.unbindMobile
+    unbindMobile: action.unbindMobile,
+    qqLogin: action.qqLogin,
+    wechatLogin: action.wechatLogin,
+    updateCode: action.updateCode,
   }, dispatch)
 }))(V);
