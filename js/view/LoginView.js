@@ -32,13 +32,21 @@ class V extends Component {
   }
   onPressQQ(){
     this.props.action.qqLogin().then(({payload:qqcode})=>this.props.action.codeLogin({qqcode}))
-    .then(action=>console.log(action));
+    .then(action=>{
+      if(!action.error){
+        Actions.main();
+      }
+    });
   }
 
   onPressWechat(){
     this.props.action.wechatLogin().then(action=>console.log(action));
     this.props.action.wechatLogin().then(({payload:weixincode})=>this.props.action.codeLogin({weixincode}))
-    .then(action=>console.log(action));
+    .then(action=>{
+      if(!action.error){
+        Actions.main();
+      }
+    });
   }
   render() {
     return (

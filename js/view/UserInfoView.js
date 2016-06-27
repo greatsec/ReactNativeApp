@@ -72,11 +72,11 @@ class V extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity style={{height:40}} onPress={this.onPressQQ.bind(this)}>
-            <Text >QQ</Text>
+            <Text >QQ {this.props.user.qqcode}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={{height:40}} onPress={this.onPressWechat.bind(this)}>
-            <Text >微信</Text>
+            <Text >微信 {this.props.user.weixincode}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={{height:40}} onPress={Actions.modifyPassword}>

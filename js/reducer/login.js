@@ -14,6 +14,7 @@ export var loginForm = handleActions({
 
 export var loginUser = handleActions({
   loginResult: (state, action) => (action.error? state: { token: action.payload.token, ...action.payload.user}),
+  codeLoginResult: (state, action) => (action.error? state: { token: action.payload.token, ...action.payload.user}),
   LOGOUT_RESULT: (state, action) => ({}),
   userUpdateResult: (state, action) => (action.error ? state: {...state, ...action.payload}),
   bindEmailResult: (state, action) => (action.error ? state: {...state, email:action.meta.email}),
