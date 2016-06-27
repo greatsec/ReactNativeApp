@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
-
+import ImagePicker from 'react-native-image-picker';
 
 class V extends Component {
   constructor(props){
@@ -47,6 +47,31 @@ class V extends Component {
         Actions.main();
       }
     });
+  }
+
+  onSelectImage(){
+    ImagePicker.showImagePicker({
+      title: '选择', // specify null or empty string to remove the title
+      cancelButtonTitle: '取消',
+      takePhotoButtonTitle: '拍照', // specify null or empty string to remove this button
+      chooseFromLibraryButtonTitle: '从手机相册选择', // specify null or empty string to remove this button
+      cameraType: 'back', // 'front' or 'back'
+      mediaType: 'photo', // 'photo' or 'video'
+      videoQuality: 'high', // 'low', 'medium', or 'high'
+      durationLimit: 10, // video recording max time in seconds
+      maxWidth: 100, // photos only
+      maxHeight: 100, // photos only
+      aspectX: 2, // android only - aspectX:aspectY, the cropping image's ratio of width to height
+      aspectY: 1, // android only - aspectX:aspectY, the cropping image's ratio of width to height
+      quality: 0.2, // 0 to 1, photos only
+      angle: 0, // android only, photos only
+      allowsEditing: false, // Built in functionality to resize/reposition the image after selection
+      noData: false, // photos only - disables the base64 `data` field from being generated (greatly improves performance on large photos)
+      storageOptions: { // if this key is provided, the image will get saved in the documents directory on ios, and the pictures directory on android (rather than a temporary directory)
+        skipBackup: true, // ios only - image will NOT be backed up to icloud
+        path: 'images' // ios only - will save image at /Documents/images rather than the root
+      }
+    }, response=>console.log(response));
   }
   render() {
     return (
@@ -129,6 +154,17 @@ class V extends Component {
             alignItems:'center', justifyContent:'center'
           }} onPress={this.props.action.wechatShare} >
           <Text style={{ color:'#fff'}}>微信分享</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{
+            height:40,
+            marginTop:10,
+            marginHorizontal:10, marginVertical:5,
+            borderRadius:3,
+            backgroundColor:'#00f',
+            alignItems:'center', justifyContent:'center'
+          }} onPress={this.onSelectImage.bind(this)} >
+          <Text style={{ color:'#fff'}}>选择图片</Text>
         </TouchableOpacity>
 
 

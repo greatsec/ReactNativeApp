@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Image,
   RefreshControl,
   ScrollView,
   Text,
@@ -46,6 +47,11 @@ class V extends Component {
           style={{marginTop:100}}>
           {this.props.bbs.list.map((o)=>{
             return (<View key={o.id} style={{borderWidth:1,marginTop:2}}>
+              {o.imageList.map((o2)=>{
+                return (
+                  <Image key={o2.image} source={{uri:'http://www.tdong.cn/'+o2.image}} style={{width:100,height:100}} />
+                );
+              })}
               <Text>{o.content}</Text>
               <TouchableOpacity onPress={()=>this.onPressReplay(o.id)}>
                 <Text>回复</Text>
