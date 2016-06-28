@@ -15,8 +15,6 @@ import action from '../action';
 
 import IconFont from '../IconFont';
 
-import {capture} from 'react-native-screenshot';
-
 class V extends Component {
   constructor(props){
     super(props);
@@ -53,7 +51,7 @@ class V extends Component {
   }
 
   onSelectImage(){
-    capture().then(uri=>this.setState({uri:'file://'+uri}));
+    
   }
   render() {
     return (

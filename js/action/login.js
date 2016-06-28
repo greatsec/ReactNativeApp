@@ -20,4 +20,5 @@ export var wechatLogin = createAction('WECHAT_LOGIN',()=>new Promise((resolve, r
   }).catch(reject);
 }));
 
-export var wechatShare = createAction('WECHAT_SHARE', ()=>wechat.sendMsgReq({text:'1234'},wechat.WXSceneTimeline));
+export var wechatShareSession = createAction('WECHAT_SHARE_SESSION', params=>wechat.sendMsgReq(params,wechat.WXSceneSession));
+export var wechatShareTimeline = createAction('WECHAT_SHARE_TIMELINE', params=>wechat.sendMsgReq(params,wechat.WXSceneTimeline));

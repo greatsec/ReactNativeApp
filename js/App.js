@@ -19,6 +19,8 @@ import { Scene, Router, Actions,Reducer } from 'react-native-router-flux';
 import { Provider } from 'react-redux';
 import configStore from './store/configStore';
 
+import {capture} from 'react-native-screenshot';
+
 import action from './action';
 import * as view from './view';
 
@@ -103,7 +105,7 @@ class App extends Component {
         </Scene>
         <Scene key='device' tabs={true} type='push' >
           <Scene key='deviceData' component={view.DeviceDataView} title='检测' icon={TabIcon} backButton={BackButton} onRight={()=>Actions.deviceSetting()} rightTitle='更多'/>
-          <Scene key='deviceChart' component={view.DeviceChartView} title='趋势' icon={TabIcon} />
+          <Scene key='deviceChart' component={view.DeviceChartView} title='趋势' icon={TabIcon} onRight={()=>capture().then(uri=>Actions.shareImage({image:'file://'+uri}))} rightTitle='分享' />
         </Scene>
         <Scene key='deviceSetting' component={view.DeviceSettingView} title='设置' />
         <Scene key='deviceModifyName' component={view.DeviceModifyNameView} title='修改设备名称' />
@@ -125,6 +127,7 @@ class App extends Component {
         <Scene key='feedback' component={view.FeedbackView} title='意见反馈'/>
         <Scene key='about' component={view.AboutView} title='关于'/>
         <Scene key='building' component={view.BuildingView} title='建设中' />
+        <Scene key='shareImage' component={view.ShareImageView} title='分享到' />
     </RouterWithRedux>
     );
   }

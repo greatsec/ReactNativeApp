@@ -38,6 +38,8 @@ import DeviceShareListView from './DeviceShareListView';
 import FeedbackView from './FeedbackView';
 import BuildingView from './BuildingView';
 
+import ShareImageView from './ShareImageView';
+
 export {
   LoginView,
   RegisterView,
@@ -75,4 +77,5 @@ export {
   FeedbackView,
 
   BuildingView,
+  ShareImageView,
 }

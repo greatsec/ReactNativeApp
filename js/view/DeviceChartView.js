@@ -26,12 +26,19 @@ class V extends Component {
       chartType:'pmChart',
       showTime : moment()
     };
+
+    this.chartType = [{title:'空气质量',key:'pmChart'},{title:'温湿度',key:'thChart'}];
+    this.timeType = [{title:'年',key:'month', legendFormat:'YYYY年'},{title:'月',key:'day', legendFormat:'YYYY年MM月'},{title:'日',key:'hour', legendFormat:'YYYY年MM月DD日'}];
   }
   componentDidMount(){
-    this.onSwitchType('day');
+    this.onSwitchType(_find(this.timeType, {key:'day'}));
   }
 
-  onSwitchType(type){
+  rightButton(){
+    return <Text>1</Text>
+  }
+
+  onSwitchType({key:type,legendFormat}){
     let { code: device } = this.props.device;
     let startTime, endTime;
     let showTime = moment();
@@ -51,7 +58,7 @@ class V extends Component {
       } break;
     }
 
-    this.setState({type,showTime});
+    this.setState({type,showTime,legendFormat});
     this.props.action.pmList({device,startTime,endTime,type});
   }
   onSwipe({direction}){
@@ -83,33 +90,44 @@ class V extends Component {
     this.setState({showTime});
     this.props.action.pmList({device,startTime,endTime,type});
   }
+
   render(){
-    return (<View style={{marginTop:100, marginBottom:100, flex:1}}>
+    return (<View style={{flex:1}}>
       <View style={{flexDirection:'row', height:36}}>
-        <TouchableOpacity style={{flex:1, borderWidth:1}} onPress={()=>this.setState({chartType:'pmChart'})}>
-          <Text>空气质量</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={{flex:1, borderWidth:1}} onPress={()=>this.setState({chartType:'thChart'})}>
-          <Text>温湿度</Text>
-        </TouchableOpacity>
+        {this.chartType.map(o=>{
+          return (
+            <TouchableOpacity key={o.key} style={{
+                flex:1,
+                alignItems:'center', justifyContent:'center',
+                backgroundColor:'#fff'
+              }} onPress={()=>this.setState({chartType:o.key})}>
+              <Text style={{color:'#18B4ED'}}>{o.title}</Text>
+            </TouchableOpacity>
+          );
+        })}
       </View>
       <View style={{flexDirection:'row', height:36}}>
-        <TouchableOpacity style={{flex:1, borderWidth:1}} onPress={this.onSwitchType.bind(this,'month')}>
-          <Text>年</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={{flex:1, borderWidth:1}} onPress={this.onSwitchType.bind(this,'day')}>
-          <Text>月</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={{flex:1, borderWidth:1}} onPress={this.onSwitchType.bind(this,'hour')}>
-          <Text>日</Text>
-        </TouchableOpacity>
+        {this.timeType.map(o=>{
+          return (
+            <TouchableOpacity key={o.key} style={{
+                flex:1,
+                alignItems:'center', justifyContent:'center',
+                backgroundColor:'#fff'
+              }} onPress={()=>this.onSwitchType(o)}>
+              <Text style={{color:'#18B4ED'}}>{o.title}</Text>
+            </TouchableOpacity>
+          );
+        })}
       </View>
-      <View>
-        <Text>{this.state.showTime.format()}</Text>
+      <View style={{alignItems:'center'}}>
+        <Text style={{marginVertical:5}}>{this.state.showTime.format(this.state.legendFormat)}</Text>
       </View>
       <View style={{flex:1}}>
         {this.props[this.state.chartType].map((o, i)=>{
-          return <LineChart key={i} onSwipe={this.onSwipe.bind(this)} style={{flex:1}} data={o} />
+          return (<View style={{flex:1}} key={i}>
+            <Text>{o.unit}</Text>
+            <LineChart onSwipe={this.onSwipe.bind(this)} style={{flex:1}} data={o} />
+          </View>);
         })}
       </View>
 
@@ -120,7 +138,8 @@ class V extends Component {
 export default connect(state=>({
   device: (_find(state.deviceList.list, {id:state.deviceList.selected}) || _find(state.deviceList.slist, {id:state.deviceList.selected})),
   pmChart: [{
-    xVals:_map(state.deviceList.chart,'time'),
+    unit: 'ug/m³',
+    xVals:_map(state.deviceList.chart,o=>o.time.substr(-2)),
     dataSet:[{
       yVals:_map(state.deviceList.chart,'pm1'),
       colors:[0]
@@ -133,13 +152,15 @@ export default connect(state=>({
     }]
   }],
   thChart: [{
-    xVals:_map(state.deviceList.chart,'time'),
+    unit: '℃',
+    xVals:_map(state.deviceList.chart,o=>o.time.substr(-2)),
     dataSet:[{
       yVals:_map(state.deviceList.chart,'temperature'),
       colors:[0]
     }]
   },{
-    xVals:_map(state.deviceList.chart,'time'),
+    unit: '％',
+    xVals:_map(state.deviceList.chart,o=>o.time.substr(-2)),
     dataSet:[{
       yVals:_map(state.deviceList.chart,'humidity'),
       colors:[0]
