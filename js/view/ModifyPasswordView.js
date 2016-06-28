@@ -30,23 +30,32 @@ class V extends Component {
   }
   render(){
     return (
-      <View style={{marginTop:100}}>
-        <View>
-          <Text >修改密码</Text>
+      <View>
+        <View style={{
+            height:45, marginTop:10,
+            flexDirection:'row',marginHorizontal:15,
+            borderTopLeftRadius:3,borderTopRightRadius:3,
+            backgroundColor:'#fff'}}>
+            <TextInput onChangeText={oldPassword=>this.setState({oldPassword})} style={{flex:1, marginHorizontal:10}} placeholder='旧密码'/>
         </View>
 
-        <View>
-          <TextInput onChangeText={oldPassword=>this.setState({oldPassword})} style={{height:40}} value={this.state.name}/>
+        <View style={{
+            height:45, marginTop:1, marginHorizontal:15,
+            borderBottomLeftRadius:3, borderBottomRightRadius:3,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
+            <TextInput onChangeText={newPassword=>this.setState({newPassword})} style={{flex:1, marginHorizontal:10}} placeholder='新密码'/>
         </View>
 
-        <View>
-          <TextInput onChangeText={newPassword=>this.setState({newPassword})} style={{height:40}} value={this.state.name}/>
-        </View>
-
-        <TouchableOpacity onPress={this.onPressSubmit.bind(this)}>
-          <Text>提交</Text>
+        <TouchableOpacity style={{
+            height:40,
+            marginHorizontal:15, marginTop:5,
+            borderRadius:3,
+            backgroundColor:'#18B4ED',
+            alignItems:'center', justifyContent:'center'
+          }} onPress={this.onPressSubmit.bind(this)} >
+          <Text style={{ color:'#fff',fontSize:18}}>提交</Text>
         </TouchableOpacity>
-
 
       </View>);
   }

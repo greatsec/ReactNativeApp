@@ -30,19 +30,24 @@ class V extends Component {
   }
   render(){
     return (
-      <View style={{marginTop:100}}>
+      <View>
 
-        <View>
-          <Text>选择你要反馈的问题类型</Text>
+        <View style={{
+            height:45, marginTop:10,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
+            <TextInput onChangeText={username=>this.setState({username})} style={{flex:1,marginLeft:15}} placeholder='对方的账号'/>
         </View>
 
-
-        <TextInput onChangeText={username=>this.setState({username})} style={{height:40}}/>
-
-        <TouchableOpacity onPress={this.onPressSubmit.bind(this)}>
-          <Text>提交</Text>
+        <TouchableOpacity style={{
+            height:40,
+            marginHorizontal:15, marginTop:20,
+            borderRadius:3,
+            backgroundColor:'#18B4ED',
+            alignItems:'center', justifyContent:'center'
+          }} onPress={this.onPressSubmit.bind(this)} >
+          <Text style={{color:'#fff',fontSize:18}}>提交</Text>
         </TouchableOpacity>
-
 
       </View>);
   }

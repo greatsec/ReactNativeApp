@@ -29,18 +29,23 @@ class V extends Component {
   }
   render(){
     return (
-      <View style={{marginTop:100}}>
+      <View>
 
-        <View>
-          <Text >修改姓名</Text>
+        <View style={{
+            height:45, marginTop:10,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
+            <TextInput onChangeText={name=>this.setState({name})} style={{flex:1}} value={this.state.name}/>
         </View>
 
-        <View>
-          <TextInput onChangeText={name=>this.setState({name})} style={{height:40}} value={this.state.name}/>
-        </View>
-
-        <TouchableOpacity onPress={this.onPressSubmit.bind(this)}>
-          <Text>提交</Text>
+        <TouchableOpacity style={{
+            height:40,
+            marginHorizontal:15, marginTop:5,
+            borderRadius:3,
+            backgroundColor:'#18B4ED',
+            alignItems:'center', justifyContent:'center'
+          }} onPress={this.onPressSubmit.bind(this)} >
+          <Text style={{ color:'#fff',fontSize:18}}>提交</Text>
         </TouchableOpacity>
 
 

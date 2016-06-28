@@ -27,7 +27,7 @@ const RouterWithRedux = connect()(Router);
 class TabIcon extends Component {
     render(){
         return (
-            <Text style={{color: this.props.selected ? "red" :"black"}}>{this.props.title}</Text>
+            <Text style={{color: this.props.selected ? "red" :"black"}}>{this.props.iconText || this.props.title}</Text>
         );
     }
 }
@@ -65,6 +65,21 @@ const customRouterReducer = params => {
       return state;
   };
 }
+const getSceneStyle = (props, computedProps) => {
+  const style = {
+    flex: 1,
+    backgroundColor: '#f1f1f1',
+    shadowColor: null,
+    shadowOffset: null,
+    shadowOpacity: null,
+    shadowRadius: null,
+  };
+  if (computedProps.isActive) {
+    style.marginTop = computedProps.hideNavBar ? 0 : 64;
+    style.marginBottom = computedProps.hideTabBar ? 0 : 50;
+  }
+  return style;
+};
 
 class App extends Component {
   componentDidMount(){
@@ -72,14 +87,17 @@ class App extends Component {
   }
   render(){
     return (
-      <RouterWithRedux createReducer={customRouterReducer}>
-        <Scene key='login' component={view.LoginView} title='登陆' initial={this.props.initialLogin} hideNavBar={true} type='reset'/>
+      <RouterWithRedux createReducer={customRouterReducer}
+        getSceneStyle={getSceneStyle}
+        navigationBarStyle={{backgroundColor:'#18B4ED'}}
+        titleStyle={{color:'#fff'}}>
+        <Scene key='login' component={view.LoginView} title='登陆' initial={this.props.initialLogin} hideNavBar={false} type='reset'/>
         <Scene key='resetPassword' component={view.ResetPasswordView} title='忘记密码' hideNavBar={false} />
         <Scene key='register' component={view.RegisterView} title='注册' hideNavBar={false} />
         <Scene key='provision' component={view.ProvisionView} title='条款' hideNavBar={false} />
 
         <Scene key='main' tabs={true} initial={!this.props.initialLogin} type='replace'>
-          <Scene key='deviceList' component={ view.DeviceListView } title='设备' icon={TabIcon}/>
+          <Scene key='deviceList' component={ view.DeviceListView } title='我的设备' icon={TabIcon} iconText='设备'/>
           <Scene key='discovery' component={ view.DiscoveryView } title='发现' icon={TabIcon}/>
           <Scene key='message' component={ view.MessageView } title='消息' icon={TabIcon}/>
           <Scene key='setting' component={ view.SettingView } title='我的' icon={TabIcon}/>

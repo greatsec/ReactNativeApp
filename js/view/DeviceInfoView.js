@@ -22,27 +22,95 @@ class V extends Component {
   }
   render(){
     return (
-      <View style={{marginTop:100}}>
-
-        <View>
-          <Text>设备型号：{this.props.device.type}</Text>
-        </View>
-        <View>
-          <Text>连接的wifi名称：</Text>
-        </View>
-        <View>
-          <Text>设备系统版本：{this.props.device.version}</Text>
-        </View>
-        <View>
-          <Text>产品条码：{this.props.device.code}</Text>
-        </View>
-        <View>
-          <Text>IP地址：{this.props.device.ip}</Text>
-        </View>
-        <View>
-          <Text>MAC地址：{this.props.device.mac}</Text>
+      <View>
+        <View style={{
+            height:45, marginTop:10,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>设备型号</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <Text>{this.props.device.type}</Text>
+            </View>
         </View>
 
+        <View style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>连接的wifi名称</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <Text></Text>
+            </View>
+        </View>
+        <View style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>设备系统版本</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <Text>{this.props.device.version}</Text>
+            </View>
+        </View>
+
+        <View style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>产品条码</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <Text>{this.props.device.code}</Text>
+            </View>
+        </View>
+
+        <View style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>IP地址</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <Text>{this.props.device.ip}</Text>
+            </View>
+        </View>
+
+        <View style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>MAC地址</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <Text>{this.props.device.mac}</Text>
+            </View>
+        </View>
 
       </View>);
   }

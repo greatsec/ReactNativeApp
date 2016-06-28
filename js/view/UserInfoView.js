@@ -53,40 +53,121 @@ class V extends Component {
 
   render(){
     return (
-      <View style={{marginTop:100}}>
+      <View>
 
-        <View>
-
-          <Text style={{height:40}}>用户名: {this.props.user.loginName}</Text>
-
-          <TouchableOpacity style={{height:40}} onPress={Actions.modifyName}>
-            <Text >真实姓名 {this.props.user.name}</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={{height:40}} onPress={this.onPressMobile.bind(this)}>
-            <Text >手机号 {this.props.user.mobile}</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={{height:40}} onPress={this.onPressEmail.bind(this)}>
-            <Text >邮箱 {this.props.user.email}</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={{height:40}} onPress={this.onPressQQ.bind(this)}>
-            <Text >QQ {this.props.user.qqcode}</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={{height:40}} onPress={this.onPressWechat.bind(this)}>
-            <Text >微信 {this.props.user.weixincode}</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={{height:40}} onPress={Actions.modifyPassword}>
-            <Text >修改密码</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={{height:40}} onPress={()=>{this.props.action.logout();Actions.login()}}>
-            <Text >退出</Text>
-          </TouchableOpacity>
+        <View style={{
+            height:45, marginTop:10,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>用户名</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <Text>{this.props.user.loginName}</Text>
+            </View>
         </View>
+
+        <TouchableOpacity style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={Actions.modifyName}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>真实姓名</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <Text>{this.props.user.name}</Text>
+            </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={this.onPressMobile.bind(this)}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>手机号</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <Text>{this.props.user.mobile}</Text>
+            </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={this.onPressEmail.bind(this)}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>邮箱</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <Text>{this.props.user.email}</Text>
+            </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={this.onPressQQ.bind(this)}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>QQ</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <Text>{this.props.user.qqcode ? '已绑定' : '未绑定'}</Text>
+            </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={this.onPressWechat.bind(this)}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>微信</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <Text>{this.props.user.weixincode ? '已绑定' : '未绑定'}</Text>
+            </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={Actions.modifyPassword}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>修改密码</Text>
+            </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={()=>{this.props.action.logout();Actions.login()}}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>退出</Text>
+            </View>
+        </TouchableOpacity>
       </View>);
   }
 }

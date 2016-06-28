@@ -21,16 +21,30 @@ class V extends Component {
   }
   render(){
     return (
-      <View style={{marginTop:100}}>
-
-        <TouchableOpacity style={{height:48}} onPress={()=>Linking.openURL('https://item.taobao.com/item.htm?id=526010546355')}>
-          <Text>安居侠气体检测仪</Text>
+      <View>
+        <TouchableOpacity style={{
+            height:45, marginTop:10,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={()=>Linking.openURL('https://item.taobao.com/item.htm?id=526010546355')}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>安居侠气体检测仪</Text>
+            </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{height:48}} onPress={()=>Linking.openURL('https://item.taobao.com/item.htm?id=526010546355')}>
-          <Text>安居侠颗粒检测仪</Text>
+        <TouchableOpacity style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={()=>Linking.openURL('https://item.taobao.com/item.htm?id=526010546355')}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>安居侠颗粒检测仪</Text>
+            </View>
         </TouchableOpacity>
-
 
       </View>);
   }

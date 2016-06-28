@@ -30,30 +30,37 @@ class V extends Component {
   }
   render(){
     return (
-      <View style={{marginTop:100}}>
+      <View>
 
-        <View>
-          <Text>选择你要反馈的问题类型</Text>
+        <Text style={{marginTop:10, marginLeft:10,fontSize:14,color:'#8A8A8A'}}>选择你要反馈的问题类型</Text>
+
+        <View style={{flexDirection:'row', marginTop:10}}>
+          <TouchableOpacity style={{backgroundColor:'#fff', height:24, justifyContent:'center', marginLeft:10}} onPress={()=>this.setState({type:1})}>
+            <Text style={{marginHorizontal:10}}>问题反馈</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{backgroundColor:'#fff', height:24, justifyContent:'center', marginLeft:10}} onPress={()=>this.setState({type:2})}>
+            <Text style={{marginHorizontal:10}}>使用咨询</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{backgroundColor:'#fff', height:24, justifyContent:'center', marginLeft:10}} onPress={()=>this.setState({type:3})}>
+            <Text style={{marginHorizontal:10}}>产品建议</Text>
+          </TouchableOpacity>
         </View>
 
-        <TouchableOpacity onPress={()=>this.setState({type:1})}>
-          <Text>问题反馈</Text>
+        <View style={{backgroundColor:'#fff', marginTop:10,height:182}}>
+          <TextInput onChangeText={content=>this.setState({content})} style={{flex:1, marginHorizontal:10}} placeholder='请描述一下您的问题'/>
+        </View>
+
+        <TouchableOpacity style={{
+            height:40,
+            marginHorizontal:15, marginTop:20,
+            borderRadius:3,
+            backgroundColor:'#18B4ED',
+            alignItems:'center', justifyContent:'center'
+          }} onPress={this.onPressSubmit.bind(this)} >
+          <Text style={{ color:'#fff',fontSize:18}}>提交</Text>
         </TouchableOpacity>
-
-        <TouchableOpacity onPress={()=>this.setState({type:2})}>
-          <Text>使用咨询</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={()=>this.setState({type:3})}>
-          <Text>产片建议</Text>
-        </TouchableOpacity>
-
-        <TextInput onChangeText={content=>this.setState({content})} style={{height:40}}/>
-
-        <TouchableOpacity onPress={this.onPressSubmit.bind(this)}>
-          <Text>提交</Text>
-        </TouchableOpacity>
-
 
       </View>);
   }

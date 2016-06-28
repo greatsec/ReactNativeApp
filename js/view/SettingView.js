@@ -20,30 +20,55 @@ class V extends Component {
   }
   render(){
     return (
-      <View style={{marginTop:100}}>
+      <View>
 
-        <View>
-          <Text >SettingView</Text>
-        </View>
-
-        <TouchableOpacity style={{height:48}} onPress={Actions.userinfo}>
-          <Text>个人信息</Text>
+        <TouchableOpacity style={{
+            height:45, marginTop:10,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={Actions.userinfo}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>个人信息</Text>
+            </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{height:48}} onPress={Actions.deviceShareList}>
-          <Text>设备分享</Text>
+        <TouchableOpacity style={{
+            height:45, marginTop:10,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={Actions.deviceShareList}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>设备分享</Text>
+            </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{height:48}} onPress={Actions.feedback}>
-          <Text>意见反馈</Text>
+        <TouchableOpacity style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={Actions.feedback}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>意见反馈</Text>
+            </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{height:48}} onPress={Actions.about}>
-          <Text>关于</Text>
+        <TouchableOpacity style={{
+            height:45, marginTop:10,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={Actions.about}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>关于</Text>
+            </View>
         </TouchableOpacity>
-
-
-
       </View>);
   }
 }

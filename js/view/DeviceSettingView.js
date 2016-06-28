@@ -31,43 +31,87 @@ class V extends Component {
   }
   render(){
     return (
-      <View style={{marginTop:100}}>
+      <View>
+        <TouchableOpacity style={{
+            height:45, marginTop:10,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={Actions.deviceInfo}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>设备信息</Text>
+            </View>
+        </TouchableOpacity>
 
-        <View>
-          <Text >设备设置</Text>
-        </View>
         {this.props.device.canModifyName ? (
-          <TouchableOpacity style={{height:40}} onPress={Actions.deviceModifyName}>
-            <Text >修改名称</Text>
+          <TouchableOpacity style={{
+              height:45, marginTop:1,
+              flexDirection:'row',
+              backgroundColor:'#fff'}} onPress={Actions.deviceModifyName}>
+              <View style={{justifyContent:'center', marginLeft:15}}>
+                <Text>C</Text>
+              </View>
+              <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+                <Text style={{fontSize:15}}>修改名称</Text>
+              </View>
           </TouchableOpacity>
         ) : null}
 
-        <TouchableOpacity style={{height:40}} onPress={Actions.deviceInfo}>
-          <Text >设备信息</Text>
-        </TouchableOpacity>
-
         {this.props.device.canShare ? (
-          <TouchableOpacity style={{height:40}} onPress={Actions.deviceShare}>
-            <Text >设备共享</Text>
+          <TouchableOpacity style={{
+              height:45, marginTop:1,
+              flexDirection:'row',
+              backgroundColor:'#fff'}} onPress={Actions.deviceShare}>
+              <View style={{justifyContent:'center', marginLeft:15}}>
+                <Text>C</Text>
+              </View>
+              <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+                <Text style={{fontSize:15}}>设备共享</Text>
+              </View>
           </TouchableOpacity>
         ) : null}
 
         {this.props.device.canOTA ? (
-          <TouchableOpacity style={{height:40}} onPress={Actions.building}>
-            <Text >设备系统升级</Text>
+          <TouchableOpacity style={{
+              height:45, marginTop:1,
+              flexDirection:'row',
+              backgroundColor:'#fff'}} onPress={Actions.building}>
+              <View style={{justifyContent:'center', marginLeft:15}}>
+                <Text>C</Text>
+              </View>
+              <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+                <Text style={{fontSize:15}}>设备系统升级</Text>
+              </View>
           </TouchableOpacity>
         ) : null}
 
 
         {this.props.device.canUnbind ? (
-          <TouchableOpacity style={{height:40}} onPress={this.onPressUnbind.bind(this)}>
-            <Text >解除绑定</Text>
+          <TouchableOpacity style={{
+              height:45, marginTop:1,
+              flexDirection:'row',
+              backgroundColor:'#fff'}} onPress={this.onPressUnbind.bind(this)}>
+              <View style={{justifyContent:'center', marginLeft:15}}>
+                <Text>C</Text>
+              </View>
+              <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+                <Text style={{fontSize:15}}>解除绑定</Text>
+              </View>
           </TouchableOpacity>
         ) : null}
 
         {this.props.device.canNetConfig ? (
-          <TouchableOpacity style={{height:40}} onPress={Actions.deviceNetConfig}>
-            <Text >网络配置</Text>
+          <TouchableOpacity style={{
+              height:45, marginTop:1,
+              flexDirection:'row',
+              backgroundColor:'#fff'}} onPress={Actions.deviceNetConfig}>
+              <View style={{justifyContent:'center', marginLeft:15}}>
+                <Text>C</Text>
+              </View>
+              <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+                <Text style={{fontSize:15}}>网络配置</Text>
+              </View>
           </TouchableOpacity>
         ) : null}
 

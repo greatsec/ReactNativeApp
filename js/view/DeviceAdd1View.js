@@ -20,16 +20,15 @@ class V extends Component {
   }
   render(){
     return (
-      <View style={{marginTop:100}}>
-
-        <View>
-          <Text >1</Text>
-        </View>
-
-        <TouchableOpacity style={{height:48}} onPress={Actions.deviceAdd2}>
-          <Text>空气颗粒检测仪</Text>
+      <View>
+        <TouchableOpacity style={{
+            height:45, marginTop:10,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={Actions.deviceAdd2}>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>空气颗粒检测仪</Text>
+            </View>
         </TouchableOpacity>
-
 
       </View>);
   }

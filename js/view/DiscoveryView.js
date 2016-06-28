@@ -20,33 +20,67 @@ class V extends Component {
   }
   render(){
     return (
-      <View style={{marginTop:100}}>
+      <View>
 
-        <View>
-          <Text>DiscoveryView</Text>
-        </View>
-
-        <TouchableOpacity style={{height:48}} onPress={Actions.bbs}>
-          <Text>安居吧</Text>
+        <TouchableOpacity style={{
+            height:45, marginTop:10,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={Actions.bbs}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>安居吧</Text>
+            </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{height:48}} onPress={Actions.productList}>
-          <Text>安居侠系列</Text>
+        <TouchableOpacity style={{
+            height:45, marginTop:10,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={Actions.productList}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>安居侠系列</Text>
+            </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{height:48}} onPress={Actions.building}>
-          <Text>其他设备</Text>
+        <TouchableOpacity style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={Actions.building}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>其他设备</Text>
+            </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{height:48}} onPress={Actions.building}>
-          <Text>设备互联</Text>
+        <TouchableOpacity style={{
+            height:45, marginTop:10,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={Actions.building}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>设备互联</Text>
+            </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{height:48}} onPress={Actions.building}>
-          <Text>智能场景</Text>
+        <TouchableOpacity style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={Actions.building}>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text>C</Text>
+            </View>
+            <View style={{justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>智能场景</Text>
+            </View>
         </TouchableOpacity>
-
-
       </View>);
   }
 }

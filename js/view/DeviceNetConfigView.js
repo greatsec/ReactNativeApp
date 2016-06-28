@@ -56,20 +56,36 @@ class V extends Component {
   }
   render(){
     return (
-      <View style={{marginTop:100}}>
+      <View>
 
-        <View>
-          <Text >{this.props.ssid}</Text>
+        <View style={{
+            height:45, marginTop:10,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>当前网络</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <Text>{this.props.ssid}</Text>
+            </View>
         </View>
 
-        <TextInput onChangeText={key=>this.setState({key})} style={{height:40}}/>
+        <View style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
+            <TextInput onChangeText={key=>this.setState({key})} style={{flex:1,marginLeft:15}} placeholder='wifi密码'/>
+        </View>
 
-
-        <TouchableOpacity style={{height:48}} onPress={this.onPressConfig.bind(this)}>
-          <Text>配置 {this.state.second > 0 ? this.state.second : ''}</Text>
+        <TouchableOpacity style={{
+            height:40,
+            marginHorizontal:15, marginTop:5,
+            borderRadius:3,
+            backgroundColor:'#18B4ED',
+            alignItems:'center', justifyContent:'center'
+          }} onPress={this.onPressConfig.bind(this)} >
+          <Text style={{color:'#fff',fontSize:18}}>配置 {this.state.second > 0 ? this.state.second : ''}</Text>
         </TouchableOpacity>
-
-
       </View>);
   }
 }

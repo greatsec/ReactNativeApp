@@ -20,16 +20,31 @@ class V extends Component {
   }
   render(){
     return (
-      <View style={{marginTop:100}}>
+      <View>
 
-        <View>
-          <Text >微信公众号：安居侠</Text>
+        <View style={{
+            height:45, marginTop:10,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>微信公众号</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <Text>安居侠</Text>
+            </View>
         </View>
 
-        <View>
-          <Text >客服电话：400 880 6306</Text>
+        <View style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>客服电话</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <Text>400 880 6306</Text>
+            </View>
         </View>
-
 
       </View>);
   }

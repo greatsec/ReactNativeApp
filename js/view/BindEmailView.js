@@ -36,20 +36,46 @@ class V extends Component {
   }
   render(){
     return (
-      <View style={{marginTop:100}}>
+      <View>
 
-        <TextInput onChangeText={email=>this.setState({email})} style={{height:40}}/>
+        <View style={{
+            height:45, marginTop:10,
+            flexDirection:'row',marginHorizontal:15,
+            borderTopLeftRadius:3,borderTopRightRadius:3,
+            backgroundColor:'#fff'}}>
+            <TextInput onChangeText={email=>this.setState({email})} style={{flex:1, marginHorizontal:10}} placeholder='邮箱'/>
+        </View>
 
-        <TextInput onChangeText={code=>this.setState({code})} style={{height:40}}/>
+        <View style={{
+            flexDirection:'row',
+            height:45,
+            marginHorizontal:15, marginTop:1,
+            borderBottomRightRadius:3,borderBottomLeftRadius:3,
+            backgroundColor:'#fff'
+          }}>
+          <TextInput style={{
+              flex:1,
+              marginHorizontal:5,
+              backgroundColor:'transparent',
+            }} onChangeText={code=>this.setState({code})} placeholder='验证码' />
+          <TouchableOpacity style={{
+              justifyContent:'center',
+              backgroundColor:'#FF5E45',
+              borderBottomRightRadius:3,
+            }} onPress={this.onPressCode.bind(this)}>
+            <Text style={{marginHorizontal:10,color:'#fff',fontSize:16}}>获取验证码</Text>
+          </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity onPress={this.onPressCode.bind(this)}>
-          <Text>发送验证码</Text>
+        <TouchableOpacity style={{
+            height:40,
+            marginHorizontal:15, marginTop:20,
+            borderRadius:3,
+            backgroundColor:'#18B4ED',
+            alignItems:'center', justifyContent:'center'
+          }} onPress={this.onPressSubmit.bind(this)} >
+          <Text style={{ color:'#fff',fontSize:18}}>提交</Text>
         </TouchableOpacity>
-
-        <TouchableOpacity onPress={this.onPressSubmit.bind(this)}>
-          <Text>提交</Text>
-        </TouchableOpacity>
-
 
       </View>);
   }
