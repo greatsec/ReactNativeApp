@@ -13,6 +13,8 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
+import IconFont from '../IconFont';
+
 import {capture} from 'react-native-screenshot';
 
 class V extends Component {
@@ -42,7 +44,6 @@ class V extends Component {
   }
 
   onPressWechat(){
-    this.props.action.wechatLogin().then(action=>console.log(action));
     this.props.action.wechatLogin().then(({payload:weixincode})=>this.props.action.codeLogin({weixincode}))
     .then(action=>{
       if(!action.error){
@@ -58,27 +59,33 @@ class V extends Component {
     return (
       <View>
         <View style={{
+            flexDirection:'row',
+            alignItems:'center',
             height:45,
             marginHorizontal:15, marginTop:50,
             borderRadius:3,
             backgroundColor:'#fff'
           }}>
+          <IconFont name="wechat" style={{backgroundColor:'transparent', marginLeft:10}} size={24} color="#BABABA" />
           <TextInput style={{
               flex:1,
-              marginHorizontal:5,
+              marginLeft:10,
               backgroundColor:'transparent',
             }} onChangeText={(username)=>this.setState({username})} value={this.state.username} />
         </View>
 
         <View style={{
+            flexDirection:'row',
+            alignItems:'center',
             height:45,
             marginHorizontal:15, marginTop:1,
             borderRadius:3,
             backgroundColor:'#fff'
           }}>
+          <IconFont name="password" style={{backgroundColor:'transparent', marginLeft:10}} size={24} color="#BABABA" />
           <TextInput style={{
               flex:1,
-              marginHorizontal:5,
+              marginLeft:10,
               backgroundColor:'transparent',
             }} onChangeText={(password)=>this.setState({password})} value={this.state.password} />
         </View>
@@ -103,7 +110,6 @@ class V extends Component {
           }} onPress={this.onPressLogin.bind(this)} >
           <Text style={{ color:'#fff',fontSize:18}}>登陆</Text>
         </TouchableOpacity>
-
         <View style={{
             flexDirection:'row',
             marginHorizontal:20,
@@ -125,16 +131,20 @@ class V extends Component {
 
         <View style={{marginTop:45,flexDirection:'row', justifyContent:'center'}}>
           <TouchableOpacity style={{
+              alignItems:'center', justifyContent:'center',
               backgroundColor:'#319BFD',
               height:44,width:44,
               marginRight:22,
               borderRadius:22}} onPress={this.onPressQQ.bind(this)}>
+              <IconFont name="qq" style={{backgroundColor:'transparent'}} size={24} color="#fff" />
           </TouchableOpacity>
           <TouchableOpacity style={{
+              alignItems:'center', justifyContent:'center',
               backgroundColor:'#12DF26',
               height:44,width:44,
               marginLeft:22,
               borderRadius:22}} onPress={this.onPressWechat.bind(this)}>
+              <IconFont name="wechat" style={{backgroundColor:'transparent'}} size={24} color="#fff" />
           </TouchableOpacity>
         </View>
 

@@ -57,7 +57,6 @@ class V extends Component {
   render(){
     return (
       <View>
-
         <View style={{
             height:45, marginTop:10,
             flexDirection:'row',

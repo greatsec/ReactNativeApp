@@ -55,7 +55,6 @@ const customRouterReducer = params => {
   const defaultReducer = Reducer(params);
   return (state, action)=>{
       if(action.type == 'BODGE') {
-        console.log(state);
         if(state.children.length > 1) {
           state = Object.assign({}, state, {index: 0, children : state.children.slice(0,1)});
          }

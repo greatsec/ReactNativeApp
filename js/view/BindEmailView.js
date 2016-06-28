@@ -21,7 +21,7 @@ class V extends Component {
 
   onPressCode(){
     let {email} = this.state;
-    this.props.action.bindEmailCode({email}).then(action=>console.log(action));
+    this.props.action.bindEmailCode({email});
   }
 
   onPressSubmit(){
@@ -31,7 +31,6 @@ class V extends Component {
       email, code
     }).then(action=>{
       if(!action.error) Actions.pop();
-      console.log(action);
     })
   }
   render(){

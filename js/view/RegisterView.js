@@ -20,7 +20,7 @@ class V1 extends Component {
   }
   onPressCode(){
     let { mobile } = this.state;
-    this.props.action.mobileCode({mobile}).then(action=>console.log(action));
+    this.props.action.mobileCode({mobile});
   }
 
   onPressSubmit(){

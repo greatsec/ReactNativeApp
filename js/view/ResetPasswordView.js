@@ -20,7 +20,7 @@ class V1 extends Component {
   }
   onPressCode(){
     let {username:mobile} = this.state;
-    this.props.action.mobileCode({mobile}).then(action=>console.log(action));
+    this.props.action.mobileCode({mobile});
   }
 
   onPressSubmit(){
@@ -106,7 +106,7 @@ class V2 extends Component {
   }
   onPressCode(){
     let {username:email} = this.state;
-    this.props.action.emailCode({email}).then(action=>console.log(action));
+    this.props.action.emailCode({email});
   }
 
   onPressSubmit(){

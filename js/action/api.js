@@ -66,15 +66,14 @@ var httpActions = mapValues(httpApiList, (actionConfig, actionName) => {
       if(actionConfig.headers) headers = {...actionConfig.headers};
       if(actionConfig.withToken) headers['X-Auth-Token'] = token;
       return fetch(`${httpServer}${url}`, {body, method:'POST', headers})
-      //.then(response=>response.json())
-      .then(response=>response.text())
-      .then(text=>{console.log(text);let json = JSON.parse(text); return json;})
-        .then(json=>{
-          console.log(json);
-          if(!json.success) return Promise.reject({code:json.status, msg:json.message});
-          if(actionConfig.obtainToken) token = json.info.token;
-          return json.info;
-        });
+      .then(response=>response.json())
+      //.then(response=>response.text())
+      //.then(text=>{console.log(text);let json = JSON.parse(text); return json;})
+      .then(json=>{
+        if(!json.success) return Promise.reject({code:json.status, msg:json.message});
+        if(actionConfig.obtainToken) token = json.info.token;
+        return json.info;
+      });
     }, params=>params
   );
 

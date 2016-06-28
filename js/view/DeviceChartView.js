@@ -62,7 +62,6 @@ class V extends Component {
     let { showTime, type } = this.state;
 
     let func = direction == 'left' ? 'add' : 'subtract';
-    console.log(func);
     switch(type){
       case 'hour': {
         showTime = showTime[func](1,'d');

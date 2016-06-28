@@ -21,7 +21,7 @@ class V extends Component {
 
   onPressCode(){
     let {mobile} = this.state;
-    this.props.action.mobileCode({mobile}).then(action=>console.log(action));
+    this.props.action.mobileCode({mobile});
   }
 
   onPressSubmit(){
@@ -31,7 +31,6 @@ class V extends Component {
       mobile, code
     }).then(action=>{
       if(!action.error) Actions.pop();
-      console.log(action);
     })
   }
   render(){
