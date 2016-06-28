@@ -33,7 +33,7 @@ class V extends Component {
             <View style={{width:50,height:50,backgroundColor:'#F2F2F2'}}></View>
             <Text style={{fontSize:11}}>微信朋友圈</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{width:80, alignItems:'center'}}>
+          <TouchableOpacity style={{width:80, alignItems:'center'}} onPress={()=>Actions.bbsAdd({imageUri:this.props.image})}>
             <View style={{width:50,height:50,backgroundColor:'#F2F2F2'}}></View>
             <Text style={{fontSize:11}}>安居吧</Text>
           </TouchableOpacity>

@@ -25,6 +25,27 @@ class V extends Component {
     };
   }
   componentDidMount(){
+    if(this.props.imageUri){
+      let uri = this.props.imageUri;
+      this.setState({imageList:[...this.state.imageList, {
+        localPath: uri,
+        serverPath: '',
+        state: '上传中'
+      }]});
+
+      this.props.action.updatePhoto({file:{uri,type:'image/jpg',name:uri}})
+      .then(action=>{
+        if(!action.error){
+          this.setState({imageList: this.state.imageList.map(o=>{
+            if(o.localPath != action.meta.file.uri) return o;
+            o = {...o};
+            o.serverPath = action.payload;
+            o.state = '上传完成';
+            return o;
+          })});
+        }
+      });
+    }
   }
   onPressSubmit(){
     let {content, imageList } = this.state;
@@ -75,13 +96,14 @@ class V extends Component {
         // uri (on android)
         //const source = {uri: response.uri, isStatic: true};
 
+        let uri = response.uri;
         this.setState({imageList:[...this.state.imageList, {
-          localPath: response.uri,
+          localPath: uri,
           serverPath: '',
           state: '上传中'
         }]});
 
-        this.props.action.updatePhoto({file:{uri:response.uri,name:response.uri}})
+        this.props.action.updatePhoto({file:{uri,type:'image/jpg',name:uri}})
         .then(action=>{
           if(!action.error){
             this.setState({imageList: this.state.imageList.map(o=>{
