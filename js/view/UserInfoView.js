@@ -11,6 +11,8 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
+import IconFont from '../IconFont';
+
 class V extends Component {
   constructor(props){
     super(props);
@@ -59,14 +61,11 @@ class V extends Component {
             height:45, marginTop:10,
             flexDirection:'row',
             backgroundColor:'#fff'}}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>用户名</Text>
+              <Text style={{color:'#000',fontSize:15}}>用户名</Text>
             </View>
             <View style={{justifyContent:'center', marginRight:15}}>
-              <Text>{this.props.user.loginName}</Text>
+              <Text style={{color:'#979797', fontSize:14}}>{this.props.user.loginName}</Text>
             </View>
         </View>
 
@@ -74,14 +73,14 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}} onPress={Actions.modifyName}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>真实姓名</Text>
+              <Text style={{color:'#000',fontSize:15}}>真实姓名</Text>
             </View>
             <View style={{justifyContent:'center', marginRight:15}}>
-              <Text>{this.props.user.name}</Text>
+              <Text style={{color:'#979797', fontSize:14}}>{this.props.user.name}</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
             </View>
         </TouchableOpacity>
 
@@ -89,44 +88,37 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}} onPress={this.onPressMobile.bind(this)}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>手机号</Text>
+              <Text style={{color:'#000',fontSize:15}}>手机号</Text>
             </View>
             <View style={{justifyContent:'center', marginRight:15}}>
-              <Text>{this.props.user.mobile}</Text>
+              <Text style={{color:'#979797', fontSize:14}}>{this.props.user.mobile || '未设置'}</Text>
             </View>
+
         </TouchableOpacity>
 
         <TouchableOpacity style={{
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}} onPress={this.onPressEmail.bind(this)}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>邮箱</Text>
+              <Text style={{color:'#000',fontSize:15}}>邮箱</Text>
             </View>
             <View style={{justifyContent:'center', marginRight:15}}>
-              <Text>{this.props.user.email}</Text>
+              <Text style={{color:'#979797', fontSize:14}}>{this.props.user.email || '未设置'}</Text>
             </View>
+
         </TouchableOpacity>
 
         <TouchableOpacity style={{
-            height:45, marginTop:1,
+            height:45, marginTop:10,
             flexDirection:'row',
             backgroundColor:'#fff'}} onPress={this.onPressQQ.bind(this)}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>QQ</Text>
+              <Text style={{color:'#000',fontSize:15}}>QQ</Text>
             </View>
             <View style={{justifyContent:'center', marginRight:15}}>
-              <Text>{this.props.user.qqcode ? '已绑定' : '未绑定'}</Text>
+              <Text style={{color:'#979797', fontSize:14}}>{this.props.user.qqcode ? '已绑定' : '未绑定'}</Text>
             </View>
         </TouchableOpacity>
 
@@ -134,38 +126,32 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}} onPress={this.onPressWechat.bind(this)}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>微信</Text>
+              <Text style={{color:'#000',fontSize:15}}>微信</Text>
             </View>
             <View style={{justifyContent:'center', marginRight:15}}>
-              <Text>{this.props.user.weixincode ? '已绑定' : '未绑定'}</Text>
+              <Text style={{color:'#979797', fontSize:14}}>{this.props.user.weixincode ? '已绑定' : '未绑定'}</Text>
             </View>
         </TouchableOpacity>
 
         <TouchableOpacity style={{
-            height:45, marginTop:1,
+            height:45, marginTop:10,
             flexDirection:'row',
             backgroundColor:'#fff'}} onPress={Actions.modifyPassword}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>修改密码</Text>
+              <Text style={{color:'#000',fontSize:15}}>修改密码</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
             </View>
         </TouchableOpacity>
 
         <TouchableOpacity style={{
-            height:45, marginTop:1,
+            height:45, marginTop:45, marginHorizontal:15,borderRadius:3,
             flexDirection:'row',
-            backgroundColor:'#fff'}} onPress={()=>{this.props.action.logout();Actions.login()}}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
-            </View>
-            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>退出</Text>
+            backgroundColor:'#FF5E45'}} onPress={()=>{this.props.action.logout();Actions.login()}}>
+            <View style={{flex:1,justifyContent:'center', alignItems:'center', marginLeft:15}}>
+              <Text style={{fontSize:18, color:'#fff'}}>退出当前账号</Text>
             </View>
         </TouchableOpacity>
       </View>);

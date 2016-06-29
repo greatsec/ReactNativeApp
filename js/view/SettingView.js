@@ -11,6 +11,8 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
+import IconFont from '../IconFont';
+
 class V extends Component {
   constructor(props){
     super(props);
@@ -26,47 +28,47 @@ class V extends Component {
             height:45, marginTop:10,
             flexDirection:'row',
             backgroundColor:'#fff'}} onPress={Actions.userinfo}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
-            </View>
-            <View style={{justifyContent:'center', marginLeft:15}}>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>个人信息</Text>
             </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={{
-            height:45, marginTop:10,
-            flexDirection:'row',
-            backgroundColor:'#fff'}} onPress={Actions.deviceShareList}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
-            </View>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>设备分享</Text>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
             </View>
         </TouchableOpacity>
 
         <TouchableOpacity style={{
             height:45, marginTop:1,
             flexDirection:'row',
-            backgroundColor:'#fff'}} onPress={Actions.feedback}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
+            backgroundColor:'#fff'}} onPress={Actions.deviceShareList}>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>设备分享</Text>
             </View>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>意见反馈</Text>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
             </View>
         </TouchableOpacity>
 
         <TouchableOpacity style={{
             height:45, marginTop:10,
             flexDirection:'row',
-            backgroundColor:'#fff'}} onPress={Actions.about}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
+            backgroundColor:'#fff'}} onPress={Actions.feedback}>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>意见反馈</Text>
             </View>
-            <View style={{justifyContent:'center', marginLeft:15}}>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
+            </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={Actions.about}>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>关于</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:15}}>
+              <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
             </View>
         </TouchableOpacity>
       </View>);

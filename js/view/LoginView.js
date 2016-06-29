@@ -50,9 +50,6 @@ class V extends Component {
     });
   }
 
-  onSelectImage(){
-    
-  }
   render() {
     return (
       <View>
@@ -145,24 +142,6 @@ class V extends Component {
               <IconFont name="wechat" style={{backgroundColor:'transparent'}} size={24} color="#fff" />
           </TouchableOpacity>
         </View>
-
-        <Text>{this.state.uri}</Text>
-
-        <View style={{marginTop:45,flexDirection:'row', justifyContent:'center'}}>
-          <Image source={{uri:this.state.uri}} style={{width:100,height:100, borderWidth:1}} resizeMode="contain"/>
-
-          <TouchableOpacity style={{
-              backgroundColor:'#319BFD',
-              height:44}} onPress={this.props.action.wechatShare}>
-              <Text style={{ color:'#fff'}}>微信分享</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={{
-              backgroundColor:'#12DF26',
-              height:44}} onPress={this.onSelectImage.bind(this)}>
-                <Text style={{ color:'#fff'}}>截屏</Text>
-          </TouchableOpacity>
-        </View>
-
       </View>
     );
   }
@@ -173,7 +152,6 @@ export default connect(state=>state,dispatch=>({
     login: action.login,
     codeLogin: action.codeLogin,
     qqLogin: action.qqLogin,
-    wechatLogin: action.wechatLogin,
-    wechatShare: action.wechatShare
+    wechatLogin: action.wechatLogin
   }, dispatch)
 }))(V);

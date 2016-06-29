@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Image,
   Text,
   TextInput,
   TouchableOpacity,
@@ -20,14 +21,8 @@ class V extends Component {
   }
   render(){
     return (
-      <View style={{marginTop:100}}>
-
-        <View>
-          <Text >建设中</Text>
-        </View>
-
-
-
+      <View style={{flex:1,justifyContent:'center', alignItems:'center',backgroundColor:'#d2dbe2'}}>
+        <Image source={require('../../image/building.jpg')} style={{height:300}} resizeMode='contain' />
       </View>);
   }
 }

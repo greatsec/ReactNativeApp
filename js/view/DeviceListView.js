@@ -38,7 +38,7 @@ class V extends Component {
         style={{marginTop:100}}>
         {this.props.deviceList.map((o)=>{
           return (
-          <TouchableOpacity key={'device_' + o.id} onPress={()=>{this.props.action.selectDevice(o.id);Actions.device()}}>
+          <TouchableOpacity key={'device_' + o.id} style={{borderWidth:1,width:100}} onPress={()=>{this.props.action.selectDevice(o.id);Actions.device()}}>
             <Text>{o.name}</Text>
             <Text>在线：{o.online}</Text>
           </TouchableOpacity>);

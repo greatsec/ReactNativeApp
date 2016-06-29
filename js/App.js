@@ -31,10 +31,11 @@ const RouterWithRedux = connect()(Router);
 class TabIcon extends Component {
     render(){
       let iconName = this.props.selected ? this.props.activeIconName || this.props.iconName : this.props.iconName;
+      let color = this.props.selected ? '#18B4ED' : '#B3B3B3';
         return (
-          <View>
-            <IconFont name={iconName} style={{backgroundColor:'transparent', marginLeft:10}} size={24} color="#BABABA" />
-            <Text style={{color: this.props.selected ? "red" :"black"}}>{this.props.iconText || this.props.title}</Text>
+          <View style={{alignItems:'center'}}>
+            <IconFont name={iconName} style={{backgroundColor:'transparent'}} size={24} color={color} />
+            <Text style={{color, fontSize:11}}>{this.props.iconText || this.props.title}</Text>
           </View>
         );
     }
@@ -106,8 +107,8 @@ class App extends Component {
         <Scene key='main' tabs={true} initial={!this.props.initialLogin} type='replace'>
           <Scene key='deviceList' component={ view.DeviceListView } title='我的设备' icon={TabIcon} iconText='设备' iconName='home' activeIconName='home-fill'/>
           <Scene key='discovery' component={ view.DiscoveryView } title='发现' icon={TabIcon} iconName='faxian' activeIconName='faxian-fill'/>
-          <Scene key='message' component={ view.MessageView } title='消息' icon={TabIcon}/>
-          <Scene key='setting' component={ view.SettingView } title='我的' icon={TabIcon}/>
+          <Scene key='message' component={ view.MessageView } title='消息' icon={TabIcon} iconName='message' activeIconName='message-fill'/>
+          <Scene key='setting' component={ view.SettingView } title='我的' icon={TabIcon} iconName='my' activeIconName='my-fill'/>
         </Scene>
         <Scene key='device' tabs={true} type='push' >
           <Scene key='deviceData' component={view.DeviceDataView} title='检测' icon={TabIcon} backButton={BackButton} onRight={()=>Actions.deviceSetting()} rightTitle='更多'/>
