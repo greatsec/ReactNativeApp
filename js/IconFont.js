@@ -39,14 +39,14 @@ const glyphMap = {
   "home-fill": 58910,
   "home": 58911,
   "faxian-fill": 58912,
-  "faxian1": 58913,
+  "faxian": 58913,
   "shebei": 58914,
   "kefu": 58915,
   "link-outline": 58916,
   "yidongmobile213": 58918
 };
 
-let IconFont = createIconSet(glyphMap, 'iconfont', 'IconFont.ttf');
+let IconFont = createIconSet(glyphMap, 'iconfont', 'iconfont.ttf');
 
 module.exports = IconFont;
 module.exports.glyphMap = glyphMap;
