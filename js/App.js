@@ -112,6 +112,7 @@ class App extends Component {
         <Scene key='deviceInfo' component={view.DeviceInfoView} title='设备信息' />
         <Scene key='deviceShare' component={view.DeviceShareView} title='设备分享' />
         <Scene key='deviceNetConfig' component={view.DeviceNetConfigView} title='网络配置' />
+        <Scene key='deviceOTA' component={view.DeviceOTAView} title='硬件升级' />
         <Scene key='deviceAdd' component={view.DeviceAdd1View} title='设备添加1' />
         <Scene key='deviceAdd2' component={view.DeviceAdd2View} title='设备添加2' />
         <Scene key='deviceAdd3' component={view.DeviceAdd3View} title='设备添加3' />

@@ -25,7 +25,6 @@ var httpApiList = {
   'updateCode': {url:'api/admin/user/updatecode', withToken:true},
 
   'updatePhoto': {url:'api/admin/user/updatePhoto', withToken:true},
-  'versionGet': 'api/version/get',
   'adviceSave': {url:'api/admin/advice/save', withToken:true},
   'userUpdate': {url:'api/admin/user/update', withToken:true},
   'userUpdatePassword': {url:'api/admin/user/updatePassword', withToken:true},
@@ -88,13 +87,19 @@ var wsActions = mapValues(wsApiList, (actionConfig, actionName) => {
   return createAction(actionName,
     (...params) => Promise.race([new Promise((resolve, reject) => {
       let paramsstring = params.join(',');
+      let handler = evt => {
+        let recv = evt.data.replace(/\n/g,'');
+        if(recv.split(',')[0] == '406') reject('error', {send:paramsstring,recv});
+        else resolve({send:paramsstring,recv})
+
+      };
       if(ws){
-        ws.onmessage = evt => resolve({send:paramsstring,recv:evt.data.replace(/\n/g,'')});
+        ws.onmessage = handler;
         ws.send(actionConfig + ',' + paramsstring);
       }else{
         ws = new WebSocket(wsServer);
         ws.onopen = () => ws.send(actionConfig + ',' + params.join(','));
-        ws.onmessage = evt => resolve({send:paramsstring,recv:evt.data.replace(/\n/g,'')});
+        ws.onmessage = handler;
       }
 
     }),new Promise((resolve, reject) => {

@@ -14,6 +14,7 @@ import DeviceModifyNameView from './DeviceModifyNameView';
 import DeviceInfoView from './DeviceInfoView';
 import DeviceShareView from './DeviceShareView';
 import DeviceNetConfigView from './DeviceNetConfigView';
+import DeviceOTAView from './DeviceOTAView';
 
 import DeviceAdd1View from './DeviceAdd1View';
 import DeviceAdd2View from './DeviceAdd2View';
@@ -55,6 +56,7 @@ export {
   DeviceInfoView,
   DeviceShareView,
   DeviceNetConfigView,
+  DeviceOTAView,
 
   DeviceAdd1View,
   DeviceAdd2View,

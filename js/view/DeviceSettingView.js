@@ -76,7 +76,7 @@ class V extends Component {
           <TouchableOpacity style={{
               height:45, marginTop:1,
               flexDirection:'row',
-              backgroundColor:'#fff'}} onPress={Actions.building}>
+              backgroundColor:'#fff'}} onPress={Actions.deviceOTA}>
               <View style={{justifyContent:'center', marginLeft:15}}>
                 <Text>C</Text>
               </View>
