@@ -114,9 +114,9 @@ class App extends Component {
         getSceneStyle={getSceneStyle}
         navigationBarStyle={{backgroundColor:'#18B4ED'}}
         titleStyle={{color:'#fff'}}>
-        <Scene key='login' component={view.LoginView} title='登陆' initial={this.props.initialLogin} hideNavBar={false} type='reset'/>
-        <Scene key='resetPassword' component={view.ResetPasswordView} title='忘记密码' hideNavBar={false} />
-        <Scene key='register' component={view.RegisterView} title='注册' hideNavBar={false} />
+        <Scene key='login' component={view.LoginView} title='登陆' initial={this.props.initialLogin} hideNavBar={true} hideTabBar={true} type='reset'/>
+        <Scene key='resetPassword' component={view.ResetPasswordView} title='忘记密码' hideNavBar={false} backButton={BackButton} hideTabBar={true} />
+        <Scene key='register' component={view.RegisterView} title='注册' hideNavBar={false} backButton={BackButton} hideTabBar={true} />
         <Scene key='provision' component={view.ProvisionView} title='条款' hideNavBar={false} />
 
         <Scene key='main' tabs={true} initial={!this.props.initialLogin} type='replace'>
@@ -126,36 +126,36 @@ class App extends Component {
           <Scene key='setting' component={ view.SettingView } title='我的' icon={TabIcon} iconName='my' activeIconName='my-fill'/>
         </Scene>
         <Scene key='device' tabs={true} type='push' >
-          <Scene key='deviceData' component={view.DeviceDataView} title='检测' icon={TabIcon} iconName='search' backButton={BackButton} onRight1={()=>Actions.deviceSetting()} rightButton={ShareAndMoreButton}/>
-          <Scene key='deviceChart' component={view.DeviceChartView} title='趋势' icon={TabIcon} iconName='qushi' onRight={()=>capture().then(uri=>Actions.shareImage({image:'file://'+uri}))} rightTitle='分享' />
+          <Scene key='deviceData' component={view.DeviceDataView} title='检测' icon={TabIcon} iconName='search' backButton={BackButton} rightButton={ShareAndMoreButton}/>
+          <Scene key='deviceChart' component={view.DeviceChartView} title='趋势' icon={TabIcon} iconName='qushi' backButton={BackButton} rightButton={ShareAndMoreButton} />
         </Scene>
-        <Scene key='deviceSetting' component={view.DeviceSettingView} title='设置' backButton={BackButton} />
+        <Scene key='deviceSetting' component={view.DeviceSettingView} title='设置' backButton={BackButton} hideTabBar={true} />
         <Scene key='deviceModifyName' component={view.DeviceModifyNameView} title='修改设备名称' backButton={BackButton} />
         <Scene key='deviceInfo' component={view.DeviceInfoView} title='设备信息' backButton={BackButton} />
         <Scene key='deviceShare' component={view.DeviceShareView} title='设备分享' backButton={BackButton} />
         <Scene key='deviceNetConfig' component={view.DeviceNetConfigView} title='网络配置' backButton={BackButton} />
         <Scene key='deviceOTA' component={view.DeviceOTAView} title='硬件升级' backButton={BackButton} />
 
-        <Scene key='deviceAdd' component={view.DeviceAdd1View} title='设备添加1' backButton={BackButton} />
-        <Scene key='deviceAdd2' component={view.DeviceAdd2View} title='设备添加2' backButton={BackButton} />
-        <Scene key='deviceAdd3' component={view.DeviceAdd3View} title='设备添加3' backButton={BackButton} />
+        <Scene key='deviceAdd' component={view.DeviceAdd1View} title='设备添加1' backButton={BackButton} hideTabBar={true} />
+        <Scene key='deviceAdd2' component={view.DeviceAdd2View} title='设备添加2' backButton={BackButton} hideTabBar={true} />
+        <Scene key='deviceAdd3' component={view.DeviceAdd3View} title='设备添加3' backButton={BackButton} hideTabBar={true} />
 
-        <Scene key='bbs' component={view.BBSView} title='安居吧' backButton={BackButton} />
-        <Scene key='productList' component={view.ProductListView} title='产品列表' backButton={BackButton} />
-        <Scene key='bbsAdd' component={view.BBSAddView} title='添加帖子' backButton={BackButton} />
-        <Scene key='bbsAddReply' component={view.BBSAddReplyView} title='选择回复' backButton={()=>null} />
+        <Scene key='bbs' component={view.BBSView} title='安居吧' backButton={BackButton} hideTabBar={true} />
+        <Scene key='productList' component={view.ProductListView} title='产品列表' backButton={BackButton} hideTabBar={true} />
+        <Scene key='bbsAdd' component={view.BBSAddView} title='添加帖子' backButton={BackButton} hideTabBar={true} />
+        <Scene key='bbsAddReply' component={view.BBSAddReplyView} title='选择回复' backButton={BackButton} hideTabBar={true} />
 
-        <Scene key='messageDetail' component={view.MessageDetailView} title='消息' />
-        <Scene key='userinfo' component={view.UserInfoView} title='个人信息'/>
-        <Scene key='modifyName' component={view.ModifyNameView} title='修改姓名' />
-        <Scene key='modifyPassword' component={view.ModifyPasswordView} title='修改密码' />
-        <Scene key='bindMobile' component={view.BindMobileView} title='绑定手机号' />
-        <Scene key='bindEmail' component={view.BindEmailView} title='绑定邮箱' />
-        <Scene key='deviceShareList' component={view.DeviceShareListView} title='已分享' />
-        <Scene key='feedback' component={view.FeedbackView} title='意见反馈'/>
-        <Scene key='about' component={view.AboutView} title='关于'/>
-        <Scene key='building' component={view.BuildingView} title='建设中' />
-        <Scene key='shareImage' component={view.ShareImageView} title='分享到' />
+        <Scene key='messageDetail' component={view.MessageDetailView} title='消息' backButton={BackButton} hideTabBar={true} />
+        <Scene key='userinfo' component={view.UserInfoView} title='个人信息' backButton={BackButton} hideTabBar={true}/>
+        <Scene key='modifyName' component={view.ModifyNameView} title='修改姓名' backButton={BackButton} hideTabBar={true} />
+        <Scene key='modifyPassword' component={view.ModifyPasswordView} title='修改密码' backButton={BackButton} hideTabBar={true} />
+        <Scene key='bindMobile' component={view.BindMobileView} title='绑定手机号' backButton={BackButton} hideTabBar={true} />
+        <Scene key='bindEmail' component={view.BindEmailView} title='绑定邮箱' backButton={BackButton} hideTabBar={true} />
+        <Scene key='deviceShareList' component={view.DeviceShareListView} title='已分享' backButton={BackButton} hideTabBar={true} />
+        <Scene key='feedback' component={view.FeedbackView} title='意见反馈' backButton={BackButton} hideTabBar={true}/>
+        <Scene key='about' component={view.AboutView} title='关于' backButton={BackButton} hideTabBar={true}/>
+        <Scene key='building' component={view.BuildingView} title='建设中' backButton={BackButton} hideTabBar={true} />
+        <Scene key='shareImage' component={view.ShareImageView} title='分享到' backButton={BackButton} hideTabBar={true} />
     </RouterWithRedux>
     );
   }

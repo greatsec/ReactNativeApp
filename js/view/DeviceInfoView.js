@@ -28,9 +28,6 @@ class V extends Component {
             height:45, marginTop:10,
             flexDirection:'row',
             backgroundColor:'#fff'}}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>设备型号</Text>
             </View>
@@ -43,9 +40,6 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>连接的wifi名称</Text>
             </View>
@@ -57,9 +51,6 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>设备系统版本</Text>
             </View>
@@ -72,9 +63,6 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>产品条码</Text>
             </View>
@@ -87,9 +75,6 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>IP地址</Text>
             </View>
@@ -102,9 +87,6 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}}>
-            <View style={{justifyContent:'center', marginLeft:15}}>
-              <Text>C</Text>
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>MAC地址</Text>
             </View>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {
+  RefreshControl,
+  ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
@@ -20,10 +22,20 @@ class V extends Component {
   componentDidMount(){
     this.props.action.adviceList();
   }
+
+  componentDidMount(){
+    this.props.action.adviceList();
+  }
+
+  onRefresh(){
+    this.props.action.adviceList();
+  }
   render(){
     let typeInfo = {'1':{name:'问题反馈',iconColor:'#11B3E7'},'2':{name:'使用咨询', iconColor:'#D5EA24'},'3':{name:'产品建议',iconColor:'#EA8624'}};
     return (
-      <View>
+      <ScrollView
+        refreshControl={<RefreshControl refreshing={this.props.refreshing || false} onRefresh={this.onRefresh.bind(this)}/>}
+        >
         {this.props.adviceList.map(o=>{
           return (<TouchableOpacity onPress={()=>Actions.messageDetail({data:o})} key={o.id} style={{flexDirection:'row', backgroundColor:'#fff', marginTop:1}}>
             <View style={{backgroundColor:typeInfo[o.type].iconColor,width:42,height:42, marginLeft:15, marginVertical:10}}>
@@ -37,11 +49,12 @@ class V extends Component {
         })}
 
 
-      </View>);
+      </ScrollView>);
   }
 }
 
 export default connect(state=>({
+  refreshing: state.adviceList.refreshing,
   adviceList: state.adviceList.list
 }),dispatch=>({
   action: bindActionCreators({
