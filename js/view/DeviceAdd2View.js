@@ -78,6 +78,7 @@ class V extends Component {
 
         <TouchableOpacity style={{
             height:40,
+            marginLeft:15, marginRight:15,
             marginHorizontal:15, marginTop:5,
             borderRadius:3,
             backgroundColor:'#18B4ED',
@@ -85,6 +86,12 @@ class V extends Component {
           }} onPress={this.onPressConfig.bind(this)} >
           <Text style={{color:'#fff',fontSize:18}}>配置 {this.state.second > 0 ? this.state.second : ''}</Text>
         </TouchableOpacity>
+
+        <Text style={{marginHorizontal:15, marginTop:50,fontSize:18}}>
+          如果wifi指示图标为绿色闪烁，则产品处于一键配置模式，输入wifi密码，再点击配置网络，等待设备连接；
+          如果未出现wifi指示图标，则产品处于离线模式，需要长按功能键5s以上，松开时进入一键配置模式。配置成功后wifi指示图标绿色常亮。
+        </Text>
+
       </View>);
   }
 }

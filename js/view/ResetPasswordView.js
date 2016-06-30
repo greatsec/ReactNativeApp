@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Alert,
   Text,
   TextInput,
   TouchableOpacity,
@@ -18,18 +19,62 @@ class V1 extends Component {
   }
   componentDidMount(){
   }
+
+  componentWillUnmount(){
+    if(this.interval) clearInterval(this.interval);
+  }
+
+  updateSecond(){
+    let { second } = this.state;
+    if(second > 0){
+      second--;
+      this.setState({second});
+    }else{
+      clearInterval(this.interval);
+    }
+  }
+
   onPressCode(){
     let {username:mobile} = this.state;
+    this.setState({second:120});
+    if(this.interval) clearInterval(this.interval);
+    this.interval = setInterval(this.updateSecond.bind(this), 1000);
     this.props.action.mobileCode({mobile});
+  }
+
+  isDisabledCode(){
+    let { username, second = 0 } = this.state;
+    return !(username && !second);
+  }
+
+  isDisabledReset(){
+    let { username, newPassword, code} = this.state;
+    return !(username && newPassword && code);
   }
 
   onPressSubmit(){
     let { username, newPassword, code} = this.state;
     this.props.action.forgetPassword({username, newPassword, code}).then(action=>{
-      if(!action.error) Actions.pop();
+      if(!action.error)
+      {
+            if(this.interval) clearInterval(this.interval);
+            Alert.alert('重置成功');
+            Actions.pop();
+      }
+      else
+      {
+            if(action.payload.msg)
+              Alert.alert(action.payload.msg);
+            else
+              Alert.alert('重置失败');
+      }
+
     });
   }
   render(){
+    let { second } = this.state;
+    let btnText = second ? `重新获取(${this.state.second})` : '获取验证码';
+
     return (<View style={[this.props.styel]}>
       <View style={{
           height:45,
@@ -70,10 +115,10 @@ class V1 extends Component {
           }} onChangeText={code=>this.setState({code})} placeholder='验证码' />
         <TouchableOpacity style={{
             justifyContent:'center',
-            backgroundColor:'#FF5E45',
+            backgroundColor:this.isDisabledCode()?'#888':'#FF5E45',
             borderBottomRightRadius:3,
-          }} onPress={this.onPressCode.bind(this)}>
-          <Text style={{marginHorizontal:10,color:'#fff',fontSize:16}}>获取验证码</Text>
+          }} disabled={this.isDisabledCode()} onPress={this.onPressCode.bind(this)}>
+          <Text style={{marginHorizontal:10,color:'#fff',fontSize:16}}>{btnText}</Text>
         </TouchableOpacity>
       </View>
 
@@ -81,9 +126,9 @@ class V1 extends Component {
           height:40,
           marginHorizontal:15, marginTop:25,
           borderRadius:3,
-          backgroundColor:'#18B4ED',
+          backgroundColor:this.isDisabledReset()?'#888':'#18B4ED',
           alignItems:'center', justifyContent:'center'
-        }} onPress={this.onPressSubmit.bind(this)} >
+        }} disabled={this.isDisabledReset()} onPress={this.onPressSubmit.bind(this)} >
         <Text style={{ color:'#fff',fontSize:18}}>确定</Text>
       </TouchableOpacity>
 
@@ -104,18 +149,57 @@ class V2 extends Component {
   }
   componentDidMount(){
   }
+
+  componentWillUnmount(){
+    if(this.interval) clearInterval(this.interval);
+  }
+
+  updateSecond(){
+    let { second } = this.state;
+    if(second > 0){
+      second--;
+      this.setState({second});
+    }else{
+      clearInterval(this.interval);
+    }
+  }
+
   onPressCode(){
     let {username:email} = this.state;
+    this.setState({second:120});
+    if(this.interval) clearInterval(this.interval);
+    this.interval = setInterval(this.updateSecond.bind(this), 1000);
     this.props.action.emailCode({email});
+  }
+
+  isDisabledCode(){
+    let { username, second = 0 } = this.state;
+    return !(username && !second);
+  }
+
+  isDisabledReset(){
+    let { username, newPassword, code} = this.state;
+    return !(username && newPassword && code);
   }
 
   onPressSubmit(){
     let { username, newPassword, code} = this.state;
     this.props.action.forgetPassword({username, newPassword, code}).then(action=>{
-      if(!action.error) Actions.pop();
+      if(!action.error)
+      {
+           if(this.interval) clearInterval(this.interval);
+           Alert.alert('重置成功');
+           Actions.pop();
+      }
+      else {
+           Alert.alert('重置失败');
+      }
     });
   }
   render(){
+    let { second } = this.state;
+    let btnText = second ? `重新获取(${this.state.second})` : '获取验证码';
+
     return (<View>
       <View style={{
           height:45,
@@ -156,10 +240,10 @@ class V2 extends Component {
           }} onChangeText={code=>this.setState({code})} placeholder='验证码' />
         <TouchableOpacity style={{
             justifyContent:'center',
-            backgroundColor:'#FF5E45',
+            backgroundColor:this.isDisabledCode()?'#888':'#FF5E45',
             borderBottomRightRadius:3,
-          }} onPress={this.onPressCode.bind(this)}>
-          <Text style={{marginHorizontal:10,color:'#fff',fontSize:16}}>获取验证码</Text>
+          }} disabled={this.isDisabledCode()} onPress={this.onPressCode.bind(this)}>
+          <Text style={{marginHorizontal:10,color:'#fff',fontSize:16}}>{btnText}</Text>
         </TouchableOpacity>
       </View>
 
@@ -167,9 +251,9 @@ class V2 extends Component {
           height:40,
           marginHorizontal:15, marginTop:25,
           borderRadius:3,
-          backgroundColor:'#18B4ED',
+          backgroundColor:this.isDisabledReset()?'#888':'#18B4ED',
           alignItems:'center', justifyContent:'center'
-        }} onPress={this.onPressSubmit.bind(this)} >
+        }} disabled={this.isDisabledReset()} onPress={this.onPressSubmit.bind(this)} >
         <Text style={{ color:'#fff',fontSize:18}}>确定</Text>
       </TouchableOpacity>
     </View>)

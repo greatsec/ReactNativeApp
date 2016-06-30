@@ -101,7 +101,7 @@ class V extends Component {
                 alignItems:'center', justifyContent:'center',
                 backgroundColor:'#fff'
               }} onPress={()=>this.setState({chartType:o.key})}>
-              <Text style={{color:'#18B4ED'}}>{o.title}</Text>
+              <Text style={{color:(this.state.chartType == o.key) ?'red':'#18B4ED'}}>{o.title}</Text>
             </TouchableOpacity>
           );
         })}
@@ -114,7 +114,7 @@ class V extends Component {
                 alignItems:'center', justifyContent:'center',
                 backgroundColor:'#fff'
               }} onPress={()=>this.onSwitchType(o)}>
-              <Text style={{color:'#18B4ED'}}>{o.title}</Text>
+              <Text style={{color:(this.state.type == o.key) ?'red':'#18B4ED'}}>{o.title}</Text>
             </TouchableOpacity>
           );
         })}

@@ -19,6 +19,7 @@ class V extends Component {
     this.state = {};
   }
   componentDidMount(){
+    this.props.action.getCurrentWifiSSID();
   }
   render(){
     return (
@@ -49,7 +50,7 @@ class V extends Component {
               <Text style={{fontSize:15}}>连接的wifi名称</Text>
             </View>
             <View style={{justifyContent:'center', marginRight:15}}>
-              <Text></Text>
+              <Text>{this.props.ssid}</Text>
             </View>
         </View>
         <View style={{
@@ -117,5 +118,10 @@ class V extends Component {
 }
 
 export default connect(state=>({
+  ssid:state.wifi.name,
   device: _find(state.deviceList.list, {id:state.deviceList.selected}) || _find(state.deviceList.slist, {id:state.deviceList.selected}),
+}),dispatch=>({
+  action: bindActionCreators({
+    getCurrentWifiSSID: action.getCurrentWifiSSID
+  }, dispatch)
 }))(V);

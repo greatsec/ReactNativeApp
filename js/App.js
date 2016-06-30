@@ -9,6 +9,7 @@ import {
   Text,
   View,
   AppState,
+  BackAndroid,
   TouchableOpacity,
 } from 'react-native';
 
@@ -27,6 +28,7 @@ import * as view from './view';
 import IconFont from './IconFont';
 
 const RouterWithRedux = connect()(Router);
+var first = null;
 
 class TabIcon extends Component {
     render(){
@@ -52,8 +54,8 @@ class NavBar extends Component {
 class BackButton extends Component {
   render(){
     return (
-      <TouchableOpacity style={[this.props.style,{borderWidth:1}]} onPress={Actions.pop}>
-        <Text>BackButton</Text>
+      <TouchableOpacity style={[this.props.style,{borderWidth:0}]} onPress={Actions.pop}>
+        <Text style={{color:'#fff'}}>返回</Text>
       </TouchableOpacity>
     );
   }
@@ -111,8 +113,8 @@ class App extends Component {
           <Scene key='setting' component={ view.SettingView } title='我的' icon={TabIcon} iconName='my' activeIconName='my-fill'/>
         </Scene>
         <Scene key='device' tabs={true} type='push' >
-          <Scene key='deviceData' component={view.DeviceDataView} title='检测' icon={TabIcon} backButton={BackButton} onRight={()=>Actions.deviceSetting()} rightTitle='更多'/>
-          <Scene key='deviceChart' component={view.DeviceChartView} title='趋势' icon={TabIcon} onRight={()=>capture().then(uri=>Actions.shareImage({image:'file://'+uri}))} rightTitle='分享' />
+          <Scene key='deviceData' component={view.DeviceDataView} title='检测' icon={TabIcon} iconName='search' backButton={BackButton} onRight={()=>Actions.deviceSetting()} rightTitle='更多'/>
+          <Scene key='deviceChart' component={view.DeviceChartView} title='趋势' icon={TabIcon} iconName='qushi' onRight={()=>capture().then(uri=>Actions.shareImage({image:'file://'+uri}))} rightTitle='分享' />
         </Scene>
         <Scene key='deviceSetting' component={view.DeviceSettingView} title='设置' />
         <Scene key='deviceModifyName' component={view.DeviceModifyNameView} title='修改设备名称' />
@@ -161,10 +163,12 @@ class AppWarp extends Component {
     }
 
     this._handleAppStateChange = this.handleAppStateChange.bind(this);
+    this._handleBackButton = this.handleBackButton.bind(this);
   }
 
   componentDidMount(){
     AppState.addEventListener('change', this._handleAppStateChange);
+	BackAndroid.addEventListener('hardwareBackPress', this._handleBackButton);
 
     if(!__DEV__){
       codePush.sync({installMode: codePush.InstallMode.ON_NEXT_RESUME});
@@ -173,6 +177,7 @@ class AppWarp extends Component {
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this._handleAppStateChange);
+    BackAndroid.removeEventListener('hardwareBackPress', this._handleBackButton);
   }
 
   handleAppStateChange(appState){
@@ -184,6 +189,28 @@ class AppWarp extends Component {
     }
   }
 
+  handleBackButton(){
+/*
+    {
+      if(!first){
+        first = new Date().getTime();
+        ToastAndroid.show('再按一次退出应用', 1000);
+        setTimeout(function() {
+            first=null;
+        }, 1000);
+      }else{
+        if (new Date().getTime() - first < 1000) {
+            BackAndroid.exitApp();
+        }
+      }
+    }
+    */
+    {
+      Actions.pop();
+    }
+
+    return true;
+  }
   render() {
     if(this.state.isLoading){
       return null;

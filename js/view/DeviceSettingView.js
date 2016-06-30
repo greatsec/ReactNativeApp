@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Alert,
   Text,
   TextInput,
   TouchableOpacity,
@@ -23,11 +24,22 @@ class V extends Component {
 
   onPressUnbind(){
     let {code} = this.props.device;
-    this.props.action.deviceUnbind({code}).then(action=>{
+    /*this.props.action.deviceUnbind({code}).then(action=>{
       if(!action.error){
         Actions.callback({type: 'BODGE'});
       }
-    });
+    });*/
+
+    Alert.alert('确认','确认删除设备吗？', [
+        {text:'取消'},
+        {text:'确定',onPress:()=>this.props.action.deviceUnbind({code}).then(action=>{
+          if(action.error){
+
+          }
+          else{
+            Actions.callback({type: 'BODGE'});
+          }
+        })}]);
   }
   render(){
     return (

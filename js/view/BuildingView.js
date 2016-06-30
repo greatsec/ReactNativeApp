@@ -22,7 +22,7 @@ class V extends Component {
   render(){
     return (
       <View style={{flex:1,justifyContent:'center', alignItems:'center',backgroundColor:'#d2dbe2'}}>
-        <Image source={require('../../image/building.jpg')} style={{height:300}} resizeMode='contain' />
+        <Image source={require('./img/building.jpg')} style={{height:300}} resizeMode='contain' />
       </View>);
   }
 }
