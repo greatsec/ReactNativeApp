@@ -43,20 +43,33 @@ class TabIcon extends Component {
     }
 }
 
-class NavBar extends Component {
+class BackButton extends Component {
   render(){
     return (
-      <Text>Nav</Text>
+      <TouchableOpacity style={this.props.style} onPress={Actions.pop}>
+        <View style={{justifyContent:'center'}}>
+          <IconFont name='back' size={20} color='#fff' />
+        </View>
+      </TouchableOpacity>
     );
   }
 }
 
-class BackButton extends Component {
+class ShareAndMoreButton extends Component {
   render(){
-    return (
-      <TouchableOpacity style={[this.props.style,{borderWidth:0}]} onPress={Actions.pop}>
-        <Text style={{color:'#fff'}}>返回</Text>
-      </TouchableOpacity>
+    return(
+      <View style={[this.props.style, {flexDirection:'row',padding:0}]}>
+        <TouchableOpacity style={{flex:1, flexDirection:'row',justifyContent:'flex-end'}} onPress={()=>capture().then(uri=>Actions.shareImage({image:'file://'+uri}))}>
+          <View style={{justifyContent:'center'}}>
+            <IconFont name='share' size={20} color='#fff' style={{marginRight:5}} />
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={{flex:1,flexDirection:'row',justifyContent:'flex-end'}} onPress={Actions.deviceSetting}>
+          <View style={{justifyContent:'center'}}>
+            <IconFont name='more' size={20} color='#fff' style={{marginRight:15}} />
+          </View>
+        </TouchableOpacity>
+      </View>
     );
   }
 }
@@ -113,22 +126,24 @@ class App extends Component {
           <Scene key='setting' component={ view.SettingView } title='我的' icon={TabIcon} iconName='my' activeIconName='my-fill'/>
         </Scene>
         <Scene key='device' tabs={true} type='push' >
-          <Scene key='deviceData' component={view.DeviceDataView} title='检测' icon={TabIcon} iconName='search' backButton={BackButton} onRight={()=>Actions.deviceSetting()} rightTitle='更多'/>
+          <Scene key='deviceData' component={view.DeviceDataView} title='检测' icon={TabIcon} iconName='search' backButton={BackButton} onRight1={()=>Actions.deviceSetting()} rightButton={ShareAndMoreButton}/>
           <Scene key='deviceChart' component={view.DeviceChartView} title='趋势' icon={TabIcon} iconName='qushi' onRight={()=>capture().then(uri=>Actions.shareImage({image:'file://'+uri}))} rightTitle='分享' />
         </Scene>
-        <Scene key='deviceSetting' component={view.DeviceSettingView} title='设置' />
-        <Scene key='deviceModifyName' component={view.DeviceModifyNameView} title='修改设备名称' />
-        <Scene key='deviceInfo' component={view.DeviceInfoView} title='设备信息' />
-        <Scene key='deviceShare' component={view.DeviceShareView} title='设备分享' />
-        <Scene key='deviceNetConfig' component={view.DeviceNetConfigView} title='网络配置' />
-        <Scene key='deviceOTA' component={view.DeviceOTAView} title='硬件升级' />
-        <Scene key='deviceAdd' component={view.DeviceAdd1View} title='设备添加1' />
-        <Scene key='deviceAdd2' component={view.DeviceAdd2View} title='设备添加2' />
-        <Scene key='deviceAdd3' component={view.DeviceAdd3View} title='设备添加3' />
-        <Scene key='bbs' component={view.BBSView} title='安居吧' />
-        <Scene key='productList' component={view.ProductListView} title='产品列表' />
-        <Scene key='bbsAdd' component={view.BBSAddView} title='添加帖子' />
-        <Scene key='bbsAddReply' component={view.BBSAddReplyView} title='选择回复' />
+        <Scene key='deviceSetting' component={view.DeviceSettingView} title='设置' backButton={BackButton} />
+        <Scene key='deviceModifyName' component={view.DeviceModifyNameView} title='修改设备名称' backButton={BackButton} />
+        <Scene key='deviceInfo' component={view.DeviceInfoView} title='设备信息' backButton={BackButton} />
+        <Scene key='deviceShare' component={view.DeviceShareView} title='设备分享' backButton={BackButton} />
+        <Scene key='deviceNetConfig' component={view.DeviceNetConfigView} title='网络配置' backButton={BackButton} />
+        <Scene key='deviceOTA' component={view.DeviceOTAView} title='硬件升级' backButton={BackButton} />
+
+        <Scene key='deviceAdd' component={view.DeviceAdd1View} title='设备添加1' backButton={BackButton} />
+        <Scene key='deviceAdd2' component={view.DeviceAdd2View} title='设备添加2' backButton={BackButton} />
+        <Scene key='deviceAdd3' component={view.DeviceAdd3View} title='设备添加3' backButton={BackButton} />
+
+        <Scene key='bbs' component={view.BBSView} title='安居吧' backButton={BackButton} />
+        <Scene key='productList' component={view.ProductListView} title='产品列表' backButton={BackButton} />
+        <Scene key='bbsAdd' component={view.BBSAddView} title='添加帖子' backButton={BackButton} />
+        <Scene key='bbsAddReply' component={view.BBSAddReplyView} title='选择回复' backButton={()=>null} />
 
         <Scene key='messageDetail' component={view.MessageDetailView} title='消息' />
         <Scene key='userinfo' component={view.UserInfoView} title='个人信息'/>

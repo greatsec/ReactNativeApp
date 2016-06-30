@@ -34,7 +34,7 @@ class V extends Component {
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>个人信息</Text>
             </View>
-	    <View style={{justifyContent:'center', marginRight:15}}>
+	          <View style={{justifyContent:'center', marginRight:15}}>
               <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
             </View>
         </TouchableOpacity>
@@ -49,7 +49,7 @@ class V extends Component {
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>设备分享</Text>
             </View>
-	    <View style={{justifyContent:'center', marginRight:15}}>
+	          <View style={{justifyContent:'center', marginRight:15}}>
               <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
             </View>
         </TouchableOpacity>
@@ -64,7 +64,7 @@ class V extends Component {
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>意见反馈</Text>
             </View>
-	    <View style={{justifyContent:'center', marginRight:15}}>
+	          <View style={{justifyContent:'center', marginRight:15}}>
               <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
             </View>
         </TouchableOpacity>
@@ -79,7 +79,7 @@ class V extends Component {
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>关于</Text>
             </View>
-	    <View style={{justifyContent:'center', marginRight:15}}>
+	          <View style={{justifyContent:'center', marginRight:15}}>
               <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
             </View>
         </TouchableOpacity>

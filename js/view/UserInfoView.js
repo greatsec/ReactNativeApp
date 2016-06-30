@@ -61,9 +61,6 @@ class V extends Component {
             height:45, marginTop:10,
             flexDirection:'row',
             backgroundColor:'#fff'}}>
-            <View style={{justifyContent:'center', marginLeft:10}}>
-              <IconFont name="appreciate" style={{backgroundColor:'transparent', justifyContent:'center'}} size={20} color="#BABABA" />
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{color:'#000',fontSize:15}}>用户名</Text>
             </View>
@@ -76,9 +73,6 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}} onPress={Actions.modifyName}>
-            <View style={{justifyContent:'center', marginLeft:10}}>
-              <IconFont name="appreciate" style={{backgroundColor:'transparent', justifyContent:'center'}} size={20} color="#BABABA" />
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{color:'#000',fontSize:15}}>真实姓名</Text>
             </View>
@@ -94,9 +88,6 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}} onPress={this.onPressMobile.bind(this)}>
-            <View style={{justifyContent:'center', marginLeft:10}}>
-              <IconFont name="yidongmobile213" style={{backgroundColor:'transparent', justifyContent:'center'}} size={20} color="#BABABA" />
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{color:'#000',fontSize:15}}>手机号</Text>
             </View>
@@ -110,9 +101,6 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}} onPress={this.onPressEmail.bind(this)}>
-            <View style={{justifyContent:'center', marginLeft:10}}>
-              <IconFont name="box" style={{backgroundColor:'transparent', justifyContent:'center'}} size={20} color="#BABABA" />
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{color:'#000',fontSize:15}}>邮箱</Text>
             </View>
@@ -123,12 +111,9 @@ class V extends Component {
         </TouchableOpacity>
 
         <TouchableOpacity style={{
-            height:45, marginTop:1,
+            height:45, marginTop:10,
             flexDirection:'row',
             backgroundColor:'#fff'}} onPress={this.onPressQQ.bind(this)}>
-            <View style={{justifyContent:'center', marginLeft:10}}>
-              <IconFont name="qq" style={{backgroundColor:'transparent', justifyContent:'center'}} size={20} color="#BABABA" />
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{color:'#000',fontSize:15}}>QQ</Text>
             </View>
@@ -141,9 +126,6 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}} onPress={this.onPressWechat.bind(this)}>
-            <View style={{justifyContent:'center', marginLeft:10}}>
-              <IconFont name="wechat" style={{backgroundColor:'transparent', justifyContent:'center'}} size={20} color="#BABABA" />
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{color:'#000',fontSize:15}}>微信</Text>
             </View>
@@ -153,16 +135,13 @@ class V extends Component {
         </TouchableOpacity>
 
         <TouchableOpacity style={{
-            height:45, marginTop:1,
+            height:45, marginTop:10,
             flexDirection:'row',
             backgroundColor:'#fff'}} onPress={Actions.modifyPassword}>
-            <View style={{justifyContent:'center', marginLeft:10}}>
-              <IconFont name="password" style={{backgroundColor:'transparent', justifyContent:'center'}} size={20} color="#BABABA" />
-            </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{color:'#000',fontSize:15}}>修改密码</Text>
             </View>
-	     <View style={{justifyContent:'center', marginRight:15}}>
+	          <View style={{justifyContent:'center', marginRight:15}}>
               <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
             </View>
         </TouchableOpacity>
