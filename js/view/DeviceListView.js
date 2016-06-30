@@ -34,27 +34,9 @@ class V extends Component {
     this.props.action.deviceRefresh();
   }
 
-  /*render(){
-    return (
-      <ScrollView
-        refreshControl={<RefreshControl refreshing={this.props.refreshing || false} onRefresh={this.onRefresh.bind(this)}/>}
-        style={{marginTop:100}}>
-        {this.props.deviceList.map((o)=>{
-          return (
-          <TouchableOpacity key={'device_' + o.id} onPress={()=>{this.props.action.selectDevice(o.id);Actions.device()}}>
-            <Text>{o.name}</Text>
-            <Text>在线：{o.online}</Text>
-          </TouchableOpacity>);
-        })}
-
-        <TouchableOpacity onPress={Actions.deviceAdd}>
-          <Text>添加</Text>
-        </TouchableOpacity>
-      </ScrollView>
-    );
-  }*/
   renderDevice(o, i){
-    let desc = (o.online == 'on') ? `PM2.5:${o.data.pm25}ug/m³` : `PM2.5:    ug/m³`;
+    //let desc = (o.online == 'on') ? `PM2.5:${o.data.pm25}ug/m³` : `PM2.5:    ug/m³`;
+    let desc = `PM2.5:${o.data.pm25 || '  '}ug/m³`;
     return (
       <TouchableOpacity onPress={()=>{this.props.action.selectDevice(o.id);Actions.device()}} style={{borderRadius:5, marginTop:10,marginLeft:i%2?5:10, marginRight:i%2?10:5,borderWidth:1, borderColor:'#bbb',height:150,alignItems:'center'}}>
 
@@ -77,7 +59,7 @@ class V extends Component {
     let maxItem = _.size(this.props.list);
     return (
       <View style={{flex:1}}>
-        
+
 
         <ScrollView style={{flex:1}}>
           <View style={{flexDirection:'row', flexWrap:'wrap'}}>

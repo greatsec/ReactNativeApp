@@ -128,6 +128,9 @@ class App extends Component {
         <Scene key='bbs' component={view.BBSView} title='安居吧' />
         <Scene key='productList' component={view.ProductListView} title='产品列表' />
         <Scene key='bbsAdd' component={view.BBSAddView} title='添加帖子' />
+        <Scene key='bbsAddReply' component={view.BBSAddReplyView} title='选择回复' />
+
+        <Scene key='messageDetail' component={view.MessageDetailView} title='消息' />
         <Scene key='userinfo' component={view.UserInfoView} title='个人信息'/>
         <Scene key='modifyName' component={view.ModifyNameView} title='修改姓名' />
         <Scene key='modifyPassword' component={view.ModifyPasswordView} title='修改密码' />

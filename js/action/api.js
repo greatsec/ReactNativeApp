@@ -26,6 +26,7 @@ var httpApiList = {
 
   'updatePhoto': {url:'api/admin/user/updatePhoto', withToken:true},
   'adviceSave': {url:'api/admin/advice/save', withToken:true},
+  'adviceList': {url:'api/admin/advice/list', withToken:true},
   'userUpdate': {url:'api/admin/user/update', withToken:true},
   'userUpdatePassword': {url:'api/admin/user/updatePassword', withToken:true},
 

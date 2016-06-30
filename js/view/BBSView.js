@@ -35,31 +35,41 @@ class V extends Component {
       this.setState({refreshing:false});
     });
   }
-  onPressReplay(id){
-    this.props.action.bbsAddReply({
-      id, content:'content_111', address:'address_222'
-    });
-  }
+
   render(){
     return (
         <ScrollView
           refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh.bind(this)}/>}
-          style={{marginTop:100}}>
+          >
           {this.props.bbs.list.map((o)=>{
-            return (<View key={o.id} style={{borderWidth:1,marginTop:2}}>
+            return (<View key={o.id} style={{borderBottomWidth:1, borderColor:'#BCBCBC',marginTop:2}}>
+              <View style={{flexDirection:'row', marginTop:10, marginLeft:5,marginRight:5}}>
+                <Text style={{flex:1,fontSize:18,color:'#000'}}>{o.createName}</Text>
+                <Text style={{fontSize:15,color:'#8A8A8A'}}>{o.createDate}</Text>
+              </View>
+
+              <View style={{flexDirection:'row',marginLeft:5,marginRight:5,marginTop:5}}>
+
               {o.imageList.map((o2)=>{
                 return (
-                  <Image key={o2.image} source={{uri:'http://www.tdong.cn/'+o2.image}} style={{width:100,height:100}} />
+                  <Image key={o2.image} source={{uri:'http://www.tdong.cn/'+o2.image}} style={{width:100,height:100,margin:1}} />
                 );
               })}
+              </View>
               <Text>{o.content}</Text>
-              <TouchableOpacity onPress={()=>this.onPressReplay(o.id)}>
-                <Text>回复</Text>
-              </TouchableOpacity>
-              <View>
+              <View style={{flexDirection:'row'}}>
+                <View style={{flex:1}}></View>
+                <TouchableOpacity onPress={()=>Actions.bbsAddReply({id:o.id})} style={{marginRight:5}}>
+                  <Text>回复</Text>
+                </TouchableOpacity>
+              </View>
+
+              <View style={{marginBottom:10, marginLeft:5,marginRight:5}}>
                 {o.replyList.map((o2)=>{
                   return (<View key={o2.id}>
-                    <Text>{o2.createName||'匿名'}:{o2.content}</Text>
+                    <Text>
+                    <Text style={{fontSize:15,color:'#3668BE'}}>{o2.createName||'匿名'}:</Text>
+                    <Text style={{fontSize:15,color:'#000'}}>{o2.content}</Text></Text>
                   </View>);
                 })}
               </View>
@@ -78,7 +88,6 @@ export default connect(state=>({
   bbs: state.bbs
 }),dispatch=>({
   action: bindActionCreators({
-    bbsPage: action.bbsPage,
-    bbsAddReply: action.bbsAddReply
+    bbsPage: action.bbsPage
   }, dispatch)
 }))(V);

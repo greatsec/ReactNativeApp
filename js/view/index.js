@@ -23,9 +23,11 @@ import DeviceAdd3View from './DeviceAdd3View';
 import DiscoveryView from './DiscoveryView';
 import BBSView from './BBSView';
 import BBSAddView from './BBSAddView';
+import BBSAddReplyView from './BBSAddReplyView';
 import ProductListView from './ProductListView';
 
 import MessageView from './MessageView';
+import MessageDetailView from './MessageDetailView';
 import SettingView from './SettingView';
 
 import UserInfoView from './UserInfoView';
@@ -65,8 +67,10 @@ export {
   DiscoveryView,
   BBSView,
   BBSAddView,
+  BBSAddReplyView,
   ProductListView,
   MessageView,
+  MessageDetailView,
   SettingView,
 
   UserInfoView,
