@@ -20,6 +20,7 @@
     "react-native-screenshot": "git+https://github.com/lumin824/react-native-screenshot.git",
     "react-native-vector-icons": "2.0.3",
     "react-native-wechat": "git+https://github.com/lumin824/react-native-wechat.git",
+    "react-native-toast": "1.0.1",
     "react-redux": "4.4.5",
     "redux": "3.5.2",
     "redux-actions": "0.10.0",

@@ -25,11 +25,11 @@ class V extends Component {
       <View>
 
         <TouchableOpacity style={{
-            height:45, marginTop:10,
+            height:45, marginTop:20,
             flexDirection:'row',
             backgroundColor:'#fff'}} onPress={Actions.userinfo}>
             <View style={{justifyContent:'center', marginLeft:10}}>
-              <IconFont name="other" style={{backgroundColor:'transparent'}} size={20} color="#BABABA" />
+              <IconFont name="my" style={{backgroundColor:'transparent'}} size={20} color="#BABABA" />
             </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>个人信息</Text>

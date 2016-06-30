@@ -64,18 +64,6 @@ class V extends Component {
             flexDirection:'row',
             backgroundColor:'#fff'}}>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>产品条码</Text>
-            </View>
-            <View style={{justifyContent:'center', marginRight:15}}>
-              <Text>{this.props.device.code}</Text>
-            </View>
-        </View>
-
-        <View style={{
-            height:45, marginTop:1,
-            flexDirection:'row',
-            backgroundColor:'#fff'}}>
-            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>IP地址</Text>
             </View>
             <View style={{justifyContent:'center', marginRight:15}}>

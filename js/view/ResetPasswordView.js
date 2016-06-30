@@ -94,7 +94,7 @@ class V1 extends Component {
           marginHorizontal:15, marginTop:1,
           backgroundColor:'#fff'
         }}>
-        <TextInput style={{
+        <TextInput secureTextEntry={true} style={{
             flex:1,
             marginHorizontal:5,
             backgroundColor:'transparent',
@@ -219,7 +219,7 @@ class V2 extends Component {
           marginHorizontal:15, marginTop:1,
           backgroundColor:'#fff'
         }}>
-        <TextInput style={{
+        <TextInput secureTextEntry={true} style={{
             flex:1,
             marginHorizontal:5,
             backgroundColor:'transparent',
@@ -281,7 +281,7 @@ class V extends Component {
     return (
       <View>
 
-        <View style={{flexDirection:'row', height:45, backgroundColor:'#fff'}}>
+        <View style={{flexDirection:'row', height:45, backgroundColor:'#fff', marginTop: 10}}>
 
           {[{
             title:'手机找回',component:ByMobile
@@ -293,13 +293,13 @@ class V extends Component {
                   flex:1,
                   alignItems:'center', justifyContent:'center'}}
                   onPress={()=>this.setState({component:o.component})}>
-                <Text style={{color:'#18B4ED', fontSize:16}}>{o.title}</Text>
+                <Text style={{color: (this.state.component == o.component) ? 'red' : '#18B4ED', fontSize:16}}>{o.title}</Text>
               </TouchableOpacity>
             );
           })}
         </View>
         <View style={{flex:1}}>
-        <Form style={{marginTop:100}} />
+        <Form style={{marginTop:10}} />
         </View>
 
       </View>);

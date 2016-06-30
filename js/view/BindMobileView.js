@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Alert,
   Text,
   TextInput,
   TouchableOpacity,
@@ -19,9 +20,37 @@ class V extends Component {
   componentDidMount(){
   }
 
+  componentWillUnmount(){
+    if(this.interval) clearInterval(this.interval);
+  }
+
+  isDisabledCode(){
+    let { mobile, mobile_second = 0 } = this.state;
+    return !(mobile && !mobile_second);
+  }
+
+  isDisabledReg(){
+    let { mobile, code} = this.state;
+    return !(mobile && code);
+  }
+
   onPressCode(){
     let {mobile} = this.state;
+    this.setState({mobile_second:120});
+    if(this.interval) clearInterval(this.interval);
+    this.interval = setInterval(this.updateSecond.bind(this), 1000);
     this.props.action.mobileCode({mobile});
+  }
+
+  updateSecond(){
+
+    let { mobile_second } = this.state;
+    if(mobile_second > 0){
+      mobile_second--;
+      this.setState({mobile_second});
+    }else{
+      clearInterval(this.interval);
+    }
   }
 
   onPressSubmit(){
@@ -30,10 +59,21 @@ class V extends Component {
     this.props.action.bindMobile({
       mobile, code
     }).then(action=>{
-      if(!action.error) Actions.pop();
+      if(!action.error)
+      {
+         Alert.alert('绑定成功');
+         Actions.pop();
+      }
+      else
+      {
+         Alert.alert('绑定失败');
+      }
     })
   }
   render(){
+    let { mobile_second } = this.state;
+    let btnText = mobile_second ? `重新获取(${this.state.mobile_second})` : '获取验证码';
+
     return (
       <View>
         <View style={{
@@ -41,7 +81,8 @@ class V extends Component {
             flexDirection:'row',marginHorizontal:15,
             borderTopLeftRadius:3,borderTopRightRadius:3,
             backgroundColor:'#fff'}}>
-            <TextInput onChangeText={mobile=>this.setState({mobile})} style={{flex:1, marginHorizontal:10}} placeholder='手机号'/>
+            <TextInput onChangeText={mobile=>this.setState({mobile})} style={{flex:1, marginHorizontal:10,
+              backgroundColor:'transparent'}} placeholder='手机号'/>
         </View>
 
         <View style={{
@@ -58,10 +99,10 @@ class V extends Component {
             }} onChangeText={code=>this.setState({code})} placeholder='验证码' />
           <TouchableOpacity style={{
               justifyContent:'center',
-              backgroundColor:'#FF5E45',
+              backgroundColor:this.isDisabledCode()?'#888':'#FF5E45',
               borderBottomRightRadius:3,
-            }} onPress={this.onPressCode.bind(this)}>
-            <Text style={{marginHorizontal:10,color:'#fff',fontSize:16}}>获取验证码</Text>
+            }} disabled={this.isDisabledCode()} onPress={this.onPressCode.bind(this)}>
+            <Text style={{marginHorizontal:10,color:'#fff',fontSize:16}}>{btnText}</Text>
           </TouchableOpacity>
         </View>
 
@@ -69,10 +110,10 @@ class V extends Component {
             height:40,
             marginHorizontal:15, marginTop:20,
             borderRadius:3,
-            backgroundColor:'#18B4ED',
+            backgroundColor:this.isDisabledReg()?'#888':'#18B4ED',
             alignItems:'center', justifyContent:'center'
-          }} onPress={this.onPressSubmit.bind(this)} >
-          <Text style={{ color:'#fff',fontSize:18}}>提交</Text>
+          }} disabled={this.isDisabledReg()} onPress={this.onPressSubmit.bind(this)} >
+          <Text style={{ color:'#fff',fontSize:18}}>绑定</Text>
         </TouchableOpacity>
 
       </View>);

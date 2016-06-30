@@ -59,9 +59,9 @@ class V extends Component {
     let maxItem = _.size(this.props.list);
     return (
       <View style={{flex:1}}>
-        <ScrollView
-          refreshControl={<RefreshControl refreshing={this.props.refreshing || false} onRefresh={this.onRefresh.bind(this)}/>}
-          style={{flex:1}}>
+        <ScrollView style={{flex:1}}
+          refreshControl={<RefreshControl refreshing={this.props.refreshing || false} onRefresh={this.onRefresh.bind(this)}/>}>
+
           <View style={{flexDirection:'row', flexWrap:'wrap'}}>
             {_.map(this.props.deviceList,(o,i)=>(
               <View key={i} style={{width:cellWidth}}>

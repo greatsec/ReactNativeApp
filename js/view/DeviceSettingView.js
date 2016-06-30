@@ -11,9 +11,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
-
 import IconFont from '../IconFont';
-
 import _find from 'lodash/find';
 
 class V extends Component {

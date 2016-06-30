@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Alert,
   Text,
   TextInput,
   TouchableOpacity,
@@ -12,6 +13,7 @@ import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
 import IconFont from '../IconFont';
+import Toast from 'react-native-toast';
 
 class V extends Component {
   constructor(props){
@@ -23,7 +25,17 @@ class V extends Component {
 
   onPressMobile(){
     if(this.props.user.mobile){
-      this.props.action.unbindMobile();
+      Alert.alert('确认','确认解绑此手机号码？', [
+        {text:'取消'},
+        {text:'确定',onPress:()=>this.props.action.unbindMobile().then(action=>{
+          if(action.error){
+            Toast.showShortBottom(action.payload.msg);
+          }
+          else{
+            Toast.showShortBottom('解绑成功');
+          }
+        })}]);
+
     }else{
       Actions.bindMobile();
     }

@@ -14,7 +14,9 @@ import action from '../action';
 class V extends Component {
   constructor(props){
     super(props);
-    this.state = {};
+    this.state = {
+      second:0
+    };
   }
   componentDidMount(){
     this.props.action.getCurrentWifiSSID();
@@ -42,6 +44,11 @@ class V extends Component {
     this.props.action.stopWifiConfig();
   }
 
+  disabledSubmit(){
+    let { second } = this.state;
+    return second > 0;
+  }
+
   onPressConfig(){
     let { ssid } = this.props;
     let { key } = this.state;
@@ -57,6 +64,7 @@ class V extends Component {
   render(){
     return (
       <View>
+
         <View style={{
             height:45, marginTop:10,
             flexDirection:'row',
@@ -73,23 +81,24 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}}>
-            <TextInput onChangeText={key=>this.setState({key})} style={{flex:1,marginLeft:15}} placeholder='wifi密码'/>
+            <TextInput onChangeText={key=>this.setState({key})} style={{flex:1,marginLeft:15,marginRight:15,
+              backgroundColor:'transparent'}} placeholder='请输入当前wifi密码'/>
         </View>
 
         <TouchableOpacity style={{
             height:40,
             marginLeft:15, marginRight:15,
-            marginHorizontal:15, marginTop:5,
+            marginHorizontal:15, marginTop:15,
             borderRadius:3,
-            backgroundColor:'#18B4ED',
+            backgroundColor: this.disabledSubmit()? '#888':'#18B4ED',
             alignItems:'center', justifyContent:'center'
-          }} onPress={this.onPressConfig.bind(this)} >
+          }} disabled={this.disabledSubmit()} onPress={this.onPressConfig.bind(this)} >
           <Text style={{color:'#fff',fontSize:18}}>配置 {this.state.second > 0 ? this.state.second : ''}</Text>
         </TouchableOpacity>
 
-        <Text style={{marginHorizontal:15, marginTop:50,fontSize:18}}>
-          如果wifi指示图标为绿色闪烁，则产品处于一键配置模式，输入wifi密码，再点击配置网络，等待设备连接；
-          如果未出现wifi指示图标，则产品处于离线模式，需要长按功能键5s以上，松开时进入一键配置模式。配置成功后wifi指示图标绿色常亮。
+        <Text style={{flex:1, marginHorizontal:15, marginTop:50,fontSize:18}}>
+          如果wifi指示图标开始闪烁，则产品处于一键配置模式，输入wifi密码，再点击配置网络，等待设备连接；
+          如果未出现wifi指示图标，则产品处于离线模式，需要长按功能键5s以上，松开时进入一键配置模式。配置成功后wifi指示图标常亮。
         </Text>
 
       </View>);

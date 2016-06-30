@@ -50,7 +50,8 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}}>
-            <TextInput onChangeText={name=>this.setState({name})} style={{flex:1,marginLeft:15}} placeholder='设备名称'/>
+            <TextInput onChangeText={name=>this.setState({name})} style={{flex:1,marginLeft:15,
+              backgroundColor:'transparent'}} placeholder='设备名称'/>
         </View>
 
         <TouchableOpacity style={{

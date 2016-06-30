@@ -74,7 +74,8 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}}>
-            <TextInput onChangeText={key=>this.setState({key})} style={{flex:1,marginLeft:15}} placeholder='wifi密码'/>
+            <TextInput onChangeText={key=>this.setState({key})} style={{flex:1,marginLeft:15,
+              backgroundColor:'transparent'}} placeholder='wifi密码'/>
         </View>
 
         <TouchableOpacity style={{

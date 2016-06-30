@@ -114,7 +114,7 @@ class App extends Component {
         getSceneStyle={getSceneStyle}
         navigationBarStyle={{backgroundColor:'#18B4ED'}}
         titleStyle={{color:'#fff'}}>
-        <Scene key='login' component={view.LoginView} title='登陆' initial={this.props.initialLogin} hideNavBar={true} hideTabBar={true} type='reset'/>
+        <Scene key='login' component={view.LoginView} title='登录' initial={this.props.initialLogin} hideNavBar={true} hideTabBar={true} type='reset'/>
         <Scene key='resetPassword' component={view.ResetPasswordView} title='忘记密码' hideNavBar={false} backButton={BackButton} hideTabBar={true} />
         <Scene key='register' component={view.RegisterView} title='注册' hideNavBar={false} backButton={BackButton} hideTabBar={true} />
         <Scene key='provision' component={view.ProvisionView} title='条款' hideNavBar={false} />
@@ -201,7 +201,7 @@ class AppWarp extends Component {
   handleAppStateChange(appState){
     if (appState === 'active') {
       if(!__DEV__){
-        codePush.sync({installMode: CodePush.InstallMode.ON_NEXT_RESUME});
+        codePush.sync({installMode: codePush.InstallMode.ON_NEXT_RESUME});
       }
 
     }

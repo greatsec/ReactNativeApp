@@ -16,7 +16,6 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
-
 import _find from 'lodash/find';
 
 var {height, width} = Dimensions.get('window')
@@ -113,20 +112,8 @@ class V extends Component {
       clearInterval(this._interval);
     }
   }
-  /*render(){
-    return (
-      <View>
-        <Text style={{marginTop:100}}>设备名称：{this.props.device.name}</Text>
-        <Text style={{marginTop:10}}>PM1.0：{this.props.device.data.pm1}</Text>
-        <Text style={{marginTop:10}}>PM2.5：{this.props.device.data.pm25}</Text>
-        <Text style={{marginTop:10}}>PM10：{this.props.device.data.pm10}</Text>
-        <Text style={{marginTop:10}}>温度：{this.props.device.data.temperature}</Text>
-        <Text style={{marginTop:10}}>湿度：{this.props.device.data.humidity}</Text>
-      </View>
-    )
-  }*/
-  render(){
 
+  render(){
     let {main} =  this.state;
     main.curLevel = main.levels[main.currentLevel];
     return (
@@ -156,8 +143,8 @@ class V extends Component {
                   <Text style={{backgroundColor:'transparent', color:'#fff', fontSize:16}}>{this.props.address}</Text>
                 </View>
               ) : null}
-
             </Image>
+
             <View style={{marginTop:5,alignItems:'stretch', marginBottom:10}}>
               <View style={{alignItems:'center'}}>
                 <Text style={{marginTop:10,fontSize:22,color:'#646464'}}>PM2.5</Text>

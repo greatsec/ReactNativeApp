@@ -2,7 +2,7 @@ import { handleActions } from 'redux-actions';
 
 export var loginStatus = handleActions({
   loginRequest: (state, action) => ({msg:'登陆中...', isError: false, isFetching: true}),
-  loginResult: (state, action) => ({msg:action.error?action.payload.msg:'登陆成功', isError:action.error, isFetching:false})
+  loginResult: (state, action) => ({msg:action.error?action.payload.msg:'登录成功', isError:action.error, isFetching:false})
 },{
 });
 

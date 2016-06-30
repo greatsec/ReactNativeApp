@@ -47,8 +47,6 @@ class V extends Component {
 
           </TouchableOpacity>);
         })}
-
-
       </ScrollView>);
   }
 }

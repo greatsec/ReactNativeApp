@@ -53,15 +53,18 @@ class V extends Component {
   render() {
     return (
       <View>
+        <View style={{flex:1, height:100, alignItems:'center', marginTop:50}}>
+          <Image style={{width:206, height:60}} resizeMode='contain' source={require('./img/logo_landing.png')} />
+        </View>
         <View style={{
             flexDirection:'row',
             alignItems:'center',
             height:45,
-            marginHorizontal:15, marginTop:50,
+            marginHorizontal:15, marginTop:10,
             borderRadius:3,
             backgroundColor:'#fff'
           }}>
-          <IconFont name="wechat" style={{backgroundColor:'transparent', marginLeft:10}} size={24} color="#BABABA" />
+          <IconFont name="my" style={{backgroundColor:'transparent', marginLeft:10}} size={20} color="#BABABA" />
           <TextInput style={{
               flex:1,
               marginLeft:10,
@@ -77,33 +80,33 @@ class V extends Component {
             borderRadius:3,
             backgroundColor:'#fff'
           }}>
-          <IconFont name="password" style={{backgroundColor:'transparent', marginLeft:10}} size={24} color="#BABABA" />
-          <TextInput style={{
+          <IconFont name="password" style={{backgroundColor:'transparent', marginLeft:10}} size={20} color="#BABABA" />
+          <TextInput secureTextEntry={true} style={{
               flex:1,
               marginLeft:10,
               backgroundColor:'transparent',
             }} onChangeText={(password)=>this.setState({password})} value={this.state.password} />
         </View>
 
-        {this.props.loginStatus.msg ?
+        {this.props.loginForm.newAccount ?
         <View style={{
             height:20,
-            marginHorizontal:10, marginVertical:5,
+            marginHorizontal:15, marginVertical:5,
             borderRadius:3,
             backgroundColor:this.props.loginStatus.isError?'#f00':'#0f0',
             justifyContent:'center'}}>
-          <Text style={{ marginLeft:5, backgroundColor:'transparent', color:'#fff'}}>{this.props.loginStatus.msg}</Text>
+          <Text style={{ marginLeft:10, backgroundColor:'transparent', color:'#fff'}}>{this.props.loginStatus.msg}</Text>
         </View>
         :null}
 
         <TouchableOpacity style={{
             height:40,
-            marginHorizontal:15, marginTop:5,
+            marginHorizontal:15, marginTop:25,
             borderRadius:3,
             backgroundColor:'#18B4ED',
             alignItems:'center', justifyContent:'center'
           }} onPress={this.onPressLogin.bind(this)} >
-          <Text style={{ color:'#fff',fontSize:18}}>登陆</Text>
+          <Text style={{ color:'#fff',fontSize:18}}>登录</Text>
         </TouchableOpacity>
         <View style={{
             flexDirection:'row',
