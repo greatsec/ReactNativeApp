@@ -142,13 +142,13 @@ export default connect(state=>({
     xVals:_map(state.deviceList.chart,o=>o.time.substr(-2)),
     dataSet:[{
       yVals:_map(state.deviceList.chart,'pm1'),
-      colors:[0]
+      colors:['#50E3C2']
     },{
       yVals:_map(state.deviceList.chart,'pm25'),
-      colors:[0]
+      colors:['#F68447']
     },{
       yVals:_map(state.deviceList.chart,'pm10'),
-      colors:[0]
+      colors:['#D847F6']
     }]
   }],
   thChart: [{
@@ -156,14 +156,14 @@ export default connect(state=>({
     xVals:_map(state.deviceList.chart,o=>o.time.substr(-2)),
     dataSet:[{
       yVals:_map(state.deviceList.chart,'temperature'),
-      colors:[0]
+      colors:['#50E3C2']
     }]
   },{
     unit: '％',
     xVals:_map(state.deviceList.chart,o=>o.time.substr(-2)),
     dataSet:[{
       yVals:_map(state.deviceList.chart,'humidity'),
-      colors:[0]
+      colors:['#50E3C2']
     }]
   }]
 }),dispatch=>({
