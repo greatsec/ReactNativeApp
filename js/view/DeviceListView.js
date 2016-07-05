@@ -70,7 +70,10 @@ class V extends Component {
             ))}
             <View key={9999} style={{width:cellWidth}}>
               <TouchableOpacity onPress={Actions.deviceAdd} style={{alignItems:'center', justifyContent:'center',borderRadius:5, marginTop:10,marginLeft:maxItem%2?5:10, marginRight:maxItem%2?10:5,borderWidth:1, borderColor:'#bbb',height:150}}>
-
+                <Text style={{
+                  fontSize:60,
+                  color:'#00ABF0'
+                }}>+</Text>
                 <Text style={{color:'#00ABF0',fontSize:16}}>添加设备</Text>
               </TouchableOpacity>
             </View>

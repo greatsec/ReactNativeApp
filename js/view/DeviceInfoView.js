@@ -55,7 +55,7 @@ class V extends Component {
               <Text style={{fontSize:15}}>设备系统版本</Text>
             </View>
             <View style={{justifyContent:'center', marginRight:15}}>
-              <Text>{this.props.device.version}</Text>
+              <Text>{'v'+this.props.device.version}</Text>
             </View>
         </View>
 

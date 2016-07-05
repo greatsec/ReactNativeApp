@@ -53,30 +53,33 @@ class V extends Component {
     let newMsg = `已为最新版本${lastVersion}`;
 
     return (
-      <View>
+      <View style={{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+      }}>
 
         <View style={{
-            height:45, marginTop:10,
-            flexDirection:'row',
-            backgroundColor:'#fff'}}>
-            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>微信公众号</Text>
-            </View>
+          height:40,
+          alignItems:'center',
+        }}>
+
         {
           this.state.result?(
             <View style={{justifyContent:'center', marginRight:15}}>
               <Text>{newMsg}</Text>
             </View>
         ):(
-            <View style={{justifyContent:'center', marginRight:15}}>
-              <Text>{this.state.msg}</Text>
+            <View style={{justifyContent:'center',alignItems:'center', marginRight:15,backgroundColor:'transparent'}}>
+               <Text style={{fontSize:16}}>{this.state.msg}</Text>
             </View>)
         }
         </View>
 
         <TouchableOpacity style={{
             height:40,
-            marginHorizontal:15, marginTop:20,
+            width:100,
+            marginHorizontal:15,
             borderRadius:3,
             backgroundColor:this.state.result?'#888':'#18B4ED',
             alignItems:'center', justifyContent:'center'
@@ -86,17 +89,7 @@ class V extends Component {
 
 
 
-        <View style={{
-            height:45, marginTop:1,
-            flexDirection:'row',
-            backgroundColor:'#fff'}}>
-            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>客服电话</Text>
-            </View>
-            <View style={{justifyContent:'center', marginRight:15}}>
-              <Text>400 880 6306</Text>
-            </View>
-        </View>
+
 
       </View>);
   }

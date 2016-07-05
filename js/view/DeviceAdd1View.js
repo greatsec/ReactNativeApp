@@ -29,11 +29,16 @@ class V extends Component {
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>空气颗粒检测仪</Text>
             </View>
-            <View style={{justifyContent:'center', marginRight:15}}>
-              <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
-            </View>
         </TouchableOpacity>
 
+        <TouchableOpacity style={{
+            height:45, marginTop:10,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={Actions.deviceAdd2}>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>气体检测器</Text>
+            </View>
+        </TouchableOpacity>
       </View>);
   }
 }

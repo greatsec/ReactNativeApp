@@ -143,9 +143,9 @@ class V extends Component {
                   <Text style={{backgroundColor:'transparent', color:'#fff', fontSize:16}}>{this.props.address}</Text>
                 </View>
               ) : null}
-            </Image>
 
-            <View style={{marginTop:5,alignItems:'stretch', marginBottom:10}}>
+            </Image>
+            <View style={{marginTop:5,alignItems:'stretch', marginBottom:5,borderWidth:1, borderColor:'#bbb',borderRadius:5,marginLeft:10,marginRight:10,paddingBottom:15}}>
               <View style={{alignItems:'center'}}>
                 <Text style={{marginTop:10,fontSize:22,color:'#646464'}}>PM2.5</Text>
               </View>
@@ -191,28 +191,28 @@ class V extends Component {
                 </View>
               </View>
             </View>
-            <View>
-              <View style={{flexDirection:'row', height:80, alignItems:'stretch'}}>
+            <View style={{marginTop:3}}>
+              <View style={{flexDirection:'row', height:70, alignItems:'stretch'}}>
                 <View style={{flex:1, borderRadius:5, marginLeft:10, marginRight:5,borderWidth:1, borderColor:'#bbb'}}>
                   <Text style={{marginLeft:15, marginTop:15, fontSize:20, color:'#646464'}}>PM1.0</Text>
-                  <Text style={{position:'absolute', right:20, bottom:20,fontSize:30,color:'#4786F6'}}>{this.props.device.data.pm1}</Text>
-                  <Text style={{position:'absolute', right:20, bottom:5}}>ug/m³</Text>
+                  <Text style={{position:'absolute', right:20, bottom:25,fontSize:32,color:'#4786F6'}}>{this.props.device.data.pm1}</Text>
+                  <Text style={{position:'absolute', right:20, bottom:10}}>ug/m³</Text>
                 </View>
                 <View style={{flex:1,borderRadius:5, marginLeft:5, marginRight:10,borderWidth:1, borderColor:'#bbb'}}>
                   <Text style={{marginLeft:15, marginTop:15,fontSize:20, color:'#646464'}}>PM10</Text>
-                  <Text style={{position:'absolute', right:20, bottom:20,fontSize:30,color:'#4786F6'}}>{this.props.device.data.pm10}</Text>
-                  <Text style={{position:'absolute', right:20, bottom:5}}>ug/m³</Text>
+                  <Text style={{position:'absolute', right:20, bottom:25,fontSize:32,color:'#4786F6'}}>{this.props.device.data.pm10}</Text>
+                  <Text style={{position:'absolute', right:20, bottom:10}}>ug/m³</Text>
                 </View>
               </View>
-              <View style={{flexDirection:'row', marginTop:10,marginBottom:10, height:80, alignItems:'stretch'}}>
+              <View style={{flexDirection:'row', marginTop:10,marginBottom:10, height:70, alignItems:'stretch'}}>
                 <View style={{flex:1,borderRadius:5, marginLeft:10, marginRight:5, borderWidth:1, borderColor:'#bbb'}}>
                   <Text style={{marginLeft:15, marginTop:15,fontSize:20, color:'#646464'}}>温度</Text>
-                  <Text style={{position:'absolute', right:10, bottom:5,fontSize:30, color:'#4786F6'}}>{this.props.device.data.temperature}℃</Text>
+                  <Text style={{position:'absolute', right:10, bottom:10,fontSize:32, color:'#4786F6'}}>{this.props.device.data.temperature}℃</Text>
 
                 </View>
                 <View style={{flex:1,borderRadius:5, marginLeft:5, marginRight:10, borderWidth:1, borderColor:'#bbb'}}>
                   <Text style={{marginLeft:15, marginTop:15,fontSize:20, color:'#646464'}}>湿度</Text>
-                  <Text style={{position:'absolute', right:10, bottom:5,fontSize:30, color:'#4786F6'}}>{this.props.device.data.humidity}%</Text>
+                  <Text style={{position:'absolute', right:10, bottom:10,fontSize:32, color:'#4786F6'}}>{this.props.device.data.humidity}%</Text>
                 </View>
               </View>
             </View>
