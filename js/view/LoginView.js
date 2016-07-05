@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import {
+  Image,
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
+  NativeModules
 } from 'react-native';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
+
+import IconFont from '../IconFont';
 
 class V extends Component {
   constructor(props){
@@ -20,65 +24,127 @@ class V extends Component {
   }
 
   onPressLogin(){
-    this.props.action.deviceRealtimeData('000ec602fad0');
     let { username, password } = this.state;
     this.props.action.login({username, password})
       .then(action=>{
         if(!action.error){
-          Actions.about();
+          Actions.main();
         }
-          //this.props.action.deviceList();
       });
   }
+  onPressQQ(){
+    this.props.action.qqLogin().then(({payload:qqcode})=>this.props.action.codeLogin({qqcode}))
+    .then(action=>{
+      if(!action.error){
+        Actions.main();
+      }
+    });
+  }
+
+  onPressWechat(){
+    this.props.action.wechatLogin().then(({payload:weixincode})=>this.props.action.codeLogin({weixincode}))
+    .then(action=>{
+      if(!action.error){
+        Actions.main();
+      }
+    });
+  }
+
   render() {
     return (
-      <View style={{marginTop:100}}>
+      <View>
+        <View style={{flex:1, height:100, alignItems:'center', marginTop:50}}>
+          <Image style={{width:206, height:60}} resizeMode='contain' source={require('./img/logo_landing.png')} />
+        </View>
         <View style={{
-            height:40,
-            marginHorizontal:10, marginVertical:5,
-            borderWidth:1,
-            borderRadius:3
+            flexDirection:'row',
+            alignItems:'center',
+            height:45,
+            marginHorizontal:15, marginTop:10,
+            borderRadius:3,
+            backgroundColor:'#fff'
           }}>
+          <IconFont name="my" style={{backgroundColor:'transparent', marginLeft:10}} size={20} color="#BABABA" />
           <TextInput style={{
               flex:1,
-              marginHorizontal:5,
+              marginLeft:10,
               backgroundColor:'transparent',
             }} onChangeText={(username)=>this.setState({username})} value={this.state.username} />
         </View>
 
         <View style={{
-            height:40,
-            marginHorizontal:10, marginVertical:5,
-            borderWidth:1,
-            borderRadius:3
+            flexDirection:'row',
+            alignItems:'center',
+            height:45,
+            marginHorizontal:15, marginTop:1,
+            borderRadius:3,
+            backgroundColor:'#fff'
           }}>
-          <TextInput style={{
+          <IconFont name="password" style={{backgroundColor:'transparent', marginLeft:10}} size={20} color="#BABABA" />
+          <TextInput secureTextEntry={true} style={{
               flex:1,
-              marginHorizontal:5,
+              marginLeft:10,
               backgroundColor:'transparent',
             }} onChangeText={(password)=>this.setState({password})} value={this.state.password} />
         </View>
 
-        {this.props.loginStatus.msg ?
+        {this.props.loginForm.newAccount ?
         <View style={{
             height:20,
-            marginHorizontal:10, marginVertical:5,
+            marginHorizontal:15, marginVertical:5,
             borderRadius:3,
             backgroundColor:this.props.loginStatus.isError?'#f00':'#0f0',
             justifyContent:'center'}}>
-          <Text style={{ marginLeft:5, backgroundColor:'transparent', color:'#fff'}}>{this.props.loginStatus.msg}</Text>
+          <Text style={{ marginLeft:10, backgroundColor:'transparent', color:'#fff'}}>{this.props.loginStatus.msg}</Text>
         </View>
         :null}
 
         <TouchableOpacity style={{
             height:40,
-            marginHorizontal:10, marginVertical:5,
+            marginHorizontal:15, marginTop:25,
             borderRadius:3,
-            backgroundColor:'#00f',
+            backgroundColor:'#18B4ED',
             alignItems:'center', justifyContent:'center'
           }} onPress={this.onPressLogin.bind(this)} >
-          <Text style={{ color:'#fff'}}>登陆</Text>
+          <Text style={{ color:'#fff',fontSize:18}}>登录</Text>
         </TouchableOpacity>
+        <View style={{
+            flexDirection:'row',
+            marginHorizontal:20,
+            justifyContent:'space-between'}}>
+          <TouchableOpacity onPress={Actions.resetPassword}>
+            <Text style={{marginHorizontal:20, marginVertical:15, color:'#419BF9', fontSize:14}}>忘记密码</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={Actions.register}>
+            <Text style={{marginHorizontal:20, marginVertical:15, color:'#419BF9', fontSize:14}}>用户注册</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={{flexDirection:'row', alignItems:'center'}}>
+          <View style={{borderTopWidth:1,flex:1, marginHorizontal:15, borderColor:'#C3C3C3'}} />
+          <Text style={{color:'#C3C3C3',fontSize:14}}>其他账号登陆</Text>
+          <View style={{borderTopWidth:1,flex:1, marginHorizontal:15, borderColor:'#C3C3C3'}} />
+        </View>
+
+        <View style={{marginTop:45,flexDirection:'row', justifyContent:'center'}}>
+          <TouchableOpacity style={{
+              alignItems:'center', justifyContent:'center',
+              backgroundColor:'#319BFD',
+              height:44,width:44,
+              marginRight:22,
+              borderRadius:22}} onPress={this.onPressQQ.bind(this)}>
+              <IconFont name="qq" style={{backgroundColor:'transparent'}} size={24} color="#fff" />
+          </TouchableOpacity>
+          <TouchableOpacity style={{
+              alignItems:'center', justifyContent:'center',
+              backgroundColor:'#12DF26',
+              height:44,width:44,
+              marginLeft:22,
+              borderRadius:22}} onPress={this.onPressWechat.bind(this)}>
+              <IconFont name="wechat" style={{backgroundColor:'transparent'}} size={24} color="#fff" />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -87,8 +153,8 @@ class V extends Component {
 export default connect(state=>state,dispatch=>({
   action: bindActionCreators({
     login: action.login,
-    deviceList: action.deviceList,
-    versionGet: action.versionGet,
-    deviceRealtimeData: action.deviceRealtimeData
+    codeLogin: action.codeLogin,
+    qqLogin: action.qqLogin,
+    wechatLogin: action.wechatLogin
   }, dispatch)
 }))(V);
