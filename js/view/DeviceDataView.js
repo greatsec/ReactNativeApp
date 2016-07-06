@@ -61,6 +61,8 @@ let aqiList = [
 }
 
 class V extends Component {
+
+
     constructor(props){
             super(props);
 
@@ -156,7 +158,7 @@ class V extends Component {
               </View>
               <View style={{alignItems:'center', marginTop:10}}>
                 <View style={{width:115, height:18,backgroundColor:this.props.aqi.color, alignItems:'center', justifyContent:'center', borderRadius:15}}>
-                  <Text style={{color:'#fff',fontSize:12}}>{this.props.aqi.title}</Text>
+                  <Text style={{color:'#fff',fontSize:12}}>{this.props.device.online == 'on' ? this.props.aqi.title : '--'}</Text>
                 </View>
               </View>
               <View style={{alignItems:'center',}}>
@@ -195,24 +197,24 @@ class V extends Component {
               <View style={{flexDirection:'row', height:70, alignItems:'stretch'}}>
                 <View style={{flex:1, borderRadius:5, marginLeft:10, marginRight:5,borderWidth:1, borderColor:'#bbb'}}>
                   <Text style={{marginLeft:15, marginTop:15, fontSize:20, color:'#646464'}}>PM1.0</Text>
-                  <Text style={{position:'absolute', right:20, bottom:25,fontSize:32,color:'#4786F6'}}>{this.props.device.data.pm1}</Text>
+                  <Text style={{position:'absolute', right:20, bottom:25,fontSize:32,color:'#4786F6'}}>{this.props.device.online == 'on' ? this.props.device.data.pm1 : '-'}</Text>
                   <Text style={{position:'absolute', right:20, bottom:10}}>ug/m³</Text>
                 </View>
                 <View style={{flex:1,borderRadius:5, marginLeft:5, marginRight:10,borderWidth:1, borderColor:'#bbb'}}>
                   <Text style={{marginLeft:15, marginTop:15,fontSize:20, color:'#646464'}}>PM10</Text>
-                  <Text style={{position:'absolute', right:20, bottom:25,fontSize:32,color:'#4786F6'}}>{this.props.device.data.pm10}</Text>
+                  <Text style={{position:'absolute', right:20, bottom:25,fontSize:32,color:'#4786F6'}}>{this.props.device.online == 'on' ? this.props.device.data.pm10 : '-'}</Text>
                   <Text style={{position:'absolute', right:20, bottom:10}}>ug/m³</Text>
                 </View>
               </View>
               <View style={{flexDirection:'row', marginTop:10,marginBottom:10, height:70, alignItems:'stretch'}}>
                 <View style={{flex:1,borderRadius:5, marginLeft:10, marginRight:5, borderWidth:1, borderColor:'#bbb'}}>
                   <Text style={{marginLeft:15, marginTop:15,fontSize:20, color:'#646464'}}>温度</Text>
-                  <Text style={{position:'absolute', right:10, bottom:10,fontSize:32, color:'#4786F6'}}>{this.props.device.data.temperature}℃</Text>
+                  <Text style={{position:'absolute', right:10, bottom:10,fontSize:32, color:'#4786F6'}}>{this.props.device.online == 'on' ? this.props.device.data.temperature : '-'}℃</Text>
 
                 </View>
                 <View style={{flex:1,borderRadius:5, marginLeft:5, marginRight:10, borderWidth:1, borderColor:'#bbb'}}>
                   <Text style={{marginLeft:15, marginTop:15,fontSize:20, color:'#646464'}}>湿度</Text>
-                  <Text style={{position:'absolute', right:10, bottom:10,fontSize:32, color:'#4786F6'}}>{this.props.device.data.humidity}%</Text>
+                  <Text style={{position:'absolute', right:10, bottom:10,fontSize:32, color:'#4786F6'}}>{this.props.device.online == 'on' ? this.props.device.data.humidity : '-'}%</Text>
                 </View>
               </View>
             </View>
@@ -231,7 +233,7 @@ export default connect(state=>
 
   let v = parseInt(ret.device.data.pm25);
   let aqi = _.find(aqiList, (o)=>(o.range[0] <= v && v <= o.range[1]));
-  ret.aqi = aqi || {title:'error',color:'#000'};
+  ret.aqi = aqi || {title:'--',color:'#000'};
   return ret;
 }
 ,dispatch=>({

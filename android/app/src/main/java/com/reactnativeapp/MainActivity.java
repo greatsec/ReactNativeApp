@@ -33,7 +33,8 @@ public class MainActivity extends ReactActivity {
     @Nullable
     @Override
     protected String getJSBundleFile() {
-        return BuildConfig.DEBUG ? super.getJSBundleFile(): CodePush.getBundleUrl();
+        //return BuildConfig.DEBUG ? super.getJSBundleFile(): CodePush.getBundleUrl();
+        return super.getJSBundleFile();
     }
 
     /**
