@@ -27,6 +27,8 @@ import action from './action';
 import * as view from './view';
 import IconFont from './IconFont';
 
+import _find from 'lodash/find';
+
 const RouterWithRedux = connect()(Router);
 var first = null;
 
@@ -126,8 +128,8 @@ class App extends Component {
           <Scene key='setting' component={ view.SettingView } title='我的' icon={TabIcon} iconName='my' activeIconName='my-fill'/>
         </Scene>
         <Scene key='device' tabs={true} type='push' >
-          <Scene key='deviceData' component={view.DeviceDataView} title='检测' icon={TabIcon} iconName='search' backButton={BackButton} rightButton={ShareAndMoreButton}/>
-          <Scene key='deviceChart' component={view.DeviceChartView} title='趋势' icon={TabIcon} iconName='qushi' backButton={BackButton} rightButton={ShareAndMoreButton} />
+          <Scene key='deviceData' component={view.DeviceDataView} title='检测' getTitle={(e)=>(this.props.device && this.props.device.name)} icon={TabIcon} iconName='search' backButton={BackButton} rightButton={ShareAndMoreButton}/>
+          <Scene key='deviceChart' component={view.DeviceChartView} title='趋势' getTitle={(e)=>(this.props.device && this.props.device.name)} icon={TabIcon} iconName='qushi' backButton={BackButton} rightButton={ShareAndMoreButton} />
         </Scene>
         <Scene key='deviceSetting' component={view.DeviceSettingView} title='设置' backButton={BackButton} hideTabBar={true} />
         <Scene key='deviceModifyName' component={view.DeviceModifyNameView} title='修改设备名称' backButton={BackButton} />
@@ -162,6 +164,7 @@ class App extends Component {
 }
 
 const AppWithRedux = connect(state=>({
+  device: (_find(state.deviceList.list, {id:state.deviceList.selected}) || _find(state.deviceList.slist, {id:state.deviceList.selected})),
   token: state.loginUser && state.loginUser.token,
   initialLogin: !state.loginUser || !state.loginUser.token
 }), dispatch=>({

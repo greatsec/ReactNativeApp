@@ -12,6 +12,7 @@ import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
 import _find from 'lodash/find';
+import _chunk from 'lodash/chunk';
 
 class V extends Component {
   constructor(props){
@@ -32,7 +33,7 @@ class V extends Component {
               <Text style={{fontSize:15}}>设备型号</Text>
             </View>
             <View style={{justifyContent:'center', marginRight:15}}>
-              <Text>{this.props.device.type}</Text>
+              <Text>{this.props.device.type == '01' ? '空气颗粒检测仪':'空气颗粒检测仪'}</Text>
             </View>
         </View>
 
@@ -79,7 +80,7 @@ class V extends Component {
               <Text style={{fontSize:15}}>MAC地址</Text>
             </View>
             <View style={{justifyContent:'center', marginRight:15}}>
-              <Text>{this.props.device.mac}</Text>
+              <Text>{_chunk(this.props.device.mac,2).map(o=>o.join('')).join('-')}</Text>
             </View>
         </View>
 

@@ -22,8 +22,9 @@ class V extends Component {
   onPressSubmit(){
     let {code} = this.props;
     let {name} = this.state;
+    let type = '01'
     this.props.action.deviceBind({
-      code, name
+      code, name, type
     }).then(action=>{
       if(!action.error){
         this.props.action.deviceRefresh();
