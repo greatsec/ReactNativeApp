@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Alert,
   Text,
   TextInput,
   TouchableOpacity,
@@ -29,6 +30,8 @@ class V extends Component {
       if(!action.error){
         this.props.action.deviceRefresh();
         Actions.callback({type: 'BODGE'});
+      }else{
+        Alert.alert('提示',action.payload.msg || '绑定失败');
       }
     })
   }

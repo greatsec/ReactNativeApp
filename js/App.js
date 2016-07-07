@@ -10,6 +10,7 @@ import {
   View,
   AppState,
   BackAndroid,
+  ToastAndroid,
   TouchableOpacity,
 } from 'react-native';
 
@@ -85,7 +86,25 @@ const customRouterReducer = params => {
           state = Object.assign({}, state, {index: 0, children : state.children.slice(0,1)});
          }
       } else {
+        let curIndex = state ? state.index : -1;
+        console.log(state);
         state = defaultReducer(state, action);
+        console.log(state);
+        let newIndex = state.index;
+
+        if(curIndex == 0 && newIndex == 0 && action.type=='BackAction'){
+          if(!first){
+            first = new Date().getTime();
+            ToastAndroid.show('再按一次退出应用', 1000);
+            setTimeout(function() {
+                first=null;
+            }, 1000);
+          }else{
+            if (new Date().getTime() - first < 1000) {
+                BackAndroid.exitApp();
+            }
+          }
+        }
       }
       return state;
   };
@@ -189,7 +208,7 @@ class AppWarp extends Component {
 
   componentDidMount(){
     AppState.addEventListener('change', this._handleAppStateChange);
-	BackAndroid.addEventListener('hardwareBackPress', this._handleBackButton);
+	  BackAndroid.addEventListener('hardwareBackPress', this._handleBackButton);
 
     if(!__DEV__){
       codePush.sync({installMode: codePush.InstallMode.ON_NEXT_RESUME});

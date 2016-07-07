@@ -51,29 +51,36 @@ export var deviceList = handleActions({
     if(action.error) return state;
     let { send: code, recv } = action.payload;
     let arr = recv.split(',');
-    if(arr[0] != '404') return state;
-
     return {...state,
       list:state.list.map((o)=>{
         if(o.code == code){
           o = {...o}
-          o.data.pm1 = arr[1];
-          o.data.pm25 = arr[2];
-          o.data.pm10 = arr[3];
-          o.data.temperature = arr[4];
-          o.data.humidity = arr[5];
-
+          if(arr[0] == '404'){
+            o.online = 'on';
+            o.data.pm1 = arr[1];
+            o.data.pm25 = arr[2];
+            o.data.pm10 = arr[3];
+            o.data.temperature = arr[4];
+            o.data.humidity = arr[5];
+          }else{
+            o.online = 'off';
+          }
         }
         return o;
       }),
       slist:state.slist.map((o)=>{
         if(o.code == code){
           o = {...o}
-          o.data.pm1 = arr[1];
-          o.data.pm25 = arr[2];
-          o.data.pm10 = arr[3];
-          o.data.temperature = arr[4];
-          o.data.humidity = arr[5];
+          if(arr[0] == '404'){
+            o.online = 'on';
+            o.data.pm1 = arr[1];
+            o.data.pm25 = arr[2];
+            o.data.pm10 = arr[3];
+            o.data.temperature = arr[4];
+            o.data.humidity = arr[5];
+          }else{
+            o.online = 'off';
+          }
         }
         return o;
       })};
