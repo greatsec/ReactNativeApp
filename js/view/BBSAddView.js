@@ -125,35 +125,71 @@ class V extends Component {
   }
   render(){
     return (
-      <View style={{marginTop:100}}>
+      <View style={{marginTop:5,backgroundColor:'white'}}>
 
-        <View>
-          <Text >BBS</Text>
+      <View style={{
+        height:120,
+        backgroundColor:'#F0EFF5',
+      }}>
+      <TextInput onChangeText={content=>this.setState({content})}
+        style={{
+        fontSize:18,
+        backgroundColor:'transparent',
+        borderWidth:0,
+        borderColor:'＃F0EFF5',
+        textAlignVertical:'top',
+        }}
+        autoFocus={true}
+        multiline={true}
+        placeholder="说点什么吧..."
+        numberOfLines={4}
+        />
         </View>
-
+      <View style={{height:190,backgroundColor:'#F0EFF5',marginTop:10}}>
+      <View style={{flexDirection:'row',flexWrap:'wrap',width:360,height:90}}>
         {this.state.imageList.map(o=>{
-          return <View key={o.localPath}>
-            <TouchableOpacity onPress={()=>this.onPressDeleteImage(o.localPath)}><Text>删除</Text></TouchableOpacity>
-            <Text>{o.state}</Text>
-            <Image source={{uri:'http://www.tdong.cn/'+o.serverPath}} style={{width:100,height:100}}  />
+          return <View key={o.localPath} style={{margin:2,marginTop:5}}>
+
+            <Image source={{uri:'http://www.tdong.cn/'+o.serverPath}} style={{width:85,height:85}}  />
+
+            <TouchableOpacity onPress={()=>this.onPressDeleteImage(o.localPath)} style={{
+              position:'absolute',
+              right:5,
+              bottom:1,
+            }}><Text style={{fontSize:14}}>删除</Text></TouchableOpacity>
           </View>
         })}
-
+        </View>
         <TouchableOpacity style={{
-            height:40,
-            marginTop:10,
-            marginHorizontal:10, marginVertical:5,
+            width:80,
+            height:80,
+            marginTop:7,
+            marginLeft:271,
             borderRadius:3,
-            backgroundColor:'#00f',
-            alignItems:'center', justifyContent:'center'
+            borderColor:'#6B6A6D',
+            borderWidth:2,
+            alignItems:'center',
+            justifyContent:'center',
           }} onPress={this.onSelectImage.bind(this)} >
-          <Text style={{ color:'#fff'}}>选择图片</Text>
+          <Text style={{ color:'#6B6A6D',fontSize:30}}>＋</Text>
         </TouchableOpacity>
+        </View>
 
-        <TextInput onChangeText={content=>this.setState({content})} style={{height:40}}/>
 
-        <TouchableOpacity onPress={this.onPressSubmit.bind(this)}>
-          <Text>提交</Text>
+
+
+        <TouchableOpacity onPress={this.onPressSubmit.bind(this)} style={{
+          backgroundColor:'#28B4E8',
+          width:350,
+          borderRadius:5,
+          height:40,
+          justifyContent:'center',
+          alignItems:'center',
+          marginTop:10,
+          marginLeft:5,
+        }}
+        >
+          <Text style={{color:'white'}}>提 交</Text>
         </TouchableOpacity>
 
       </View>);

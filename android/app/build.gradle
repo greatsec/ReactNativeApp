@@ -137,6 +137,14 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-toast')
+    compile project(':react-native-wechat')
+    compile project(':react-native-vector-icons')
+    compile project(':react-native-screenshot')
+    compile project(':react-native-qq')
+    compile project(':react-native-nufront-wifi')
+    compile project(':react-native-image-picker')
+    compile project(':react-native-chart')
     compile project(':react-native-code-push')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"

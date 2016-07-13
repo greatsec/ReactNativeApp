@@ -1,6 +1,14 @@
 package com.reactnativeapp;
 
 import com.facebook.react.ReactActivity;
+import com.remobile.toast.RCTToastPackage;
+import com.lumin824.wechat.WechatPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.lumin824.screenshot.ScreenshotPackage;
+import com.lumin824.qq.QQPackage;
+import com.lumin824.nufrontwifi.NfWifiPackage;
+import com.imagepicker.ImagePickerPackage;
+import com.lumin824.chart.ChartPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -45,6 +53,14 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new RCTToastPackage(),
+            new WechatPackage(),
+            new VectorIconsPackage(),
+            new ScreenshotPackage(),
+            new QQPackage(),
+            new NfWifiPackage(),
+            new ImagePickerPackage(),
+            new ChartPackage(),
             new CodePush(BuildConfig.codePushDeploymentKey, this, BuildConfig.DEBUG)
         );
     }

@@ -18,14 +18,17 @@ class V extends Component {
     this.state = {};
   }
   componentDidMount(){
+    this.props.action.updatePosition();
   }
 
   onPressSubmit(){
-    let {code} = this.props;
     let {name} = this.state;
+
+    let { code, longitude, latitude, address } = this.props;
     let type = '01'
+    console.log({ code, longitude, latitude, address});
     this.props.action.deviceBind({
-      code, name, type
+      code, name, type, longitude, latitude, address
     }).then(action=>{
       if(!action.error){
         this.props.action.deviceRefresh();
@@ -72,9 +75,12 @@ class V extends Component {
   }
 }
 
-export default connect(state=>state,dispatch=>({
+export default connect(state=>({
+    ...state.gps,
+  }),dispatch=>({
   action: bindActionCreators({
     deviceBind: action.deviceBind,
-    deviceRefresh: action.deviceRefresh
+    deviceRefresh: action.deviceRefresh,
+    updatePosition: action.updatePosition,
   }, dispatch)
 }))(V);

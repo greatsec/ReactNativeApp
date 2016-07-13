@@ -64,12 +64,12 @@ class ShareAndMoreButton extends Component {
       <View style={[this.props.style, {flexDirection:'row',padding:0}]}>
         <TouchableOpacity style={{flex:1, flexDirection:'row',justifyContent:'flex-end'}} onPress={()=>capture().then(uri=>Actions.shareImage({image:'file://'+uri}))}>
           <View style={{justifyContent:'center'}}>
-            <IconFont name='share' size={20} color='#fff' style={{marginRight:5}} />
+            <IconFont name='share1' size={20} color='#fff' style={{marginRight:5}} />
           </View>
         </TouchableOpacity>
         <TouchableOpacity style={{flex:1,flexDirection:'row',justifyContent:'flex-end'}} onPress={Actions.deviceSetting}>
           <View style={{justifyContent:'center'}}>
-            <IconFont name='more' size={20} color='#fff' style={{marginRight:15}} />
+            <IconFont name='setting' size={20} color='#fff' style={{marginRight:15}} />
           </View>
         </TouchableOpacity>
       </View>

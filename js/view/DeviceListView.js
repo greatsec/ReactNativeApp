@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  AppState,
   Dimensions,
   Image,
   RefreshControl,
@@ -22,21 +23,33 @@ class V extends Component {
   constructor(props){
     super(props);
     this.state = {
-
     };
+
+    this._handleAppStateChange = this.handleAppStateChange.bind(this);
   }
 
   componentDidMount(){
     this.props.action.deviceRefresh();
+    AppState.addEventListener('change', this._handleAppStateChange);
   }
 
   onRefresh(){
     this.props.action.deviceRefresh();
   }
 
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this._handleAppStateChange);
+  }
+
+  handleAppStateChange(appState){
+    if (appState === 'active') {
+      this.props.action.deviceRefresh();
+    }
+  }
+
   renderDevice(o, i){
-    let desc = (o.online == 'on') ? `PM2.5:${o.data.pm25}ug/m³` : `PM2.5:    ug/m³`;
-    //let desc = `PM2.5:${o.data.pm25 || '  '}ug/m³`;
+    //let desc = (o.online == 'on') ? `PM2.5:${o.data.pm25}ug/m³` : `PM2.5:    ug/m³`;
+    let desc = `PM2.5:${o.data.pm25 || '  '}ug/m³`;
     return (
       <TouchableOpacity onPress={()=>{this.props.action.selectDevice(o.id);Actions.device()}} style={{borderRadius:5, marginTop:10,marginLeft:i%2?5:10, marginRight:i%2?10:5,borderWidth:1, borderColor:'#bbb',height:150,alignItems:'center'}}>
 
@@ -51,25 +64,28 @@ class V extends Component {
         </View>
       </TouchableOpacity>
     );
+
   }
 
   render(){
     const {height, width} = Dimensions.get('window');
     const cellWidth = width / 2;
-    let maxItem = _.size(this.props.list);
+    let maxItem = _.size(this.props.deviceList);
     return (
       <View style={{flex:1}}>
-        <ScrollView style={{flex:1}}
-          refreshControl={<RefreshControl refreshing={this.props.refreshing || false} onRefresh={this.onRefresh.bind(this)}/>}>
-
+        <ScrollView
+          refreshControl={<RefreshControl refreshing={this.props.refreshing || false} onRefresh={this.onRefresh.bind(this)}/>}
+          style={{flex:1}}>
           <View style={{flexDirection:'row', flexWrap:'wrap'}}>
             {_.map(this.props.deviceList,(o,i)=>(
               <View key={i} style={{width:cellWidth}}>
                 {this.renderDevice(o, i)}
               </View>
             ))}
+
             <View key={9999} style={{width:cellWidth}}>
-              <TouchableOpacity onPress={Actions.deviceAdd} style={{alignItems:'center', justifyContent:'center',borderRadius:5, marginTop:10,marginLeft:maxItem%2?5:10, marginRight:maxItem%2?10:5,borderWidth:1, borderColor:'#bbb',height:150}}>
+              <TouchableOpacity
+               onPress={Actions.deviceAdd} style={{alignItems:'center', justifyContent:'center',borderRadius:5, marginTop:10,marginLeft:maxItem%2?5:10, marginRight:maxItem%2?10:5,borderWidth:1, borderColor:'#bbb',height:150}}>
                 <Text style={{
                   fontSize:60,
                   color:'#00ABF0'
@@ -77,6 +93,8 @@ class V extends Component {
                 <Text style={{color:'#00ABF0',fontSize:16}}>添加设备</Text>
               </TouchableOpacity>
             </View>
+
+
           </View>
         </ScrollView>
       </View>

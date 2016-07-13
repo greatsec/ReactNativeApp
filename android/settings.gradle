@@ -1,5 +1,21 @@
 rootProject.name = 'ReactNativeApp'
 
 include ':app'
+include ':react-native-toast'
+project(':react-native-toast').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-toast/android')
+include ':react-native-wechat'
+project(':react-native-wechat').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-wechat/android')
+include ':react-native-vector-icons'
+project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android')
+include ':react-native-screenshot'
+project(':react-native-screenshot').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-screenshot/android')
+include ':react-native-qq'
+project(':react-native-qq').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-qq/android')
+include ':react-native-nufront-wifi'
+project(':react-native-nufront-wifi').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-nufront-wifi/android')
+include ':react-native-image-picker'
+project(':react-native-image-picker').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-image-picker/android')
+include ':react-native-chart'
+project(':react-native-chart').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-chart/android')
 include ':react-native-code-push'
 project(':react-native-code-push').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-code-push/android/app')
