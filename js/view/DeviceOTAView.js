@@ -22,10 +22,8 @@ class V extends Component {
     this.props.action.versionGet({type:'hardware'}).then(action=>{
       if(!action.error){
         let { code:lastVersion, url, publishDate } = action.payload;
-        let msg = `最新版本${lastVersion}, 发布时间${publishDate}`;
+        let msg = `最新版本${lastVersion},\n\发布时间${publishDate}`;
         let currentVersion = this.props.device.version;
-        //console.log('----xxx NewVer: ' + lastVersion);
-        //console.log('----xxx curVer: ' + currentVersion);
         this.setState({lastVersion, url, publishDate, msg});
         if(lastVersion > currentVersion)
         {
@@ -45,7 +43,6 @@ class V extends Component {
   onPressSubmit(){
     let { lastVersion, url } = this.state;
     let { code } = this.props.device;
-    console.log([]);
     this.props.action.deviceOTA(code,lastVersion,url).then(action=>this.setState({msg:action.error?'升级失败':'升级成功'}));
   }
   render(){
@@ -62,16 +59,18 @@ class V extends Component {
         <View style={{
           height:40,
           alignItems:'center',
+          marginBottom:5
         }}>
 
         {
           this.state.result?(
-            <View style={{justifyContent:'center', marginRight:15}}>
+            <View style={{justifyContent:'center'}}>
               <Text>{newMsg}</Text>
             </View>
         ):(
-            <View style={{justifyContent:'center',alignItems:'center', marginRight:15,backgroundColor:'transparent'}}>
-               <Text style={{fontSize:16}}>{this.state.msg}</Text>
+            <View style={{justifyContent:'center',alignItems:'center',marginBottom:10,height:40}}>
+               <Text style={{fontSize:16,alignItems:'center',textAlign:'center',lineHeight:28}}
+               >{this.state.msg}</Text>
             </View>)
         }
         </View>

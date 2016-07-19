@@ -25,7 +25,10 @@ class V extends Component {
       type,
       content
     }).then(action=>{
-      if(!action.error) Actions.pop();
+      if(!action.error){
+        this.props.action.adviceList();
+        Actions.pop();
+      }
     })
   }
   render(){
@@ -35,21 +38,23 @@ class V extends Component {
         <Text style={{marginTop:10, marginLeft:10,fontSize:14,color:'#8A8A8A'}}>选择你要反馈的问题类型</Text>
 
         <View style={{flexDirection:'row', marginTop:10}}>
-          <TouchableOpacity style={{backgroundColor:'#fff', height:24, justifyContent:'center', marginLeft:10}} onPress={()=>this.setState({type:1})}>
-            <Text style={{marginHorizontal:10}}>问题反馈</Text>
+          <TouchableOpacity style={{backgroundColor:this.state.type==1?'#18B4ED':'#fff', height:24, justifyContent:'center', marginLeft:10}} onPress={()=>this.setState({type:1})}>
+            <Text style={{marginHorizontal:10,color:this.state.type==1?'#fff':'#707070'}}>问题反馈</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={{backgroundColor:'#fff', height:24, justifyContent:'center', marginLeft:10}} onPress={()=>this.setState({type:2})}>
-            <Text style={{marginHorizontal:10}}>使用咨询</Text>
+          <TouchableOpacity style={{backgroundColor:this.state.type==2?'#18B4ED':'#fff', height:24, justifyContent:'center', marginLeft:10}} onPress={()=>this.setState({type:2})}>
+            <Text style={{marginHorizontal:10,color:this.state.type==2?'#fff':'#707070'}}>使用咨询</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={{backgroundColor:'#fff', height:24, justifyContent:'center', marginLeft:10}} onPress={()=>this.setState({type:3})}>
-            <Text style={{marginHorizontal:10}}>产品建议</Text>
+          <TouchableOpacity style={{backgroundColor:this.state.type==3?'#18B4ED':'#fff',height:24, justifyContent:'center', marginLeft:10}} onPress={()=>this.setState({type:3})}>
+            <Text style={{marginHorizontal:10,color:this.state.type==3?'#fff':'#707070'}}>产品建议</Text>
           </TouchableOpacity>
         </View>
 
-        <View style={{backgroundColor:'#fff', marginTop:10,height:182}}>
-          <TextInput onChangeText={content=>this.setState({content})} style={{flex:1, marginHorizontal:10}} placeholder='请描述一下您的问题'/>
+        <View style={{backgroundColor:'#fff', marginTop:10}}>
+          <TextInput onChangeText={content=>this.setState({content})}
+          multiline={true}
+          style={{flex:1, marginHorizontal:10,height:182,backgroundColor:'transparent',textAlignVertical:'top'}} placeholder='请描述一下您的问题'/>
         </View>
 
         <TouchableOpacity style={{
@@ -68,6 +73,7 @@ class V extends Component {
 
 export default connect(state=>state,dispatch=>({
   action: bindActionCreators({
-    adviceSave: action.adviceSave
+    adviceSave: action.adviceSave,
+    adviceList: action.adviceList
   }, dispatch)
 }))(V);

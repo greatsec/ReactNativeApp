@@ -19,5 +19,5 @@ export var bbs = handleActions({
 
 export var adviceList = handleActions({
   adviceListRequest: (state, action) => ({...state, refreshing:true}),
-  adviceListResult: (state, action) => ({...state, list:action.payload, refreshing:false})
+  adviceListResult: (state, action) => ({...state, list:action.error?state.list:action.payload, refreshing:false})
 }, {list:[],refreshing:false});

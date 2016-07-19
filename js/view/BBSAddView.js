@@ -33,7 +33,7 @@ class V extends Component {
         state: '上传中'
       }]});
 
-      this.props.action.updatePhoto({file:{uri,type:'image/jpg',name:uri}})
+      this.props.action.uploadImage({file:{uri,type:'image/jpg',name:uri}})
       .then(action=>{
         if(!action.error){
           this.setState({imageList: this.state.imageList.map(o=>{
@@ -103,7 +103,7 @@ class V extends Component {
           state: '上传中'
         }]});
 
-        this.props.action.updatePhoto({file:{uri,type:'image/jpg',name:uri}})
+        this.props.action.uploadImage({file:{uri,type:'image/jpg',name:uri}})
         .then(action=>{
           if(!action.error){
             this.setState({imageList: this.state.imageList.map(o=>{
@@ -136,7 +136,6 @@ class V extends Component {
         fontSize:18,
         backgroundColor:'transparent',
         borderWidth:0,
-        borderColor:'＃F0EFF5',
         textAlignVertical:'top',
         }}
         autoFocus={true}
@@ -199,6 +198,6 @@ class V extends Component {
 export default connect(state=>state,dispatch=>({
   action: bindActionCreators({
     bbsAdd: action.bbsAdd,
-    updatePhoto: action.updatePhoto
+    uploadImage: action.uploadImage
   }, dispatch)
 }))(V);

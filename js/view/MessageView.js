@@ -11,6 +11,8 @@ import {
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import IconFont from '../IconFont';
+
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
@@ -38,10 +40,11 @@ class V extends Component {
         >
         {this.props.adviceList.map(o=>{
           return (<TouchableOpacity onPress={()=>Actions.messageDetail({data:o})} key={o.id} style={{flexDirection:'row', backgroundColor:'#fff', marginTop:1}}>
-            <View style={{backgroundColor:typeInfo[o.type].iconColor,width:42,height:42, marginLeft:15, marginVertical:10}}>
+            <View style={{backgroundColor:typeInfo[o.type || '1'].iconColor,width:42,height:42, marginLeft:15, marginVertical:10,alignItems:'center', justifyContent:'center'}}>
+              <IconFont style={{backgroundColor:'transparent'}} name='my' color='#fff' size={36} />
             </View>
             <View style={{marginLeft:15}}>
-              <Text style={{fontSize:14, color:'#000', marginTop:10, flex:1}}>{typeInfo[o.type].name}</Text>
+              <Text style={{fontSize:14, color:'#000', marginTop:10, flex:1}}>{typeInfo[o.type || '1'].name}</Text>
               <Text style={{marginBottom:10,fontSize:14,color:'#8A8A8A'}}>{o.reply || o.content}</Text>
             </View>
 

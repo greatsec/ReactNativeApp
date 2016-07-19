@@ -873,7 +873,7 @@
 					"-framework",
 					Charts,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lumin824.rnapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mirhz.ajx;
 				PRODUCT_NAME = ReactNativeApp;
 				PROVISIONING_PROFILE = "";
 			};
@@ -926,7 +926,7 @@
 					"-framework",
 					Charts,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lumin824.rnapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mirhz.ajx;
 				PRODUCT_NAME = ReactNativeApp;
 				PROVISIONING_PROFILE = "";
 			};

@@ -48,8 +48,8 @@ class V extends Component {
   }
 
   renderDevice(o, i){
-    //let desc = (o.online == 'on') ? `PM2.5:${o.data.pm25}ug/m³` : `PM2.5:    ug/m³`;
-    let desc = `PM2.5:${o.data.pm25 || '  '}ug/m³`;
+    let desc = (o.online == 'on') ? `PM2.5:${o.data.pm25}ug/m³` : `PM2.5:    ug/m³`;
+    //let desc = `PM2.5:${o.data.pm25 || '  '}ug/m³`;
     return (
       <TouchableOpacity onPress={()=>{this.props.action.selectDevice(o.id);Actions.device()}} style={{borderRadius:5, marginTop:10,marginLeft:i%2?5:10, marginRight:i%2?10:5,borderWidth:1, borderColor:'#bbb',height:150,alignItems:'center'}}>
 

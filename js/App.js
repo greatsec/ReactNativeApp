@@ -77,6 +77,21 @@ class ShareAndMoreButton extends Component {
   }
 }
 
+class EditButton extends Component{
+  render(){
+    return(
+      <View style={[this.props.style, {flexDirection:'row',padding:0}]}>
+      <TouchableOpacity style={{flex:1, flexDirection:'row',justifyContent:'flex-end'}}
+        onPress={()=>Actions.bbsAdd({imageUri:this.props.image})}>
+        <View style={{justifyContent:'center'}}>
+          <IconFont name='edit' size={20} color='#fff' style={{marginRight:5}} />
+        </View>
+      </TouchableOpacity>
+      </View>
+    )
+  }
+}
+
 const customRouterReducer = params => {
 
   const defaultReducer = Reducer(params);
@@ -161,7 +176,7 @@ class App extends Component {
         <Scene key='deviceAdd2' component={view.DeviceAdd2View} title='设备添加2' backButton={BackButton} hideTabBar={true} />
         <Scene key='deviceAdd3' component={view.DeviceAdd3View} title='设备添加3' backButton={BackButton} hideTabBar={true} />
 
-        <Scene key='bbs' component={view.BBSView} title='安居吧' backButton={BackButton} hideTabBar={true} />
+        <Scene key='bbs' component={view.BBSView} title='安居吧' backButton={BackButton} hideTabBar={true} rightButton={EditButton} />
         <Scene key='productList' component={view.ProductListView} title='产品列表' backButton={BackButton} hideTabBar={true} />
         <Scene key='bbsAdd' component={view.BBSAddView} title='添加帖子' backButton={BackButton} hideTabBar={true} />
         <Scene key='bbsAddReply' component={view.BBSAddReplyView} title='选择回复' backButton={BackButton} hideTabBar={true} />

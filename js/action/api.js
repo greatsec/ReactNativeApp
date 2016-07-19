@@ -1,5 +1,7 @@
 import { createAction } from 'redux-actions';
 
+import { Actions } from 'react-native-router-flux';
+
 import mapValues from 'lodash/mapValues';
 import forEach from 'lodash/forEach';
 var token = '';
@@ -42,6 +44,7 @@ var httpApiList = {
   'bbsPage': {url:'api/admin/anjuba/page', withToken:true},
   'bbsAdd': {url:'api/admin/anjuba/save', withToken:true},
   'bbsAddReply': {url:'api/admin/anjuba/saveReply', withToken:true},
+  'uploadImage': {url:'api/admin/anjuba/uploadImage', withToken:true},
 
   'pmList': {url:'api/admin/pm/list', withToken:true},
   'versionGet':'api/version/get'
@@ -67,10 +70,13 @@ var httpActions = mapValues(httpApiList, (actionConfig, actionName) => {
       if(actionConfig.withToken) headers['X-Auth-Token'] = token;
       return fetch(`${httpServer}${url}`, {body, method:'POST', headers})
       .then(response=>response.json())
-      //.then(response=>response.text())
-      //.then(text=>{console.log(text);let json = JSON.parse(text); return json;})
+      // .then(response=>response.text())
+      // .then(text=>{console.log(text);let json = JSON.parse(text); return json;})
       .then(json=>{
-        if(!json.success) return Promise.reject({code:json.status, msg:json.message});
+        if(!json.success){
+          if(json.status == 200) Actions.login();
+          return Promise.reject({code:json.status, msg:json.message});
+        }
         if(actionConfig.obtainToken) token = json.info.token;
         return json.info;
       });
