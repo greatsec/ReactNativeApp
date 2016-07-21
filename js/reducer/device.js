@@ -138,5 +138,5 @@ export var deviceList = handleActions({
 });
 
 export var shareList = handleActions({
-  deviceShareListResult: (state, action) => action.payload
+  deviceShareListResult: (state, action) => action.error ? state : action.payload
 },[]);
