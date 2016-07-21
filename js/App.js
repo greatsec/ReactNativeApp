@@ -102,9 +102,7 @@ const customRouterReducer = params => {
          }
       } else {
         let curIndex = state ? state.index : -1;
-        console.log(state);
         state = defaultReducer(state, action);
-        console.log(state);
         let newIndex = state.index;
 
         if(curIndex == 0 && newIndex == 0 && action.type=='BackAction'){

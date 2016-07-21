@@ -15,13 +15,22 @@ class V extends Component {
   constructor(props){
     super(props);
     this.state = {
-      second:0
+      second:0,
+      key: props.defaultKey
     };
+
+    console.log(props);
   }
   componentDidMount(){
     this.props.action.getCurrentWifiSSID();
 
     this._interval = setInterval(this.updateTick.bind(this), 1000);
+  }
+
+  componentWillReceiveProps(nextProps)
+  {
+    if(!this.inputKey)
+      this.setState({key:nextProps.defaultKey});
   }
 
   updateTick(){
@@ -81,8 +90,8 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}}>
-            <TextInput onChangeText={key=>this.setState({key})} style={{flex:1,marginLeft:15,marginRight:15,
-              backgroundColor:'transparent'}} placeholder='请输入当前wifi密码'/>
+            <TextInput onChangeText={key=>this.setState({key,inputKey:true})} style={{flex:1,marginLeft:15,marginRight:15,
+              backgroundColor:'transparent'}} value={this.state.key} placeholder='请输入当前wifi密码'/>
         </View>
 
         <TouchableOpacity style={{
@@ -106,7 +115,8 @@ class V extends Component {
 }
 
 export default connect(state=>({
-  ssid: state.wifi.name
+  ssid: state.wifi.name,
+  defaultKey: state.wifi.name ? (state.wifiConfig[state.wifi.name] || '') : '',
 }),dispatch=>({
   action: bindActionCreators({
     getCurrentWifiSSID: action.getCurrentWifiSSID,

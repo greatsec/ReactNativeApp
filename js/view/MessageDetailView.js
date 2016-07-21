@@ -22,6 +22,7 @@ class V extends Component {
   render(){
     let typeInfo = {'1':{name:'问题反馈',iconColor:'#11B3E7'},'2':{name:'使用咨询', iconColor:'#D5EA24'},'3':{name:'产品建议',iconColor:'#EA8624'}};
     let o = this.props.data;
+    o.type = o.type || '1';
     return (
       <View style={{flex:1, alignItems:'center', justifyContent:'center', backgroundColor:'transparent'}}>
         <View style={{backgroundColor:'#fff', borderRadius:3}}>

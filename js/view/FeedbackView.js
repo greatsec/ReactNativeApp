@@ -14,13 +14,17 @@ import action from '../action';
 class V extends Component {
   constructor(props){
     super(props);
-    this.state = {};
+    this.state = {
+    	type: 1
+    };
+
   }
   componentDidMount(){
   }
 
   onPressSubmit(){
     let {type, content} = this.state;
+
     this.props.action.adviceSave({
       type,
       content
