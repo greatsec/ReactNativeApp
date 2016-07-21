@@ -16,12 +16,21 @@ import _find from 'lodash/find';
 class V extends Component {
   constructor(props){
     super(props);
-    this.state = {};
+    this.state = {
+      second:0,
+      key: props.defaultKey
+    };
   }
   componentDidMount(){
     this.props.action.getCurrentWifiSSID();
 
     this._interval = setInterval(this.updateTick.bind(this), 1000);
+  }
+
+  componentWillReceiveProps(nextProps)
+  {
+    if(!this.inputKey)
+      this.setState({key:nextProps.defaultKey});
   }
 
   updateTick(){
@@ -41,6 +50,13 @@ class V extends Component {
       clearInterval(this._interval);
     }
     this.props.action.stopWifiConfig();
+  }
+
+
+
+  disabledSubmit(){
+    let { second } = this.state;
+    return second > 0;
   }
 
   onPressConfig(){
@@ -74,17 +90,17 @@ class V extends Component {
             height:45, marginTop:1,
             flexDirection:'row',
             backgroundColor:'#fff'}}>
-            <TextInput onChangeText={key=>this.setState({key})} style={{flex:1,marginLeft:15,
-              backgroundColor:'transparent'}} placeholder='wifi密码' secureTextEntry={true} />
+            <TextInput onChangeText={key=>this.setState({key,inputKey:true})} style={{flex:1,marginLeft:15,
+              backgroundColor:'transparent'}} value={this.state.key} placeholder='wifi密码' secureTextEntry={true} />
         </View>
 
         <TouchableOpacity style={{
             height:40,
             marginHorizontal:15, marginTop:5,
             borderRadius:3,
-            backgroundColor:'#18B4ED',
+            backgroundColor: this.disabledSubmit()? '#888':'#18B4ED',
             alignItems:'center', justifyContent:'center'
-          }} onPress={this.onPressConfig.bind(this)} >
+          }} disabled={this.disabledSubmit()} onPress={this.onPressConfig.bind(this)} >
           <Text style={{color:'#fff',fontSize:18}}>配置 {this.state.second > 0 ? this.state.second : ''}</Text>
         </TouchableOpacity>
       </View>);
@@ -93,6 +109,7 @@ class V extends Component {
 
 export default connect(state=>({
   ssid: state.wifi.name,
+  defaultKey: state.wifi.name ? (state.wifiConfig[state.wifi.name] || '') : '',
   device: _find(state.deviceList.list, {id:state.deviceList.selected})
 }),dispatch=>({
   action: bindActionCreators({

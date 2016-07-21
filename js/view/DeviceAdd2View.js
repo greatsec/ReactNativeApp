@@ -18,8 +18,6 @@ class V extends Component {
       second:0,
       key: props.defaultKey
     };
-
-    console.log(props);
   }
   componentDidMount(){
     this.props.action.getCurrentWifiSSID();
