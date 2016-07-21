@@ -6,12 +6,14 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
+  Modal,
 } from 'react-native';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+
 import action from '../action';
 import IconFont from '../IconFont';
 
@@ -43,6 +45,14 @@ class V extends Component {
         <ScrollView
           refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh.bind(this)}/>}
           >
+          {this.state.imageUrl?(
+            <Modal onRequestClose={()=>null}>
+              <TouchableOpacity style={{flex:1}} onPress={()=>this.setState({imageUrl:''})}>
+                <Image style={{flex:1}} resizeMode="contain" source={{uri:this.state.imageUrl}} />
+              </TouchableOpacity>
+            </Modal>
+          ):null}
+
           {this.props.bbs.list.map((o)=>{
             return (<View key={o.id} style={{borderBottomWidth:1, borderColor:'#BCBCBC',marginTop:2}}>
               <View style={{flexDirection:'row', marginTop:10, marginLeft:5,marginRight:5}}>
@@ -55,13 +65,15 @@ class V extends Component {
               </View>
               <Text style={{marginLeft:8,marginTop:5}}>{o.content}</Text>
               <View style={{flexDirection:'row',marginLeft:5,marginRight:5,marginTop:5}}>
-
               {o.imageList.map((o2)=>{
                 return (
-                  <Image key={o2.image} source={{uri:'http://www.tdong.cn/'+o2.image}} style={{width:115,height:115,margin:1}} />
+                  <TouchableOpacity key={o2.image} onPress={()=>this.setState({imageUrl:'http://www.tdong.cn/'+o2.image})}>
+                  <Image style={{width:115,height:115,margin:1}} resizeMode="contain" source={{uri:'http://www.tdong.cn/'+o2.image}}  />
+                  </TouchableOpacity>
                 );
               })}
               </View>
+
 
               <View style={{flexDirection:'row',alignSelf:'flex-end',marginTop:10,marginRight:5}}>
 
