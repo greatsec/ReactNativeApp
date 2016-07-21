@@ -18,6 +18,6 @@ export default configStore = (onComplete) => {
   if(global.__DEV__) args = [...args, createLogger()];
 
   const store = applyMiddleware(...args)(createStore)(reducer, autoRehydrate());
-  persistStore(store, { storage: AsyncStorage, whitelist:['loginForm','wifiConfig'],log:true}, onComplete);
+  persistStore(store, { storage: AsyncStorage, whitelist:['loginForm','wifiConfig','loginUser'],log:true}, onComplete);
   return store;
 };

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   Image,
+  Switch,
   Text,
   TextInput,
   TouchableOpacity,
@@ -18,14 +19,18 @@ import IconFont from '../IconFont';
 class V extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      ...this.props.loginForm
-    };
+    this.state = {};
+    if(this.props.loginForm.rememberPassword){
+      this.state = {
+        ...this.props.loginForm
+      };
+    }
+
   }
 
   onPressLogin(){
-    let { username, password } = this.state;
-    this.props.action.login({username, password})
+    let { username, password, rememberPassword } = this.state;
+    this.props.action.login({username, password, rememberPassword})
       .then(action=>{
         if(!action.error){
           Actions.main();
@@ -86,6 +91,11 @@ class V extends Component {
               marginLeft:10,
               backgroundColor:'transparent',
             }} onChangeText={(password)=>this.setState({password})} value={this.state.password} />
+        </View>
+
+        <View style={{marginHorizontal:15, marginTop:15, height:40,flexDirection:'row', alignItems:'center'}}>
+          <Switch style={{backgroundColor:'transparent'}} onValueChange={(rememberPassword)=>this.setState({rememberPassword})} value={this.state.rememberPassword} />
+          <Text style={{flex:1,marginLeft:10,fontSize:16}}>记住密码</Text>
         </View>
 
         {this.props.loginForm.newAccount ?
