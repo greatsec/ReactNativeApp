@@ -12,6 +12,8 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
+import Toast from 'react-native-toast';
+
 import _reject from 'lodash/reject';
 import _map from 'lodash/map';
 
@@ -52,6 +54,7 @@ class V extends Component {
 
     this.props.action.bbsAdd({content, images:_map(imageList,'serverPath').join(',')}).then(action=>{
       if(!action.error) Actions.pop();
+      else Toast.showShortBottom(action.payload.msg);
     })
   }
 

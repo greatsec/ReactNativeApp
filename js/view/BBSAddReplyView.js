@@ -11,6 +11,8 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
+import Toast from 'react-native-toast';
+
 import IconFont from '../IconFont';
 
 class V extends Component {
@@ -31,6 +33,7 @@ class V extends Component {
       id, content:msg, address:''
     }).then(action=>{
       if(!action.error) Actions.pop();
+      else Toast.showShortBottom(action.payload.msg);
     });
   }
 

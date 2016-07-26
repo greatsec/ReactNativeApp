@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
+import Toast from 'react-native-toast';
 
 class V extends Component {
   constructor(props){
@@ -32,7 +33,8 @@ class V extends Component {
       if(!action.error){
         this.props.action.adviceList();
         Actions.pop();
-      }
+      }else Toast.showShortBottom(action.payload.msg);
+
     })
   }
   render(){

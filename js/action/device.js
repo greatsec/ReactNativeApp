@@ -25,10 +25,10 @@ export var getCurrentWifiSSID = () => dispatch => {
   getSSID((ssid)=>dispatch(_getCurrentWifiSSIDResult(ssid)));
 };
 
-var _saveWifiConfig = createAction('SAVE_WIFI_CONFIG');
-export var startWifiConfig = params => dispatch => {
-  dispatch(_saveWifiConfig(params));
-  return startConfig(params.ssid, params.key, params.code);
-};
+export var saveWifiConfig = createAction('SAVE_WIFI_CONFIG');
+
+
+export var startWifiConfig = createAction('WIFI_CONFIG_RESULT',
+  params=>startConfig(params.ssid, params.key, params.code));
 
 export var stopWifiConfig = createAction('STOP_WIFI_CONFIG', ()=>stopConfig());

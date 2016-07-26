@@ -14,6 +14,8 @@ import action from '../action';
 import IconFont from '../IconFont';
 import _find from 'lodash/find';
 
+import Toast from 'react-native-toast';
+
 class V extends Component {
   constructor(props){
     super(props);
@@ -34,9 +36,10 @@ class V extends Component {
         {text:'取消'},
         {text:'确定',onPress:()=>this.props.action.deviceUnbind({code}).then(action=>{
           if(action.error){
-
+            Toast.showShortBottom(action.payload.msg);
           }
           else{
+            Toast.showShortBottom('解绑成功');
             Actions.callback({type: 'BODGE'});
           }
         })}]);

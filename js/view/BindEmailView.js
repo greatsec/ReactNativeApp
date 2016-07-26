@@ -9,6 +9,9 @@ import {
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+
+import Toast from 'react-native-toast';
+
 import action from '../action';
 
 class V extends Component {
@@ -31,6 +34,7 @@ class V extends Component {
       email, code
     }).then(action=>{
       if(!action.error) Actions.pop();
+      else Toast.showShortBottom(action.payload.msg);
     })
   }
   render(){
@@ -42,7 +46,7 @@ class V extends Component {
             flexDirection:'row',marginHorizontal:15,
             borderTopLeftRadius:3,borderTopRightRadius:3,
             backgroundColor:'#fff'}}>
-            <TextInput onChangeText={email=>this.setState({email})} style={{flex:1, marginHorizontal:10}} placeholder='邮箱'/>
+            <TextInput onChangeText={email=>this.setState({email})} style={{flex:1, marginHorizontal:10, backgroundColor:'transparent'}} placeholder='邮箱'/>
         </View>
 
         <View style={{

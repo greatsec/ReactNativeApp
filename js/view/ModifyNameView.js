@@ -11,6 +11,8 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
 
+import Toast from 'react-native-toast';
+
 class V extends Component {
   constructor(props){
     super(props);
@@ -25,6 +27,7 @@ class V extends Component {
     let {name} = this.state;
     this.props.action.userUpdate({name}).then(action=>{
       if(!action.error) Actions.pop();
+      else Toast.showShortBottom(action.payload.msg);
     })
   }
   render(){

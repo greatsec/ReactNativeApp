@@ -76,12 +76,6 @@ class V extends Component {
             {range:[200,300],color:'#C800BE',title:'重度污染'},
             {range:[300,500],color:'#7C0075',title:'严重污染'}]
         },
-        dataset:[
-          { name:'PM1.0', data:'--', unit:'ug/m³'},
-          { name:'PM10', data:'--', unit:'ug/m³'},
-          { name:'温度', data:'--', unit:'℃'},
-          { name:'湿度', data:'--', unit:'％'}
-        ],
         PM1:'--',
         PM25:'--',
         PM10:'--',

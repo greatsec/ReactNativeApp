@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  Alert,
   Text,
   TextInput,
   TouchableOpacity,
@@ -11,6 +10,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
+
+import Toast from 'react-native-toast';
 
 class V1 extends Component {
   constructor(props){
@@ -58,15 +59,12 @@ class V1 extends Component {
       if(!action.error)
       {
             if(this.interval) clearInterval(this.interval);
-            Alert.alert('重置成功');
+          Toast.showShortBottom('重置成功');
             Actions.pop();
       }
       else
       {
-            if(action.payload.msg)
-              Alert.alert(action.payload.msg);
-            else
-              Alert.alert('重置失败');
+        Toast.showShortBottom(action.payload.msg || '重置失败');
       }
 
     });
@@ -188,11 +186,11 @@ class V2 extends Component {
       if(!action.error)
       {
            if(this.interval) clearInterval(this.interval);
-           Alert.alert('重置成功');
+           Toast.showShortBottom('重置成功');
            Actions.pop();
       }
       else {
-           Alert.alert('重置失败');
+           Toast.showShortBottom(action.payload.msg || '重置失败');
       }
     });
   }

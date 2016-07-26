@@ -69,9 +69,9 @@ var httpActions = mapValues(httpApiList, (actionConfig, actionName) => {
       if(actionConfig.headers) headers = {...actionConfig.headers};
       if(actionConfig.withToken) headers['X-Auth-Token'] = token;
       return fetch(`${httpServer}${url}`, {body, method:'POST', headers})
-      .then(response=>response.json())
-      // .then(response=>response.text())
-      // .then(text=>{console.log(text);let json = JSON.parse(text); return json;})
+      //.then(response=>response.json())
+      .then(response=>response.text())
+      .then(text=>{console.log(text);let json = JSON.parse(text); return json;})
       .then(json=>{
         if(!json.success){
           if(json.status == 200) Actions.login();

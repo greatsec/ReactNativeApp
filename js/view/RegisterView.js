@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  Alert,
   Text,
   TextInput,
   TouchableOpacity,
@@ -11,6 +10,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
+import Toast from 'react-native-toast';
 
 class V1 extends Component {
   constructor(props){
@@ -58,12 +58,12 @@ class V1 extends Component {
     this.props.action.register({mobile, password,code}).then(action=>{
       if(!action.error)
       {
-         Alert.alert('注册成功');
+         Toast.showShortBottom('注册成功');
          Actions.pop();
       }
       else
       {
-         Alert.alert('注册失败');
+         Toast.showShortBottom(action.payload.msg);
       }
     });
   }
@@ -155,15 +155,12 @@ class V2 extends Component {
     this.props.action.registerEmail({email, password}).then(action=>{
       if(!action.error)
       {
-        Alert.alert('注册成功，请登录邮箱激活帐号');
+        Toast.showShortBottom('注册成功，请登录邮箱激活帐号');
         Actions.pop();
       }
       else
       {
-        if(action.payload.msg)
-          Alert.alert(action.payload.msg);
-        else
-          Alert.alert('注册失败');
+        Toast.showShortBottom(action.payload.msg || '注册失败');
       }
     });
   }

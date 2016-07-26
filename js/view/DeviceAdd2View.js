@@ -59,8 +59,10 @@ class V extends Component {
   onPressConfig(){
     let { ssid } = this.props;
     let { key } = this.state;
+    this.props.action.saveWifiConfig({ssid,key});
     this.props.action.startWifiConfig({ssid, key})
     .then(action=>{
+      console.log(action);
       if(!action.error){
         let code = action.payload;
         Actions.deviceAdd3({code});
@@ -119,6 +121,7 @@ export default connect(state=>({
   action: bindActionCreators({
     getCurrentWifiSSID: action.getCurrentWifiSSID,
     startWifiConfig: action.startWifiConfig,
-    stopWifiConfig: action.stopWifiConfig
+    stopWifiConfig: action.stopWifiConfig,
+    saveWifiConfig: action.saveWifiConfig
   }, dispatch)
 }))(V);

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  Alert,
   Text,
   TextInput,
   TouchableOpacity,
@@ -11,6 +10,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import action from '../action';
+
+import Toast from 'react-native-toast';
 
 class V extends Component {
   constructor(props){
@@ -32,9 +33,10 @@ class V extends Component {
     }).then(action=>{
       if(!action.error){
         this.props.action.deviceRefresh();
+        Toast.showShortBottom('绑定成功');
         Actions.callback({type: 'BODGE'});
       }else{
-        Alert.alert('提示',action.payload.msg || '绑定失败');
+        Toast.showShortBottom(action.payload.msg || '绑定失败');
       }
     })
   }
