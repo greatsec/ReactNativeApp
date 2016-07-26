@@ -126,7 +126,7 @@ class V extends Component {
         {this.props[this.state.chartType].map((o, i)=>{
           return (<View style={{flex:1}} key={i}>
             <Text>{o.unit}</Text>
-            <LineChart onSwipe={this.onSwipe.bind(this)} style={{flex:1}} data={o} />
+            <LineChart onSwipe={this.onSwipe.bind(this)} style={{flex:1}} {...o} />
           </View>);
         })}
       </View>
@@ -139,32 +139,50 @@ export default connect(state=>({
   device: (_find(state.deviceList.list, {id:state.deviceList.selected}) || _find(state.deviceList.slist, {id:state.deviceList.selected})),
   pmChart: [{
     unit: 'ug/m³',
-    xVals:_map(state.deviceList.chart,o=>o.time.substr(-2)),
-    dataSet:[{
-      yVals:_map(state.deviceList.chart,'pm1'),
-      colors:['#50E3C2']
-    },{
-      yVals:_map(state.deviceList.chart,'pm25'),
-      colors:['#F68447']
-    },{
-      yVals:_map(state.deviceList.chart,'pm10'),
-      colors:['#D847F6']
-    }]
+    data: {
+      xVals:_map(state.deviceList.chart,o=>o.time.substr(-2)),
+      dataSet:[{
+        yVals:_map(state.deviceList.chart,'pm1'),
+        colors:['#50E3C2']
+      },{
+        yVals:_map(state.deviceList.chart,'pm25'),
+        colors:['#F68447']
+      },{
+        yVals:_map(state.deviceList.chart,'pm10'),
+        colors:['#D847F6']
+      }]
+    },
+    leftAxis:{
+      axisMinValue:0,
+      axisMaxValue:500
+    }
   }],
   thChart: [{
     unit: '℃',
-    xVals:_map(state.deviceList.chart,o=>o.time.substr(-2)),
-    dataSet:[{
-      yVals:_map(state.deviceList.chart,'temperature'),
-      colors:['#50E3C2']
-    }]
+    data: {
+      xVals:_map(state.deviceList.chart,o=>o.time.substr(-2)),
+      dataSet:[{
+        yVals:_map(state.deviceList.chart,'temperature'),
+        colors:['#50E3C2']
+      }]
+    },
+    leftAxis:{
+      axisMinValue:-20,
+      axisMaxValue:70
+    }
   },{
     unit: '％',
-    xVals:_map(state.deviceList.chart,o=>o.time.substr(-2)),
-    dataSet:[{
-      yVals:_map(state.deviceList.chart,'humidity'),
-      colors:['#50E3C2']
-    }]
+    data: {
+      xVals:_map(state.deviceList.chart,o=>o.time.substr(-2)),
+      dataSet:[{
+        yVals:_map(state.deviceList.chart,'humidity'),
+        colors:['#50E3C2']
+      }]
+    },
+    leftAxis:{
+      axisMinValue:0,
+      axisMaxValue:100
+    }
   }]
 }),dispatch=>({
   action: bindActionCreators({

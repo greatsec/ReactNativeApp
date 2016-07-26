@@ -29,12 +29,12 @@ let aqiToMore = (aqi)=>{
 }
 
 let aqiList = [
-  {range:[0,50],color:'#20D800',title:'优'},
-  {range:[50,100],color:'#F6E900',title:'良'},
-  {range:[100,150],color:'#FF7F00',title:'轻度污染'},
-  {range:[150,200],color:'#F10000',title:'中度污染'},
-  {range:[200,300],color:'#C800BE',title:'重度污染'},
-  {range:[300,500],color:'#7C0075',title:'严重污染'}];
+  {range:[0,35],color:'#20D800',title:'优'},
+  {range:[35,75],color:'#F6E900',title:'良'},
+  {range:[75,115],color:'#FF7F00',title:'轻度污染'},
+  {range:[115,150],color:'#F10000',title:'中度污染'},
+  {range:[150,250],color:'#C800BE',title:'重度污染'},
+  {range:[250,99999],color:'#7C0075',title:'严重污染'}];
 
   class BottomTabBar extends Component {
 
