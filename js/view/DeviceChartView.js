@@ -42,23 +42,32 @@ class V extends Component {
     let { code: device } = this.props.device;
     let startTime, endTime;
     let showTime = moment();
-
+    let xVals = [];
+    let labelsToSkip = 0;
     switch(type){
       case 'hour': {
         startTime = showTime.format('YYYYMMDD') + '00';
         endTime = showTime.format('YYYYMMDD') + '23';
+        labelsToSkip = 1;
+        xVals = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
       } break;
       case 'day': {
         startTime = showTime.format('YYYYMM') + '01';
         endTime = showTime.format('YYYYMM') + moment().daysInMonth();
+        labelsToSkip = 1;
+        xVals = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
+
       } break;
       case 'month': {
         startTime = showTime.format('YYYY') + '0101';
         endTime = showTime.format('YYYY') + '1231';
+        labelsToSkip = 0;
+        xVals = ['01','02','03','04','05','06','07','08','09','10','11','12'];
       } break;
     }
 
     this.setState({type,showTime,legendFormat});
+    this.props.action.changeChart({xVals,labelsToSkip});
     this.props.action.pmList({device,startTime,endTime,type});
   }
   onSwipe({direction}){
@@ -69,25 +78,35 @@ class V extends Component {
     let { showTime, type } = this.state;
 
     let func = direction == 'left' ? 'add' : 'subtract';
+    let xVals = [];
+    let labelsToSkip = 0;
     switch(type){
       case 'hour': {
         showTime = showTime[func](1,'d');
         startTime = showTime.format('YYYYMMDD') + '00';
         endTime = showTime.format('YYYYMMDD') + '23';
+        labelsToSkip = 1;
+        xVals = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
       } break;
       case 'day': {
         showTime = showTime[func](1,'M');
         startTime = showTime.format('YYYYMM') + '01';
         endTime = showTime.format('YYYYMM') + moment().daysInMonth();
+        labelsToSkip = 1;
+        xVals = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
+
       } break;
       case 'month': {
         showTime = showTime[func](1,'y');
         startTime = showTime.format('YYYY') + '0101';
         endTime = showTime.format('YYYY') + '1231';
+        labelsToSkip = 0;
+        xVals = ['01','02','03','04','05','06','07','08','09','10','11','12'];
       } break;
     }
 
     this.setState({showTime});
+    this.props.action.changeChart({xVals,labelsToSkip});
     this.props.action.pmList({device,startTime,endTime,type});
   }
 
@@ -140,52 +159,84 @@ export default connect(state=>({
   pmChart: [{
     unit: 'ug/m³',
     data: {
-      xVals:_map(state.deviceList.chart,o=>o.time.substr(-2)),
+      //xVals:_map(state.deviceList.chart,o=>o.time.substr(-2)),
+      xVals:state.deviceList.xVals,
       dataSet:[{
-        yVals:_map(state.deviceList.chart,'pm1'),
+        //yVals:_map(state.deviceList.chart,'pm1'),
+        yVals: _map(state.deviceList.chart, o=>({
+          val:o.pm1,
+          xIndex: parseInt(o.time.substr(-2)) -1
+        })),
         colors:['#50E3C2']
       },{
-        yVals:_map(state.deviceList.chart,'pm25'),
+        //yVals:_map(state.deviceList.chart,'pm25'),
+        yVals: _map(state.deviceList.chart, o=>({
+          val:o.pm25,
+          xIndex: parseInt(o.time.substr(-2)) - 1
+        })),
         colors:['#F68447']
       },{
-        yVals:_map(state.deviceList.chart,'pm10'),
+        //yVals:_map(state.deviceList.chart,'pm10'),
+        yVals: _map(state.deviceList.chart, o=>({
+          val:o.pm10,
+          xIndex: parseInt(o.time.substr(-2)) - 1
+        })),
         colors:['#D847F6']
       }]
     },
     leftAxis:{
       axisMinValue:0,
-      axisMaxValue:500
+      axisMaxValue:500,
+      labelCount:11
+    },
+    xAxis: {
+      labelsToSkip: state.deviceList.labelsToSkip
     }
   }],
   thChart: [{
     unit: '℃',
     data: {
-      xVals:_map(state.deviceList.chart,o=>o.time.substr(-2)),
+      xVals:state.deviceList.xVals,
       dataSet:[{
-        yVals:_map(state.deviceList.chart,'temperature'),
+        yVals: _map(state.deviceList.chart, o=>({
+          val:o.temperature,
+          xIndex: parseInt(o.time.substr(-2)) - 1
+        })),
         colors:['#50E3C2']
       }]
     },
     leftAxis:{
       axisMinValue:-20,
-      axisMaxValue:70
+      axisMaxValue:70,
+      labelCount:10
+    },
+    xAxis: {
+      labelsToSkip: state.deviceList.labelsToSkip
     }
   },{
     unit: '％',
     data: {
-      xVals:_map(state.deviceList.chart,o=>o.time.substr(-2)),
+      xVals:state.deviceList.xVals,
       dataSet:[{
-        yVals:_map(state.deviceList.chart,'humidity'),
+        yVals: _map(state.deviceList.chart, o=>({
+          val:o.humidity,
+          xIndex: parseInt(o.time.substr(-2)) - 1
+        })),
         colors:['#50E3C2']
       }]
     },
     leftAxis:{
       axisMinValue:0,
-      axisMaxValue:100
+      axisMaxValue:100,
+      labelCount:11
+    },
+    xAxis: {
+      labelsToSkip: state.deviceList.labelsToSkip
     }
-  }]
+  }],type:state.deviceList.type
 }),dispatch=>({
   action: bindActionCreators({
-    pmList: action.pmList
+    pmList: action.pmList,
+    changeChart: action.changeChart
   }, dispatch)
 }))(V);

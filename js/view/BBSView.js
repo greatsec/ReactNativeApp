@@ -67,8 +67,8 @@ class V extends Component {
               <View style={{flexDirection:'row',marginLeft:5,marginRight:5,marginTop:5}}>
               {o.imageList.map((o2)=>{
                 return (
-                  <TouchableOpacity key={o2.image} onPress={()=>this.setState({imageUrl:'http://www.tdong.cn/'+o2.image})}>
-                  <Image style={{width:115,height:115,margin:1}} resizeMode="contain" source={{uri:'http://www.tdong.cn/'+o2.image}}  />
+                  <TouchableOpacity key={o2.image} onPress={()=>this.setState({imageUrl:'http://smart.angelsheel.cn/'+o2.image})}>
+                  <Image style={{width:115,height:115,margin:1}} resizeMode="contain" source={{uri:'http://smart.angelsheel.cn/'+o2.image}}  />
                   </TouchableOpacity>
                 );
               })}

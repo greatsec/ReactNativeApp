@@ -104,10 +104,16 @@ export var deviceList = handleActions({
       })};
   },
   pmListResult: (state, action) => {
-    if(action.err) return state;
     return {
       ...state,
-      chart: _sortBy(action.payload,['time'])
+      chart: action.err ? [] :_sortBy(action.payload,['time'])
+    };
+  },
+  changeChart: (state, action) => {
+    return {
+      ...state,
+      xVals: action.payload.xVals || [],
+      labelsToSkip: action.payload.labelsToSkip
     };
   },
   deviceUnbindResult: (state, action) => {
@@ -128,10 +134,15 @@ export var deviceList = handleActions({
     list:[],
     slist:[],
     chart:[]
+  }),
+  _updateDeviceDetailAddress:(state, action) => ({...state,
+    list:state.list.map(o=>o.id==action.payload.id ? {...o, formatted_address:action.payload.formatted_address}:o),
+    slist:state.slist.map(o=>o.id==action.payload.id ? {...o, formatted_address:action.payload.formatted_address}:o)
   })
 },{
   rawList:[],
   list:[],
+  xVals:[],
   slist:[],
   chart:[],
   refreshing: false

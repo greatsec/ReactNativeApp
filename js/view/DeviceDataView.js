@@ -98,16 +98,22 @@ class V extends Component {
 
   componentDidMount(){
     this._interval = setInterval(this.updateData.bind(this), 5000);
-    console.log()
     if(this.props.device.address){
       this.weather(this.props.device.address).then(json => !json.errNum && this.setState({
         curTemp:json.retData.today.curTemp,
         weatherType:json.retData.today.type,
         aqi: aqiToMore(json.retData.today.aqi),
+        aqiValue: json.retData.today.aqi,
         fengxiang: json.retData.today.fengxiang,
         fengli: json.retData.today.fengli,
       }));
     }
+
+    let {id, latitude, longitude} = this.props.device;
+    if(id && latitude && longitude){
+      this.props.action.updateDeviceDetailAddress(id, latitude, longitude);
+    }
+
   }
   updateData(){
     if(this.props.isFocus){
@@ -126,34 +132,41 @@ class V extends Component {
   }
 
   render(){
+    console.log(this.state);
     let {main} =  this.state;
     main.curLevel = main.levels[main.currentLevel];
     return (
       <View style={{flex:1}}>
         <View style={{flex:1}}>
-          <Image source={require('./img/device_bg.png')} style={{flex:1,alignItems:'flex-end', flexDirection:'row'}}>
-            {this.props.device.address? (
-              <View style={{marginBottom:10, marginLeft:5}}>
-                <Text style={{backgroundColor:'transparent', color:'#fff', fontSize:48}}>{this.state.curTemp}</Text>
-              </View>
-            ) : null}
-            {this.props.device.address? (
-              <View style={{flex:1,marginBottom:10, justifyContent:'center'}}>
-                <View style={{flexDirection:'row', marginBottom:5}}>
-                  <View style={{alignItems:'center', justifyContent:'center', marginHorizontal:10}}>
-                    <Text style={{backgroundColor:'transparent', color:'#fff'}}>{this.state.weatherType}</Text>
-                  </View>
-                  <View style={{backgroundColor:this.state.aqi.color,borderRadius:10,height:20, justifyContent:'center'}}>
-                    <Text style={{backgroundColor:'transparent', color:'#fff', fontSize:14,marginHorizontal:10}}>室外·空气{this.state.aqi.text}</Text>
+          <Image source={require('./img/device_bg.png')} style={{flex:1}}>
+            <View style={{marginTop:10, marginLeft:10}}>
+              <Text style={{backgroundColor:'transparent', color:'#fff', fontSize:16}}>{this.props.device.address||''}</Text>
+            </View>
+            <View style={{flexDirection:'row'}}>
+              {this.props.device.address? (
+                <View style={{marginBottom:10, marginLeft:5}}>
+                  <Text style={{backgroundColor:'transparent', color:'#fff', fontSize:48}}>{this.state.curTemp && this.state.curTemp.replace('℃','')}</Text>
+                </View>
+              ) : null}
+              {this.props.device.address? (
+                <View style={{flex:1,marginBottom:10, justifyContent:'center'}}>
+                  <View style={{flexDirection:'row', marginBottom:5}}>
+                    <View style={{alignItems:'center', justifyContent:'center', marginHorizontal:10}}>
+                      <Text style={{backgroundColor:'transparent', color:'#fff'}}>{this.state.weatherType}</Text>
+                      <Text style={{backgroundColor:'transparent', color:'#fff'}}>℃</Text>
+                    </View>
+                    <View style={{alignItems:'center', justifyContent:'center', marginHorizontal:10}}>
+                      <Text style={{backgroundColor:'transparent', color:'#fff'}}>PM2.5</Text>
+                      <Text style={{backgroundColor:'transparent', color:'#fff'}}>{this.state.aqiValue}</Text>
+                    </View>
                   </View>
                 </View>
-                <Text style={{backgroundColor:'transparent', color:'#fff', fontSize:14}}>{this.state.fengxiang}|{this.state.fengli}</Text>
-              </View>
-            ) : null}
+              ) : null}
+            </View>
           </Image>
           {this.props.device.address? (
-            <View style={{position:'absolute', bottom:10, right:5}}>
-              <Text style={{backgroundColor:'transparent', color:'#fff', fontSize:16}}>{this.props.device.address}</Text>
+            <View style={{position:'absolute', bottom:0, left:0, right:0,backgroundColor:'#0093ed'}}>
+              <Text style={{margin:5, backgroundColor:'transparent', color:'#fff', fontSize:16}}>{this.props.device.formatted_address}</Text>
             </View>
           ) : null}
         </View>
@@ -247,6 +260,7 @@ export default connect(state=>
 ,dispatch=>({
   action: bindActionCreators({
     selectDevice: action.selectDevice,
-    deviceRealtimeData: action.deviceRealtimeData
+    deviceRealtimeData: action.deviceRealtimeData,
+    updateDeviceDetailAddress: action.updateDeviceDetailAddress
   }, dispatch)
 }))(V);

@@ -10,6 +10,7 @@ import {
   View,
   AppState,
   BackAndroid,
+  Platform,
   ToastAndroid,
   TouchableOpacity,
 } from 'react-native';
@@ -132,7 +133,7 @@ const getSceneStyle = (props, computedProps) => {
     shadowRadius: null,
   };
   if (computedProps.isActive) {
-    style.marginTop = computedProps.hideNavBar ? 0 : 64;
+    style.marginTop = computedProps.hideNavBar ? 0 : Platform.OS === 'ios' || Platform.Version > 19 ? 64 : 44;
     style.marginBottom = computedProps.hideTabBar ? 0 : 50;
   }
   return style;

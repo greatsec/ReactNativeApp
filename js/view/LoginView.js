@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Image,
   Switch,
+  ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
@@ -57,7 +58,7 @@ class V extends Component {
 
   render() {
     return (
-      <View>
+      <ScrollView style={{flex:1}}>
         <View style={{flex:1, height:100, alignItems:'center', marginTop:50}}>
           <Image style={{width:206, height:60}} resizeMode='contain' source={require('./img/logo_landing.png')} />
         </View>
@@ -155,7 +156,7 @@ class V extends Component {
               <IconFont name="wechat" style={{backgroundColor:'transparent'}} size={24} color="#fff" />
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

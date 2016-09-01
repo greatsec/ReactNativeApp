@@ -152,7 +152,7 @@ class V extends Component {
         {this.state.imageList.map(o=>{
           return <View key={o.localPath} style={{margin:2,marginTop:5}}>
 
-            <Image source={{uri:'http://www.tdong.cn/'+o.serverPath}} style={{width:85,height:85}}  />
+            <Image source={{uri:'http://smart.angelsheel.cn/'+o.serverPath}} style={{width:85,height:85}}  />
 
             <TouchableOpacity onPress={()=>this.onPressDeleteImage(o.localPath)} style={{
               position:'absolute',

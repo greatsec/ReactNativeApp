@@ -33,7 +33,7 @@ class V extends Component {
               <Text style={{fontSize:15}}>设备型号</Text>
             </View>
             <View style={{justifyContent:'center', marginRight:15}}>
-              <Text>{this.props.device.type == '01' ? '空气颗粒检测仪':'空气颗粒检测仪'}</Text>
+              <Text>{this.props.device.type == '01' ? 'PM2.5检测仪':'PM2.5检测仪'}</Text>
             </View>
         </View>
 

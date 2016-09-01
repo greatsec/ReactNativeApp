@@ -27,7 +27,7 @@ class V extends Component {
             flexDirection:'row',
             backgroundColor:'#fff'}} onPress={Actions.deviceAdd2}>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>空气颗粒检测仪</Text>
+              <Text style={{fontSize:15}}>PM2.5检测仪</Text>
             </View>
         </TouchableOpacity>
 

@@ -44,13 +44,14 @@
    * simulator in the "Release" build configuration.
    */
 
-   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+   //jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
   
-//#ifdef DEBUG
-//  jsCodeLocation = [NSURL URLWithString:@"http://lumin-macbook.local:8081/index.ios.bundle?platform=ios&dev=true"];
-//#else
-//  jsCodeLocation = [CodePush bundleURL];
-//#endif
+#ifdef DEBUG
+  jsCodeLocation = [NSURL URLWithString:@"http://lumin-macbook.local:8081/index.ios.bundle?platform=ios&dev=true"];
+#else
+  //jsCodeLocation = [CodePush bundleURL];
+  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+#endif
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"ReactNativeApp"

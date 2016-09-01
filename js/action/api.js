@@ -6,7 +6,7 @@ import mapValues from 'lodash/mapValues';
 import forEach from 'lodash/forEach';
 var token = '';
 
-var httpServer = 'http://www.tdong.cn/';
+var httpServer = 'http://smart.angelsheel.cn/';
 //var httpServer = 'http://192.168.3.59:8080/';
 var httpApiList = {
   'register':'api/register',
@@ -50,7 +50,7 @@ var httpApiList = {
   'versionGet':'api/version/get'
 };
 
-var wsServer = 'ws://www.tdong.cn:60002/websocket';
+var wsServer = 'ws://smart.angelsheel.cn:60002/websocket';
 var wsApiList = {
   'deviceRealtimeData':'304',
   'deviceOTA':'307'
