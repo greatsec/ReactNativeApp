@@ -68,10 +68,6 @@ class V extends Component {
 }
 
 export default connect(state=>({
-  name: state.loginUser.name
-}))(V);
-
-export default connect(state=>({
   device: _find(state.deviceList.list, {id:state.deviceList.selected})
 }),dispatch=>({
   action: bindActionCreators({
