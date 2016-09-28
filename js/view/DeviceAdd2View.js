@@ -107,7 +107,7 @@ class V extends Component {
 
         <Text style={{flex:1, marginHorizontal:15, marginTop:50,fontSize:18}}>
           如果wifi指示图标开始闪烁，则产品处于一键配置模式，输入wifi密码，再点击配置网络，等待设备连接；
-          如果未出现wifi指示图标，则产品处于离线模式，需要长按功能键5s以上，松开时进入一键配置模式。配置成功后wifi指示图标常亮。
+          如果未出现wifi指示图标，则产品处于离线模式。当用WiFi配网顶针戳一下"WiFi配置孔"后，LCD的WiFi图标开始闪烁，设备进入一键配置模式。配置成功后wifi指示图标常亮。
         </Text>
 
       </View>);

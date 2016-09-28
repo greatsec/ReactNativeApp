@@ -99,14 +99,20 @@ class V extends Component {
   componentDidMount(){
     this._interval = setInterval(this.updateData.bind(this), 5000);
     if(this.props.device.address){
-      this.weather(this.props.device.address).then(json => !json.errNum && this.setState({
-        curTemp:json.retData.today.curTemp,
-        weatherType:json.retData.today.type,
-        aqi: aqiToMore(json.retData.today.aqi),
-        aqiValue: json.retData.today.aqi,
-        fengxiang: json.retData.today.fengxiang,
-        fengli: json.retData.today.fengli,
-      }));
+      this.weather(this.props.device.address).then(json => {
+        if(!json.errNum){
+           this.setState({
+            curTemp:json.retData.today.curTemp,
+            weatherType:json.retData.today.type,
+            aqi: aqiToMore(json.retData.today.aqi),
+            aqiValue: json.retData.today.aqi,
+            fengxiang: json.retData.today.fengxiang,
+            fengli: json.retData.today.fengli,
+          })
+        }else{
+          this.setState({weatherError:true})
+        }
+      });
     }
 
     let {id, latitude, longitude} = this.props.device;
@@ -142,27 +148,34 @@ class V extends Component {
             <View style={{marginTop:10, marginLeft:10}}>
               <Text style={{backgroundColor:'transparent', color:'#fff', fontSize:16}}>{this.props.device.address||''}</Text>
             </View>
-            <View style={{flexDirection:'row'}}>
-              {this.props.device.address? (
-                <View style={{marginBottom:10, marginLeft:5}}>
-                  <Text style={{backgroundColor:'transparent', color:'#fff', fontSize:48}}>{this.state.curTemp && this.state.curTemp.replace('℃','')}</Text>
-                </View>
-              ) : null}
-              {this.props.device.address? (
-                <View style={{flex:1,marginBottom:10, justifyContent:'center'}}>
-                  <View style={{flexDirection:'row', marginBottom:5}}>
-                    <View style={{alignItems:'center', justifyContent:'center', marginHorizontal:10}}>
-                      <Text style={{backgroundColor:'transparent', color:'#fff'}}>{this.state.weatherType}</Text>
-                      <Text style={{backgroundColor:'transparent', color:'#fff'}}>℃</Text>
-                    </View>
-                    <View style={{alignItems:'center', justifyContent:'center', marginHorizontal:10}}>
-                      <Text style={{backgroundColor:'transparent', color:'#fff'}}>PM2.5</Text>
-                      <Text style={{backgroundColor:'transparent', color:'#fff'}}>{this.state.aqiValue}</Text>
+            {this.state.weatherError ? (
+              <View style={{marginBottom:10, marginLeft:5}}>
+                <Text style={{backgroundColor:'transparent', color:'#fff', fontSize:16}}>获取天气失败</Text>
+              </View>
+            ):(
+              <View style={{flexDirection:'row'}}>
+                {this.props.device.address? (
+                  <View style={{marginBottom:10, marginLeft:5}}>
+                    <Text style={{backgroundColor:'transparent', color:'#fff', fontSize:48}}>{this.state.curTemp && this.state.curTemp.replace('℃','')}</Text>
+                  </View>
+                ) : null}
+                {this.props.device.address? (
+                  <View style={{flex:1,marginBottom:10, justifyContent:'center'}}>
+                    <View style={{flexDirection:'row', marginBottom:5}}>
+                      <View style={{alignItems:'center', justifyContent:'center', marginHorizontal:10}}>
+                        <Text style={{backgroundColor:'transparent', color:'#fff'}}>{this.state.weatherType}</Text>
+                        <Text style={{backgroundColor:'transparent', color:'#fff'}}>℃</Text>
+                      </View>
+                      <View style={{alignItems:'center', justifyContent:'center', marginHorizontal:10}}>
+                        <Text style={{backgroundColor:'transparent', color:'#fff'}}>PM2.5</Text>
+                        <Text style={{backgroundColor:'transparent', color:'#fff'}}>{this.state.aqiValue}</Text>
+                      </View>
                     </View>
                   </View>
-                </View>
-              ) : null}
-            </View>
+                ) : null}
+              </View>
+            )}
+
           </Image>
           {this.props.device.address? (
             <View style={{position:'absolute', bottom:0, left:0, right:0,backgroundColor:'#0093ed'}}>
