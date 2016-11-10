@@ -9,7 +9,6 @@ import com.lumin824.qq.QQPackage;
 import com.lumin824.nufrontwifi.NfWifiPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.lumin824.chart.ChartPackage;
-import com.microsoft.codepush.react.CodePush;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 
@@ -38,13 +37,6 @@ public class MainActivity extends ReactActivity {
         return BuildConfig.DEBUG;
     }
 
-    @Nullable
-    @Override
-    protected String getJSBundleFile() {
-        //return BuildConfig.DEBUG ? super.getJSBundleFile(): CodePush.getBundleUrl();
-        return super.getJSBundleFile();
-    }
-
     /**
      * A list of packages used by the app. If the app uses additional views
      * or modules besides the default ones, add more packages here.
@@ -60,8 +52,7 @@ public class MainActivity extends ReactActivity {
             new QQPackage(),
             new NfWifiPackage(),
             new ImagePickerPackage(),
-            new ChartPackage(),
-            new CodePush(BuildConfig.codePushDeploymentKey, this, BuildConfig.DEBUG)
+            new ChartPackage()
         );
     }
 }

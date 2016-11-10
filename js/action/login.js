@@ -2,6 +2,7 @@ import { createAction } from 'redux-actions';
 import * as qq from 'react-native-qq';
 import * as wechat from 'react-native-wechat';
 
+console.log(wechat);
 
 var logoutResult = createAction('LOGOUT_RESULT');
 
@@ -10,6 +11,8 @@ export var logout = () => dispatch => {
 }
 
 export var qqLogin = createAction('QQ_LOGIN', () => qq.login('get_simple_userinfo'));
+
+export const checkWechat = createAction('WECHAT_CHECK', ()=>wechat.isWXAppInstalled());
 
 export var wechatLogin = createAction('WECHAT_LOGIN',()=>new Promise((resolve, reject) => {
   wechat.sendAuthReq('snsapi_userinfo', '1234').then(code => {

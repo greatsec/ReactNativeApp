@@ -15,8 +15,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import codePush from 'react-native-code-push';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Scene, Router, Actions,Reducer } from 'react-native-router-flux';
@@ -223,10 +221,6 @@ class AppWarp extends Component {
   componentDidMount(){
     AppState.addEventListener('change', this._handleAppStateChange);
 	  BackAndroid.addEventListener('hardwareBackPress', this._handleBackButton);
-
-    if(!__DEV__){
-      codePush.sync({installMode: codePush.InstallMode.ON_NEXT_RESUME});
-    }
   }
 
   componentWillUnmount() {
@@ -236,10 +230,6 @@ class AppWarp extends Component {
 
   handleAppStateChange(appState){
     if (appState === 'active') {
-      if(!__DEV__){
-        codePush.sync({installMode: codePush.InstallMode.ON_NEXT_RESUME});
-      }
-
     }
   }
 

@@ -110,7 +110,6 @@ android {
     buildTypes {
         debug {
             resValue "string", "app_name", DEBUG_APP_NAME
-            buildConfigField "String", "codePushDeploymentKey", '""'
         }
         release {
             minifyEnabled enableProguardInReleaseBuilds
@@ -118,7 +117,6 @@ android {
             signingConfig signingConfigs.release
 
             resValue "string", "app_name", RELEASE_APP_NAME
-            buildConfigField "String", "codePushDeploymentKey", '"'+RELEASE_CODE_PUSH_DEPLOYMENT_KEY+'"'
         }
     }
     // applicationVariants are e.g. debug, release
@@ -145,7 +143,6 @@ dependencies {
     compile project(':react-native-nufront-wifi')
     compile project(':react-native-image-picker')
     compile project(':react-native-chart')
-    compile project(':react-native-code-push')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules

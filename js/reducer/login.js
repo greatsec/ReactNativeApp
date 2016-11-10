@@ -23,3 +23,9 @@ export var loginUser = handleActions({
   unbindMobileResult: (state, action) => (action.error ? state: {...state, mobile:''}),
   updateCodeResult: (state, action) => (action.error ? state: {...state, ...action.meta})
 },{});
+
+export const config = handleActions({
+  WECHAT_CHECK: (state, action) => (action.error ? state : {...state, wechat_installed: action.payload})
+}, {
+  wechat_installed: false
+})

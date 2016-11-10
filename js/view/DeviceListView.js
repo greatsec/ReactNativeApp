@@ -51,7 +51,7 @@ class V extends Component {
     let desc = (o.online == 'on') ? `PM2.5:${o.data.pm25}ug/m³` : `PM2.5:    ug/m³`;
     //let desc = `PM2.5:${o.data.pm25 || '  '}ug/m³`;
     return (
-      <TouchableOpacity onPress={()=>{this.props.action.selectDevice(o.id);Actions.device()}} style={{borderRadius:5, marginTop:10,marginLeft:i%2?5:10, marginRight:i%2?10:5,borderWidth:1, borderColor:'#bbb',height:150,alignItems:'center'}}>
+      <TouchableOpacity onPress={()=>{this.props.action.selectDevice(o.id);Actions.device()}} style={{borderRadius:5, marginTop:10,marginLeft:5, marginRight:5,borderWidth:1, borderColor:'#bbb',height:150,alignItems:'center'}}>
 
         <Image style={{width:80, height:80, margin:10}} resizeMode='contain' source={o.online == 'on' ? require('./img/ajx_online.png') : require('./img/ajx_offline.png') } />
         <View style={{flex:1}}>
@@ -78,12 +78,12 @@ class V extends Component {
           style={{flex:1}}>
           <View style={{flexDirection:'row', flexWrap:'wrap'}}>
             {_.map(this.props.deviceList,(o,i)=>(
-              <View key={i} style={{width:cellWidth}}>
+              <View key={i} style={{width:cellWidth,height:cellWidth}}>
                 {this.renderDevice(o, i)}
               </View>
             ))}
 
-            <View key={9999} style={{width:cellWidth}}>
+            <View key={9999} style={{width:cellWidth,height:cellWidth}}>
               <TouchableOpacity
                onPress={Actions.deviceAdd} style={{alignItems:'center', justifyContent:'center',borderRadius:5, marginTop:10,marginLeft:maxItem%2?5:10, marginRight:maxItem%2?10:5,borderWidth:1, borderColor:'#bbb',height:150}}>
                 <Text style={{

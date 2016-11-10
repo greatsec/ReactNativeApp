@@ -59,7 +59,7 @@ class V extends Component {
 
           <View style={{height:100,alignItems:'center', marginTop:60}}>
             <Image style={{width:206, height:60}} resizeMode='contain' source={require('./img/logo_landing.png')} />
-            <Text style={{marginTop:5}}>1.0.3</Text>
+            <Text style={{marginTop:5}}>1.1</Text>
           </View>
 
           <TouchableOpacity style={{marginTop:1,height:40, backgroundColor:'#fff', flexDirection:'row'}}>

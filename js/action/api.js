@@ -7,7 +7,7 @@ import forEach from 'lodash/forEach';
 var token = '';
 
 var httpServer = 'http://smart.angelsheel.cn/';
-//var httpServer = 'http://192.168.3.59:8080/';
+//var httpServer = 'http://192.168.3.14:8080/';
 var httpApiList = {
   'register':'api/register',
   'registerEmail':'api/registerEmail',

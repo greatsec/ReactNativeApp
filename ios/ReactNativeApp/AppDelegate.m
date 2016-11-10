@@ -12,8 +12,6 @@
 #import "RCTRootView.h"
 #import "RCTLinkingManager.h"
 
-#import "CodePush.h"
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -45,11 +43,10 @@
    */
 
    //jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-  
+
 #ifdef DEBUG
-  jsCodeLocation = [NSURL URLWithString:@"http://192.168.3.27:8081/index.ios.bundle?platform=ios&dev=true"];
+  jsCodeLocation = [NSURL URLWithString:@"http://192.168.3.11:8081/index.ios.bundle?platform=ios&dev=true"];
 #else
-  //jsCodeLocation = [CodePush bundleURL];
   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
 

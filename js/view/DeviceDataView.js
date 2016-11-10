@@ -144,7 +144,7 @@ class V extends Component {
     return (
       <View style={{flex:1}}>
         <View style={{flex:1}}>
-          <Image source={require('./img/device_bg.png')} style={{flex:1}}>
+          <Image source={require('./img/device_bg.png')} style={{flex:1,height:50}}>
             <View style={{marginTop:10, marginLeft:10}}>
               <Text style={{backgroundColor:'transparent', color:'#fff', fontSize:16}}>{this.props.device.address||''}</Text>
             </View>

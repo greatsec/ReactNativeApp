@@ -7,7 +7,8 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  NativeModules
+  NativeModules,
+  Alert
 } from 'react-native';
 
 import { bindActionCreators } from 'redux';
@@ -27,6 +28,10 @@ class V extends Component {
       };
     }
 
+  }
+
+  componentDidMount(){
+    this.props.action.checkWechat();
   }
 
   onPressLogin(){
@@ -147,25 +152,31 @@ class V extends Component {
               borderRadius:22}} onPress={this.onPressQQ.bind(this)}>
               <IconFont name="qq" style={{backgroundColor:'transparent'}} size={24} color="#fff" />
           </TouchableOpacity>
-          <TouchableOpacity style={{
-              alignItems:'center', justifyContent:'center',
-              backgroundColor:'#12DF26',
-              height:44,width:44,
-              marginLeft:22,
-              borderRadius:22}} onPress={this.onPressWechat.bind(this)}>
-              <IconFont name="wechat" style={{backgroundColor:'transparent'}} size={24} color="#fff" />
-          </TouchableOpacity>
+          {this.props.wechat_installed?(
+            <TouchableOpacity style={{
+                alignItems:'center', justifyContent:'center',
+                backgroundColor:'#12DF26',
+                height:44,width:44,
+                marginLeft:22,
+                borderRadius:22}} onPress={this.onPressWechat.bind(this)}>
+                <IconFont name="wechat" style={{backgroundColor:'transparent'}} size={24} color="#fff" />
+            </TouchableOpacity>
+          ):null}
         </View>
       </ScrollView>
     );
   }
 }
 
-export default connect(state=>state,dispatch=>({
+export default connect(state=>({
+  ...state,
+  wechat_installed: state.config.wechat_installed
+}),dispatch=>({
   action: bindActionCreators({
     login: action.login,
     codeLogin: action.codeLogin,
     qqLogin: action.qqLogin,
-    wechatLogin: action.wechatLogin
+    wechatLogin: action.wechatLogin,
+    checkWechat: action.checkWechat
   }, dispatch)
 }))(V);

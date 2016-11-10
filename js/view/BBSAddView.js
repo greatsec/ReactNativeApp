@@ -140,6 +140,7 @@ class V extends Component {
         backgroundColor:'transparent',
         borderWidth:0,
         textAlignVertical:'top',
+        height:200
         }}
         autoFocus={true}
         multiline={true}
@@ -161,12 +162,11 @@ class V extends Component {
             }}><Text style={{fontSize:14}}>删除</Text></TouchableOpacity>
           </View>
         })}
-        </View>
         <TouchableOpacity style={{
             width:80,
             height:80,
             marginTop:7,
-            marginLeft:271,
+            marginLeft:10,
             borderRadius:3,
             borderColor:'#6B6A6D',
             borderWidth:2,
@@ -175,6 +175,8 @@ class V extends Component {
           }} onPress={this.onSelectImage.bind(this)} >
           <Text style={{ color:'#6B6A6D',fontSize:30}}>＋</Text>
         </TouchableOpacity>
+        </View>
+
         </View>
 
 

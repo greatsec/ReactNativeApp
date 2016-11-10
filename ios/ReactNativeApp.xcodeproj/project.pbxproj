@@ -34,7 +34,6 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		9580CBD204D747DBA4F11BE8 /* libRNScreenshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8768428EA84A3889122EC4 /* libRNScreenshot.a */; };
 		ACFA6F5FBC704348AEDC3E61 /* libRCTToast.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A21B551D865459F9E3FBE4F /* libRCTToast.a */; };
-		DC2ACFB8DA114687ADB6DBEF /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0142BB5874A143B9A83FD32E /* libCodePush.a */; };
 		DD2FE8BABFCC43A5831F8DE1 /* libRNWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4EEC8416EE422C8425AEC9 /* libRNWechat.a */; };
 		EC8418D41B8640BEA8193616 /* libRNNufrontWifi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FFA7D2468A64AA8BB3A2E31 /* libRNNufrontWifi.a */; };
 /* End PBXBuildFile section */
@@ -95,13 +94,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
-		};
-		6D3DAFF21D0EEA3E0095FA77 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4D08EDB997314BF28BA42E67 /* CodePush.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = CodePush;
 		};
 		6D69BE4A1D2D59A70007BC4C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -196,7 +188,6 @@
 		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
 		00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
 		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
-		0142BB5874A143B9A83FD32E /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libCodePush.a; sourceTree = "<group>"; };
 		0FF1E9146AE74AE7A00C3264 /* RNNufrontWifi.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNNufrontWifi.xcodeproj; path = "../node_modules/react-native-nufront-wifi/ios/RNNufrontWifi.xcodeproj"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
@@ -211,7 +202,6 @@
 		27C61800F2FF429EA882C6AE /* libRNChart.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNChart.a; sourceTree = "<group>"; };
 		3348146A0F8A4E29AF0F774E /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		3D1D97A10163400BA55A326E /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		4D08EDB997314BF28BA42E67 /* CodePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		5FFA7D2468A64AA8BB3A2E31 /* libRNNufrontWifi.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNNufrontWifi.a; sourceTree = "<group>"; };
 		631527F98B284485BA0FCCAC /* RNScreenshot.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNScreenshot.xcodeproj; path = "../node_modules/react-native-screenshot/ios/RNScreenshot.xcodeproj"; sourceTree = "<group>"; };
 		6A21B551D865459F9E3FBE4F /* libRCTToast.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTToast.a; sourceTree = "<group>"; };
@@ -253,7 +243,6 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				DC2ACFB8DA114687ADB6DBEF /* libCodePush.a in Frameworks */,
 				3DC30585674D438FB72DCAC6 /* libz.tbd in Frameworks */,
 				15074918F70048C9862D0397 /* libRNChart.a in Frameworks */,
 				52ED9EBB197F44ADB67D96EF /* libRNImagePicker.a in Frameworks */,
@@ -355,14 +344,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		6D3DAFEF1D0EEA3E0095FA77 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6D3DAFF31D0EEA3E0095FA77 /* libCodePush.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		6D69BE331D2D59A70007BC4C /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,7 +440,6 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				4D08EDB997314BF28BA42E67 /* CodePush.xcodeproj */,
 				7BAA5CE359EB439797A9EF75 /* RNChart.xcodeproj */,
 				79411B1BA6624F1399ACA9B3 /* RNImagePicker.xcodeproj */,
 				0FF1E9146AE74AE7A00C3264 /* RNNufrontWifi.xcodeproj */,
@@ -535,6 +515,7 @@
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = EPEG932B87;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -550,10 +531,6 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
-				{
-					ProductGroup = 6D3DAFEF1D0EEA3E0095FA77 /* Products */;
-					ProjectRef = 4D08EDB997314BF28BA42E67 /* CodePush.xcodeproj */;
-				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -689,13 +666,6 @@
 			fileType = archive.ar;
 			path = libReact.a;
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6D3DAFF31D0EEA3E0095FA77 /* libCodePush.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libCodePush.a;
-			remoteRef = 6D3DAFF21D0EEA3E0095FA77 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		6D69BE4B1D2D59A70007BC4C /* libRCTToast.a */ = {
@@ -834,6 +804,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = EPEG932B87;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -845,7 +816,6 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/**",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-chart/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-nufront-wifi/ios",
@@ -876,6 +846,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mirhz.ajx;
 				PRODUCT_NAME = ReactNativeApp;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -887,6 +858,7 @@
 				CODE_PUSH_DEPLOYMENT_KEY = BYTgrvEJbvbdeLEtOuQUt_eLRe54E107RcvNb;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = EPEG932B87;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -898,7 +870,6 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/**",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-chart/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-nufront-wifi/ios",
@@ -970,7 +941,6 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-chart/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-nufront-wifi/ios",
@@ -1018,7 +988,6 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-chart/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-nufront-wifi/ios",
